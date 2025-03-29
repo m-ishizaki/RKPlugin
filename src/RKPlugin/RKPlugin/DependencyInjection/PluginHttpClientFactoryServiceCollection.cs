@@ -1,23 +1,31 @@
-﻿using System;
+﻿using RkSoftware.RKPlugin.Reflection;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace RkSoftware.RKPlugin.DependencyInjection;
 
 public static class PluginHttpClientFactoryServiceCollection
 {
-    static Type Init() => typeof(Microsoft.Extensions.DependencyInjection.Extensions.ServiceCollectionDescriptorExtensions);
+    public static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions,Microsoft.Extensions.Http";
 
     public static object? AddHttpClient<TClient, TImplementation>(object services, Func<HttpClient, TImplementation> factory)
         where TClient : class where TImplementation : class, TClient
     {
-        var type = Type.GetType("Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions,Microsoft.Extensions.Http");
-        var methodInfo = type?.GetMethods()
-            .Where(x => x.Name == "AddHttpClient")
-            .Where(x => x.GetGenericArguments().Length == 2)
-            .Where(x => x.GetParameters().Length == 2)
-            .Where(x => x.GetParameters()[1].Name == "factory").FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod([typeof(TClient), typeof(TImplementation)]);
+        const string MethodName = "AddHttpClient<T1, T2>(object, Func<HttpClient, TImplementation>)";
+        var method = TypeInitializer.Method(BaseType, MethodName,
+            type =>
+            {
+                var methodInfo = type?.GetMethods().Where(x =>
+                    x.Name == "AddHttpClient"
+                    && x.GetGenericArguments().Length == 2
+                    && x.GetParameters().Length == 2
+                    && x.GetParameters()[1].Name == "factory"
+                ).FirstOrDefault();
+                var method = methodInfo?.MakeGenericMethod([typeof(TClient), typeof(TImplementation)]);
+                return method;
+            });
         return method?.Invoke(null, [services, factory]);
     }
 }

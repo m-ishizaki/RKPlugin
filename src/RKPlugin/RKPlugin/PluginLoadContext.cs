@@ -52,8 +52,8 @@ public class PluginLoadContext : AssemblyLoadContext
         {
             var context = new PluginLoadContext(pluginDirectory, false);
             context.Load();
-            var allcontexts = new[] { context }.Concat(contexts).ToArray();
-            return allcontexts;
+            var allContexts = new[] { context }.Concat(contexts).ToArray();
+            return allContexts;
         }
     }
 }
