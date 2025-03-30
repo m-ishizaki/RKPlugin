@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace RkSoftware.RKPlugin.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
-public static class PluginServiceCollectionService
+internal static class PluginServiceCollectionService
 {
-    public static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions,Microsoft.Extensions.DependencyInjection.Abstractions";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions,Microsoft.Extensions.DependencyInjection.Abstractions";
 
-    public static object? AddScoped<TService>(object services, Func<IServiceProvider, TService> implementationFactory)
+    public static object? AddScoped<TService>(object? services, Func<IServiceProvider, TService> implementationFactory)
         where TService : class
     {
         const string MethodName = "AddScoped<T1>(object, Func<IServiceProvider, TService>)";

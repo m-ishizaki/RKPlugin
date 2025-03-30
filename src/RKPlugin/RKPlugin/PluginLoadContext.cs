@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RkSoftware.RKPlugin.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.Loader;
@@ -56,4 +57,7 @@ public class PluginLoadContext : AssemblyLoadContext
             return allContexts;
         }
     }
+
+    public static object? Invoke(object? services, MethodInfo method, object? obj, object?[]? parameters) =>
+        method.Invoke(obj, [new PluginServiceCollection(services), .. parameters ?? Array.Empty<object?>()]);
 }

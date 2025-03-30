@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace RkSoftware.RKPlugin.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
-public static class PluginHttpClientFactoryServiceCollection
+internal static class PluginHttpClientFactoryServiceCollection
 {
-    public static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions,Microsoft.Extensions.Http";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions,Microsoft.Extensions.Http";
 
-    public static object? AddHttpClient<TClient, TImplementation>(object services, Func<HttpClient, TImplementation> factory)
+    public static object? AddHttpClient<TClient, TImplementation>(object? services, Func<HttpClient, TImplementation> factory)
         where TClient : class where TImplementation : class, TClient
     {
         const string MethodName = "AddHttpClient<T1, T2>(object, Func<HttpClient, TImplementation>)";

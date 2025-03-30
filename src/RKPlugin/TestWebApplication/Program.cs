@@ -1,4 +1,5 @@
 using RkSoftware.RKPlugin;
+using System.Diagnostics;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,10 @@ foreach (var plugin in plugins)
         {
             var method = type.GetMethod("ConfigureServices");
             if (method != null)
-                method.Invoke(null, [services]);
+            {
+                var result = PluginLoadContext.Invoke(services, method, null, null);
+                Debug.Write(result);
+            }
         }
 
 services.AddRazorPages();
