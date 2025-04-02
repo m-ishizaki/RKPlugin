@@ -59,15 +59,15 @@ public class PluginServiceCollection
     object? AddHttpClient<TClient, TImplementation>(string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient => PluginHttpClientFactoryServiceCollection.AddHttpClient<TClient, TImplementation>(Services, name, factory);
     public static object? AddHttpClient<TClient, TImplementation>(object? services, string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient => PluginHttpClientFactoryServiceCollectionCaller.AddHttpClient<TClient, TImplementation>(services, name, factory);
 
-    object? AddTransient(Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => throw new NotImplementedException();
+    object? AddTransient(Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => PluginServiceCollectionService.AddTransient(Services, serviceType, implementationType);
     public static object? AddTransient(object? services, Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => throw new NotImplementedException();
-    object? AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory) => throw new NotImplementedException();
+    object? AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory) => PluginServiceCollectionService.AddTransient(Services, serviceType, implementationFactory);
     public static object? AddTransient(object? services, Type serviceType, Func<IServiceProvider, object> implementationFactory) => throw new NotImplementedException();
-    object? AddTransient<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>() where TService : class where TImplementation : class, TService => throw new NotImplementedException();
+    object? AddTransient<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>() where TService : class where TImplementation : class, TService => PluginServiceCollectionService.AddTransient<TService, TImplementation>(Services);
     public static object? AddTransient<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services) where TService : class where TImplementation : class, TService => throw new NotImplementedException();
-    object? AddTransient([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType) => throw new NotImplementedException();
+    object? AddTransient([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType) => PluginServiceCollectionService.AddTransient(Services, serviceType);
     public static object? AddTransient(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType) => throw new NotImplementedException();
-    object? AddTransient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class => throw new NotImplementedException();
+    object? AddTransient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class => PluginServiceCollectionService.AddTransient<TService>(Services);
     public static object? AddTransient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class => throw new NotImplementedException();
     object? AddTransient<TService>(Func<IServiceProvider, TService> implementationFactory) where TService : class => throw new NotImplementedException();
     public static object? AddTransient<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class => throw new NotImplementedException();
