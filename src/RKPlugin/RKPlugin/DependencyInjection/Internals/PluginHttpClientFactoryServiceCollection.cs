@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text;
+using System.Xml.Linq;
 
 namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
@@ -88,6 +89,8 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetGenericArguments().Length == 2
             && x.GetParameters().Length == 2
             && x.GetParameters()[1].Name == nameof(factory)
+            && x.GetParameters()[1].ParameterType.GenericTypeArguments.Count() == 2
+            && x.GetParameters()[1].ParameterType.GenericTypeArguments[1].Name == nameof(TImplementation)
         ).FirstOrDefault();
         var method = methodInfo?.MakeGenericMethod(typeof(TClient), typeof(TImplementation));
         var result = method?.Invoke(null, [services, factory]);
@@ -96,10 +99,37 @@ internal static class PluginHttpClientFactoryServiceCollection
 
     public static object? AddHttpClient<TClient, TImplementation>(this object? services, string name, Func<HttpClient, TImplementation> factory)
         where TClient : class
-        where TImplementation : class, TClient => throw new NotImplementedException();
+        where TImplementation : class, TClient
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddHttpClient)
+            && x.GetGenericArguments().Length == 2
+            && x.GetParameters().Length == 3
+            && x.GetParameters()[1].Name == nameof(name)
+            && x.GetParameters()[2].Name == nameof(factory)
+        ).FirstOrDefault();
+        var method = methodInfo?.MakeGenericMethod(typeof(TClient), typeof(TImplementation));
+        var result = method?.Invoke(null, [services, name, factory]);
+        return result;
+    }
     public static object? AddHttpClient<TClient, TImplementation>(this object? services, Func<HttpClient, IServiceProvider, TImplementation> factory)
         where TClient : class
-        where TImplementation : class, TClient => throw new NotImplementedException();
+        where TImplementation : class, TClient
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddHttpClient)
+            && x.GetGenericArguments().Length == 2
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[1].Name == nameof(factory)
+            && x.GetParameters()[1].ParameterType.GenericTypeArguments.Count() == 3
+            && x.GetParameters()[1].ParameterType.GenericTypeArguments[2].Name == nameof(TImplementation)
+        ).FirstOrDefault();
+        var method = methodInfo?.MakeGenericMethod(typeof(TClient), typeof(TImplementation));
+        var result = method?.Invoke(null, [services, factory]);
+        return result;
+    }
     public static object? AddHttpClient<TClient, TImplementation>(this object? services, string name, Func<HttpClient, IServiceProvider, TImplementation> factory)
         where TClient : class
         where TImplementation : class, TClient => throw new NotImplementedException();
