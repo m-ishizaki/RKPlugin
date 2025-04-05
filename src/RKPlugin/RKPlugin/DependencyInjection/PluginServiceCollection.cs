@@ -58,7 +58,6 @@ public class PluginServiceCollection
     public static object? AddHttpClient<TClient, TImplementation>(object? services, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient => PluginHttpClientFactoryServiceCollectionCaller.AddHttpClient<TClient, TImplementation>(services, factory);
     object? AddHttpClient<TClient, TImplementation>(string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient => PluginHttpClientFactoryServiceCollection.AddHttpClient<TClient, TImplementation>(Services, name, factory);
     public static object? AddHttpClient<TClient, TImplementation>(object? services, string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient => PluginHttpClientFactoryServiceCollectionCaller.AddHttpClient<TClient, TImplementation>(services, name, factory);
-
     object? AddTransient(Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => PluginServiceCollectionService.AddTransient(Services, serviceType, implementationType);
     public static object? AddTransient(object? services, Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => PluginServiceCollectionServiceCaller.AddTransient(services, serviceType, implementationType);
     object? AddTransient(Type serviceType, Func<IServiceProvider, object> implementationFactory) => PluginServiceCollectionService.AddTransient(Services, serviceType, implementationFactory);
@@ -83,10 +82,8 @@ public class PluginServiceCollection
     public static object? AddScoped(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType) => PluginServiceCollectionServiceCaller.AddScoped(services, serviceType);
     object? AddScoped<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class => PluginServiceCollectionService.AddScoped<TService>(Services);
     public static object? AddScoped<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class => PluginServiceCollectionServiceCaller.AddScoped<TService>(services);
-
     object? AddScoped<TService>(Func<IServiceProvider, TService> implementationFactory) where TService : class => PluginServiceCollectionService.AddScoped(Services, implementationFactory);
     public static object? AddScoped<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class => PluginServiceCollectionServiceCaller.AddScoped(services, implementationFactory);
-
     object? AddScoped<TService, TImplementation>(Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService => PluginServiceCollectionService.AddScoped<TService, TImplementation>(Services, implementationFactory);
     public static object? AddScoped<TService, TImplementation>(object? services, Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService => PluginServiceCollectionServiceCaller.AddScoped<TService, TImplementation>(services, implementationFactory);
     object? AddSingleton(Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => PluginServiceCollectionService.AddSingleton(Services, serviceType, implementationType);
