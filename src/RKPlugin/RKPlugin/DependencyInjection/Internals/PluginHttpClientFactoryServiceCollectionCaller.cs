@@ -17,7 +17,7 @@ internal static class PluginHttpClientFactoryServiceCollectionCaller
             && x.GetGenericArguments().Length == 0
             && x.GetParameters().Length == 0
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         return method?.Invoke(services, []);
     }
 
@@ -25,13 +25,14 @@ internal static class PluginHttpClientFactoryServiceCollectionCaller
     {
         var type = services!.GetType();
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Where(x =>
-            x.Name == nameof(AddHttpClient)
+            x.Name == nameof(ConfigureHttpClientDefaults)
             && x.GetGenericArguments().Length == 0
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(configure)
-            && x.GetParameters()[1].ParameterType.GenericTypeArguments.Length == 0
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 1
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[0].Name == nameof(Object)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         return method?.Invoke(services, [configure]);
     }
 
@@ -43,9 +44,9 @@ internal static class PluginHttpClientFactoryServiceCollectionCaller
             && x.GetGenericArguments().Length == 0
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(name)
-            && x.GetParameters()[1].ParameterType.GenericTypeArguments.Length == 0
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 0
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         return method?.Invoke(services, [name]);
     }
 
@@ -59,7 +60,7 @@ internal static class PluginHttpClientFactoryServiceCollectionCaller
             && x.GetParameters()[0].Name == nameof(name)
             && x.GetParameters()[1].Name == nameof(configureClient)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         return method?.Invoke(services, [name, configureClient]);
     }
 
@@ -74,7 +75,7 @@ internal static class PluginHttpClientFactoryServiceCollectionCaller
             && x.GetParameters()[1].Name == nameof(configureClient)
             && x.GetParameters()[1].ParameterType.GenericTypeArguments.Length == 0
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         return method?.Invoke(services, [name, configureClient]);
     }
 

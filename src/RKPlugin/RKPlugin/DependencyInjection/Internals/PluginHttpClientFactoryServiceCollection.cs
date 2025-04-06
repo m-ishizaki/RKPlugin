@@ -21,7 +21,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(services)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services]);
         return result;
     }
@@ -30,12 +30,12 @@ internal static class PluginHttpClientFactoryServiceCollection
     {
         var type = Type.GetType(BaseType);
         var methodInfo = type?.GetMethods().Where(x =>
-            x.Name == nameof(AddHttpClient)
+            x.Name == nameof(ConfigureHttpClientDefaults)
             && x.GetGenericArguments().Length == 0
             && x.GetParameters().Length == 2
             && x.GetParameters()[1].Name == nameof(configure)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, configure]);
         return result;
     }
@@ -49,7 +49,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters().Length == 2
             && x.GetParameters()[1].Name == nameof(name)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, name]);
         return result;
     }
@@ -65,7 +65,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters()[2].ParameterType.GenericTypeArguments.Length == 1
             && x.GetParameters()[2].ParameterType.GenericTypeArguments[0].Name == nameof(HttpClient)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, name, configureClient]);
         return result;
     }
@@ -81,7 +81,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters()[2].ParameterType.GenericTypeArguments.Length == 2
             && x.GetParameters()[2].ParameterType.GenericTypeArguments[1].Name == nameof(HttpClient)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, name, configureClient]);
         return result;
     }

@@ -24,7 +24,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[2].Name == nameof(implementationType)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationType]);
         return result;
     }
@@ -43,7 +43,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[2].Name == nameof(implementationFactory)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationFactory]);
         return result;
     }
@@ -78,7 +78,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[0].Name == nameof(services)
             && x.GetParameters()[1].Name == nameof(serviceType)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType]);
         return result;
     }
@@ -148,7 +148,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[2].Name == nameof(implementationType)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationType]);
         return result;
     }
@@ -167,7 +167,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[2].Name == nameof(implementationFactory)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationFactory]);
         return result;
     }
@@ -202,7 +202,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[0].Name == nameof(services)
             && x.GetParameters()[1].Name == nameof(serviceType)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType]);
         return result;
     }
@@ -291,7 +291,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[2].Name == nameof(implementationType)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationType]);
         return result;
     }
@@ -310,7 +310,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[2].Name == nameof(implementationFactory)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationFactory]);
         return result;
     }
@@ -343,7 +343,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[0].Name == nameof(services)
             && x.GetParameters()[1].Name == nameof(serviceType)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType]);
         return result;
     }
@@ -418,7 +418,7 @@ internal static class PluginServiceCollectionService
             && x.GetParameters()[1].Name == nameof(serviceType)
             && x.GetParameters()[1].Name == nameof(implementationInstance)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod();
+        var method = methodInfo;
         var result = method?.Invoke(null, [services, serviceType, implementationInstance]);
         return result;
     }
