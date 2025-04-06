@@ -114,7 +114,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(services)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod(typeof(TClient));
+        var method = methodInfo?.MakeGenericMethod(typeof(TClient), typeof(TImplementation));
         var result = method?.Invoke(null, [services]);
         return result;
     }
@@ -202,7 +202,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters()[1].ParameterType.GenericTypeArguments.Count() == 1
             && x.GetParameters()[1].ParameterType.GenericTypeArguments[0].Name == nameof(HttpClient)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod(typeof(TClient));
+        var method = methodInfo?.MakeGenericMethod(typeof(TClient), typeof(TImplementation));
         var result = method?.Invoke(null, [services, configureClient]);
         return result;
     }
@@ -221,7 +221,7 @@ internal static class PluginHttpClientFactoryServiceCollection
             && x.GetParameters()[1].ParameterType.GenericTypeArguments.Count() == 2
             && x.GetParameters()[1].ParameterType.GenericTypeArguments[1].Name == nameof(HttpClient)
         ).FirstOrDefault();
-        var method = methodInfo?.MakeGenericMethod(typeof(TClient));
+        var method = methodInfo?.MakeGenericMethod(typeof(TClient), typeof(TImplementation));
         var result = method?.Invoke(null, [services, configureClient]);
         return result;
     }

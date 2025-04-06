@@ -11,9 +11,22 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 internal static class PluginServiceCollectionServiceCaller
 {
     public static object? AddTransient(
-    this object? services,
-    Type serviceType,
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => throw new NotImplementedException();
+        this object? services,
+        Type serviceType,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Where(x =>
+            x.Name == nameof(AddTransient)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(serviceType)
+            && x.GetParameters()[1].Name == nameof(implementationType)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        return method?.Invoke(services, [serviceType, implementationType]);
+    }
+
     public static object? AddTransient(
         this object? services,
         Type serviceType,
@@ -88,6 +101,9 @@ internal static class PluginServiceCollectionServiceCaller
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(implementationFactory)
             && x.GetGenericArguments()[0].Name == nameof(TService)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 2
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[0].Name == nameof(IServiceProvider)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[1].Name == nameof(TService)
         ).FirstOrDefault();
         var method = methodInfo?.MakeGenericMethod(typeof(TService));
         return method?.Invoke(services, [implementationFactory]);
@@ -107,6 +123,9 @@ internal static class PluginServiceCollectionServiceCaller
             && x.GetParameters()[0].Name == nameof(implementationFactory)
             && x.GetGenericArguments()[0].Name == nameof(TService)
             && x.GetGenericArguments()[1].Name == nameof(TImplementation)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 2
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[0].Name == nameof(IServiceProvider)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[1].Name == nameof(TImplementation)
         ).FirstOrDefault();
         var method = methodInfo?.MakeGenericMethod(typeof(TService), typeof(TImplementation));
         return method?.Invoke(services, [implementationFactory]);
@@ -155,8 +174,8 @@ internal static class PluginServiceCollectionServiceCaller
             x.Name == nameof(AddScoped)
             && x.GetGenericArguments().Length == 2
             && x.GetParameters().Length == 0
-            && x.GetParameters()[0].Name == nameof(TService)
-            && x.GetParameters()[1].Name == nameof(TImplementation)
+            && x.GetGenericArguments()[0].Name == nameof(TService)
+            && x.GetGenericArguments()[1].Name == nameof(TImplementation)
         ).FirstOrDefault();
         var method = methodInfo?.MakeGenericMethod(typeof(TService), typeof(TImplementation));
         return method?.Invoke(services, []);
@@ -201,6 +220,9 @@ internal static class PluginServiceCollectionServiceCaller
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(implementationFactory)
             && x.GetGenericArguments()[0].Name == nameof(TService)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 2
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[0].Name == nameof(IServiceProvider)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[1].Name == nameof(TService)
         ).FirstOrDefault();
         var method = methodInfo?.MakeGenericMethod(typeof(TService));
         return method?.Invoke(services, [implementationFactory]);
@@ -220,6 +242,9 @@ internal static class PluginServiceCollectionServiceCaller
             && x.GetParameters()[0].Name == nameof(implementationFactory)
             && x.GetGenericArguments()[0].Name == nameof(TService)
             && x.GetGenericArguments()[1].Name == nameof(TImplementation)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 2
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[0].Name == nameof(IServiceProvider)
+            && x.GetParameters()[0].ParameterType.GenericTypeArguments[1].Name == nameof(TImplementation)
         ).FirstOrDefault();
         var method = methodInfo?.MakeGenericMethod(typeof(TService), typeof(TImplementation));
         return method?.Invoke(services, [implementationFactory]);
