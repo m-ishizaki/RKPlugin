@@ -1,4 +1,5 @@
 # RKPlugin
+[![NuGet version (RkSoftware.RKPlugin)](https://img.shields.io/nuget/v/RkSoftware.RKPlugin.svg?style=flat-square)](https://www.nuget.org/packages/RkSoftware.RKPlugin/)  ![workflow](https://github.com/m-ishizaki/RKPlugin/actions/workflows/dotnet.yml/badge.svg)
 
 # Usage
 #### Applocation Code  
