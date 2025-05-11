@@ -245,4 +245,24 @@ public sealed class Test1
         _TestMethod123), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _TestMethod123(object? services, object implementationInstance) =>
         PluginServiceCollection.AddSingleton<Object>(services, implementationInstance);
+
+
+    // ApplicationEnricherServiceCollectionExtensions
+    [TestMethod]
+    public void TestMethod01_001() => Test(ApplicationEnricherServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _TestMethod01_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
+    static void _TestMethod01_001(object? services) =>
+        PluginServiceCollection.AddServiceLogEnricher(services);
+
+    [TestMethod]
+    public void TestMethod01_002() => Test(ApplicationEnricherServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _TestMethod01_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _TestMethod01_002(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddServiceLogEnricher(services, configure);
+
+    [TestMethod]
+    public void TestMethod01_003() => Test(ApplicationEnricherServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _TestMethod01_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _TestMethod01_003(object? services, object? section) =>
+        PluginServiceCollection.AddServiceLogEnricher_(services, section);
 }

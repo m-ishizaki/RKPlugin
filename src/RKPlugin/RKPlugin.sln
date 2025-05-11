@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.Abstractions", "Microsoft.Extensions.DependencyInjection.Abstractions\Microsoft.Extensions.DependencyInjection.Abstractions.csproj", "{170A0255-73CF-4300-B8B7-BA9B3A2E60DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Telemetry", "Microsoft.Extensions.Telemetry\Microsoft.Extensions.Telemetry.csproj", "{D0A9C809-823D-4999-B430-19E05AFA119B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{170A0255-73CF-4300-B8B7-BA9B3A2E60DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{170A0255-73CF-4300-B8B7-BA9B3A2E60DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{170A0255-73CF-4300-B8B7-BA9B3A2E60DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A9C809-823D-4999-B430-19E05AFA119B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A9C809-823D-4999-B430-19E05AFA119B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A9C809-823D-4999-B430-19E05AFA119B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A9C809-823D-4999-B430-19E05AFA119B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4E2AAE12-42DC-4CC1-9F5F-9D2C63D256F3} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 		{170A0255-73CF-4300-B8B7-BA9B3A2E60DB} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{D0A9C809-823D-4999-B430-19E05AFA119B} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5540B951-41B7-4C17-8632-B2507F6CB93E}
