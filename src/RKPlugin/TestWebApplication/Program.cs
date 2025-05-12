@@ -48,23 +48,7 @@ app.Run();
 
 #region
 
-Microsoft.Extensions.DependencyInjection.ApplicationEnricherServiceCollectionExtensions.AddServiceLogEnricher(services);
-
 /*
-サービス エンリッチャーのインスタンスを IServiceCollectionに追加します。
-
-AddServiceLogEnricher(IServiceCollection, IConfigurationSection)	
-サービス エンリッチャーのインスタンスを IServiceCollectionに追加します。
-
-AddServiceLogEnricher(IServiceCollection, Action<ApplicationLogEnricherOptions>)	
-サービス エンリッチャーのインスタンスを IServiceCollectionに追加します。
-
-AddApplicationMetadata(IServiceCollection, IConfigurationSection)	
-依存関係挿入コンテナーに ApplicationMetadata のインスタンスを追加します。
-
-AddApplicationMetadata(IServiceCollection, Action<ApplicationMetadata>)	
-依存関係挿入コンテナーに ApplicationMetadata のインスタンスを追加します。
-
 AddAsyncState(IServiceCollection)	
 IAsyncState、IAsyncContext<T>、および Microsoft.Extensions.AsyncState.IAsyncLocalContext`1 サービスの既定の実装を追加します。 これらのインターフェイスの実装はスレッド セーフではないことに注意してください。
 

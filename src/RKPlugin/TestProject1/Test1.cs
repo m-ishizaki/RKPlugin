@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.AmbientMetadata.Application;
+using Microsoft.Extensions.DependencyInjection;
 using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
 using System;
@@ -265,4 +266,17 @@ public sealed class Test1
         _TestMethod01_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _TestMethod01_003(object? services, object? section) =>
         PluginServiceCollection.AddServiceLogEnricher_(services, section);
+
+    // ApplicationMetadataServiceCollectionExtensions
+    [TestMethod]
+    public void TestMethod02_001() => Test(ApplicationMetadataServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _TestMethod02_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _TestMethod02_001(object? services, object? section) =>
+        PluginServiceCollection.AddApplicationMetadata(services, section);
+
+    [TestMethod]
+    public void TestMethod02_002() => Test(ApplicationMetadataServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _TestMethod02_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _TestMethod02_002(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddApplicationMetadata(services, configure);
 }
