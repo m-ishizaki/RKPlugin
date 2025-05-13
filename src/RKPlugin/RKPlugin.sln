@@ -21,6 +21,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Teleme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.AmbientMetadata.Application", "Microsoft.Extensions.AmbientMetadata.Application\Microsoft.Extensions.AmbientMetadata.Application.csproj", "{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.AsyncState", "Microsoft.Extensions.AsyncState\Microsoft.Extensions.AsyncState.csproj", "{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.AutoActivation", "Microsoft.Extensions.DependencyInjection.AutoActivation\Microsoft.Extensions.DependencyInjection.AutoActivation.csproj", "{BEBF0557-7240-469D-B632-BB5C4822E1EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.HealthChecks.Common", "Microsoft.Extensions.Diagnostics.HealthChecks.Common\Microsoft.Extensions.Diagnostics.HealthChecks.Common.csproj", "{95218729-296D-4114-8142-A00F990984A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextualOptionsServiceCollectionExtensions", "ContextualOptionsServiceCollectionExtensions\ContextualOptionsServiceCollectionExtensions.csproj", "{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +67,22 @@ Global
 		{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBF0557-7240-469D-B632-BB5C4822E1EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBF0557-7240-469D-B632-BB5C4822E1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBF0557-7240-469D-B632-BB5C4822E1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBF0557-7240-469D-B632-BB5C4822E1EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95218729-296D-4114-8142-A00F990984A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95218729-296D-4114-8142-A00F990984A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95218729-296D-4114-8142-A00F990984A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95218729-296D-4114-8142-A00F990984A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +92,10 @@ Global
 		{170A0255-73CF-4300-B8B7-BA9B3A2E60DB} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 		{D0A9C809-823D-4999-B430-19E05AFA119B} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 		{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{363A7113-7D5B-40E3-A5A9-91A73E9DB03A} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{BEBF0557-7240-469D-B632-BB5C4822E1EE} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{95218729-296D-4114-8142-A00F990984A3} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
+		{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B} = {DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5540B951-41B7-4C17-8632-B2507F6CB93E}

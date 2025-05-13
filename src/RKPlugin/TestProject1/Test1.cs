@@ -279,4 +279,11 @@ public sealed class Test1
         _TestMethod02_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _TestMethod02_002(object? services, Action<object?> configure) =>
         PluginServiceCollection.AddApplicationMetadata(services, configure);
+
+    // ContextualOptionsServiceCollectionExtensions
+    // ApplicationMetadataServiceCollectionExtensions
+    // AsyncStateExtensions
+    // AutoActivationExtensions
+    // CommonHealthChecksExtensions
+
 }
