@@ -88,7 +88,7 @@ public sealed class Test1
     [TestMethod]
     public void TestMethod014() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
         _TestMethod014), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _TestMethod014(object? services, Action<IServiceProvider, HttpClient> configureClient)=>
+    static void _TestMethod014(object? services, Action<IServiceProvider, HttpClient> configureClient) =>
         PluginServiceCollection.AddHttpClient<Object, Object>(services, configureClient);
     [TestMethod]
     public void TestMethod015() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
@@ -103,7 +103,7 @@ public sealed class Test1
     [TestMethod]
     public void TestMethod017() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
         _TestMethod017), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _TestMethod017(object? services, string name, Action<HttpClient> configureClient)  =>
+    static void _TestMethod017(object? services, string name, Action<HttpClient> configureClient) =>
         PluginServiceCollection.AddHttpClient<Object, Object>(services, name, configureClient);
     [TestMethod]
     public void TestMethod018() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
@@ -118,7 +118,7 @@ public sealed class Test1
     [TestMethod]
     public void TestMethod020() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
         _TestMethod020), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _TestMethod020(object? services, string name, Func<HttpClient, Object> factory)  =>
+    static void _TestMethod020(object? services, string name, Func<HttpClient, Object> factory) =>
         PluginServiceCollection.AddHttpClient<Object, Object>(services, name, factory);
     [TestMethod]
     public void TestMethod021() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
@@ -234,7 +234,7 @@ public sealed class Test1
     [TestMethod]
     public void TestMethod121() => Test(ServiceCollectionServiceExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
         _TestMethod121), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _TestMethod121(object? services, Func<IServiceProvider, Object> implementationFactory)=>
+    static void _TestMethod121(object? services, Func<IServiceProvider, Object> implementationFactory) =>
         PluginServiceCollection.AddSingleton<Object, Object>(services, implementationFactory);
     [TestMethod]
     public void TestMethod122() => Test(ServiceCollectionServiceExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
@@ -285,5 +285,44 @@ public sealed class Test1
     // AsyncStateExtensions
     // AutoActivationExtensions
     // CommonHealthChecksExtensions
+    // EncoderServiceCollectionExtensions
+    // EncoderServiceCollectionExtensions
+    // EnrichmentServiceCollectionExtensions
+    // EnrichmentServiceCollectionExtensions
+    // ExceptionSummarizationServiceCollectionExtensions
+    // ServiceCollectionDescriptorExtensions
+    // FakeLoggerServiceCollectionExtensions
+    // FakeRedactionServiceCollectionExtensions
+    // HealthCheckServiceCollectionExtensions
+    // HttpClientFactoryServiceCollectionExtensions
+    // HttpClientLatencyTelemetryExtensions
+    // HttpClientLoggingServiceCollectionExtensions
+    // HttpDiagnosticsServiceCollectionExtensions
+    // HybridCacheServiceExtensions
+    // KubernetesProbesExtensions
+    // LatencyConsoleExtensions
+    // LatencyContextExtensions
+    // LatencyRegistryServiceCollectionExtensions
+    // LocalizationServiceCollectionExtensions
+    // LoggingServiceCollectionExtensions
+    // MemoryCacheServiceCollectionExtensions
+    // MetricsServiceExtensions
+    // NullLatencyContextServiceCollectionExtensions
+    // ObjectPoolServiceCollectionExtensions
+    // OptionsConfigurationServiceCollectionExtensions
+    // OptionsServiceCollectionExtensions
+    // ProcessEnricherServiceCollectionExtensions
+    // RedactionServiceCollectionExtensions
+    // ResilienceServiceCollectionExtensions
+    // ResourceMonitoringServiceCollectionExtensions
+    // ServiceCollectionContainerBuilderExtensions
+    // ServiceCollectionHostedServiceExtensions
+    // ServiceCollectionServiceExtensions
+    // SqlServerCachingServicesExtensions
+    // StackExchangeRedisCacheServiceCollectionExtensions
+    // TcpEndpointProbesExtensions
+    // SystemdHostBuilderExtensions
+    // WindowsServiceLifetimeHostBuilderExtensions
+
 
 }
