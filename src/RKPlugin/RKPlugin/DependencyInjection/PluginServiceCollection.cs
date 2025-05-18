@@ -16,6 +16,17 @@ public class PluginServiceCollection
         this.Services = services;
     }
 
+    // ApplicationEnricherServiceCollectionExtensions
+    object? AddServiceLogEnricher() => PluginApplicationEnricherServiceCollection.AddServiceLogEnricher(Services);
+    public static object? AddServiceLogEnricher(object? services) => PluginApplicationEnricherServiceCollectionCaller.AddServiceLogEnricher(services);
+
+    object? AddServiceLogEnricher(Action<object?> configure) => PluginApplicationEnricherServiceCollection.AddServiceLogEnricher(Services, configure);
+    public static object? AddServiceLogEnricher(object? services, Action<object?> configure) => PluginApplicationEnricherServiceCollectionCaller.AddServiceLogEnricher(services, configure);
+
+    object? AddServiceLogEnricher_(object? section) => PluginApplicationEnricherServiceCollection.AddServiceLogEnricher_(Services, section);
+    public static object? AddServiceLogEnricher_(object? services, object? section) => PluginApplicationEnricherServiceCollectionCaller.AddServiceLogEnricher_(services, section);
+
+    //
     object? AddHttpClient() => PluginHttpClientFactoryServiceCollection.AddHttpClient(Services);
     public static object? AddHttpClient(object? services) => PluginHttpClientFactoryServiceCollectionCaller.AddHttpClient(services);
     object? ConfigureHttpClientDefaults(Action<object?> configure) => PluginHttpClientFactoryServiceCollection.ConfigureHttpClientDefaults(Services, configure);
