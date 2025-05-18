@@ -13,11 +13,42 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Extensions.AmbientMetadata.Application\Microsoft.Extensions.AmbientMetadata.Application.csproj" />
-    <ProjectReference Include="..\Microsoft.Extensions.DependencyInjection.Abstractions\Microsoft.Extensions.DependencyInjection.Abstractions.csproj" />
-    <ProjectReference Include="..\Microsoft.Extensions.Http\Microsoft.Extensions.Http.csproj" />
-    <ProjectReference Include="..\Microsoft.Extensions.Telemetry\Microsoft.Extensions.Telemetry.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Http\Microsoft.Extensions.Http.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.DependencyInjection.Abstractions\Microsoft.Extensions.DependencyInjection.Abstractions.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Telemetry\Microsoft.Extensions.Telemetry.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.AmbientMetadata.Application\Microsoft.Extensions.AmbientMetadata.Application.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.AsyncState\Microsoft.Extensions.AsyncState.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.DependencyInjection.AutoActivation\Microsoft.Extensions.DependencyInjection.AutoActivation.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.HealthChecks.Common\Microsoft.Extensions.Diagnostics.HealthChecks.Common.csproj" />
+	<ProjectReference Include="..\Mock\ContextualOptionsServiceCollectionExtensions\ContextualOptionsServiceCollectionExtensions.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.WebEncoders\Microsoft.Extensions.WebEncoders.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Telemetry.Abstractions\Microsoft.Extensions.Telemetry.Abstractions.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.ExceptionSummarization\Microsoft.Extensions.Diagnostics.ExceptionSummarization.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.Testing\Microsoft.Extensions.Diagnostics.Testing.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Compliance.Testing\Microsoft.Extensions.Compliance.Testing.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.HealthChecks\Microsoft.Extensions.Diagnostics.HealthChecks.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Caching.Hybrid\Microsoft.Extensions.Caching.Hybrid.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.Probes\Microsoft.Extensions.Diagnostics.Probes.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Localization\Microsoft.Extensions.Localization.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Logging\Microsoft.Extensions.Logging.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Caching.Memory\Microsoft.Extensions.Caching.Memory.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics\Microsoft.Extensions.Diagnostics.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.ObjectPool.DependencyInjection\Microsoft.Extensions.ObjectPool.DependencyInjection.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Options.ConfigurationExtensions\Microsoft.Extensions.Options.ConfigurationExtensions.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Options\Microsoft.Extensions.Options.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Compliance.Redaction\Microsoft.Extensions.Compliance.Redaction.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Resilience\Microsoft.Extensions.Resilience.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.DependencyInjection\Microsoft.Extensions.DependencyInjection.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Hosting.Abstractions\Microsoft.Extensions.Hosting.Abstractions.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Caching.SqlServer\Microsoft.Extensions.Caching.SqlServer.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Caching.StackExchangeRedis\Microsoft.Extensions.Caching.StackExchangeRedis.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.Probes\Microsoft.Extensions.Diagnostics.Probes.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Hosting.Systemd\Microsoft.Extensions.Hosting.Systemd.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Hosting.WindowsServices\Microsoft.Extensions.Hosting.WindowsServices.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.ResourceMonitoring\Microsoft.Extensions.Diagnostics.ResourceMonitoring.csproj" />
+	<ProjectReference Include="..\Mock\Microsoft.Extensions.Http.Diagnostics\Microsoft.Extensions.Http.Diagnostics.csproj" />
     <ProjectReference Include="..\RKPlugin\RKPlugin.csproj" />
+	
   </ItemGroup>
 
   <ItemGroup>
