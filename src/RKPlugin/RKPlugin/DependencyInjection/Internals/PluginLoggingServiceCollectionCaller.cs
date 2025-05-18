@@ -31,3 +31,4 @@ internal static class PluginLoggingServiceCollectionCaller
             ).FirstOrDefault();
         return methodInfo?.Invoke(services, new object[] { configure });
     }
+}

@@ -74,4 +74,6 @@ internal static class PluginAutoActivationCaller
                 && x.GetParameters()[0].ParameterType == typeof(Type)
                 && x.GetParameters()[1].ParameterType == typeof(Func<IServiceProvider, object>)
             );
-        return methodInfo?.Invoke(services, new object[] { serviceType, implementationFactory
+        return methodInfo?.Invoke(services, new object[] { serviceType, implementationFactory });
+    }
+}

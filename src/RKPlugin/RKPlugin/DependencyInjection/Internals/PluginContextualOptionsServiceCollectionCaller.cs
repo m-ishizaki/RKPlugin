@@ -60,3 +60,4 @@ internal static class PluginContextualOptionsServiceCollectionCaller
         var genericMethod = methodInfo?.MakeGenericMethod(typeof(TOptions));
         return genericMethod?.Invoke(services, new object[] { loadOptions });
     }
+}

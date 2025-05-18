@@ -32,3 +32,5 @@ internal static class PluginHttpDiagnosticsServiceCollectionCaller
             return null;
         var genericMethod = methodInfo.MakeGenericMethod(typeof(T));
         return genericMethod.Invoke(services, null);
+    }
+}

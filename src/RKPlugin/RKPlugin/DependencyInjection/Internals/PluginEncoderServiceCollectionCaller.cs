@@ -31,3 +31,4 @@ internal static class PluginEncoderServiceCollectionCaller
             );
         return methodInfo?.Invoke(services, new object[] { setupAction });
     }
+}

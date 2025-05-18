@@ -31,3 +31,4 @@ internal static class PluginExceptionSummarizationServiceCollectionCaller
             ).FirstOrDefault();
         return methodInfo?.Invoke(services, new object[] { configure });
     }
+}

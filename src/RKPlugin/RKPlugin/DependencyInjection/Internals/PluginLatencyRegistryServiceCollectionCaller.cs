@@ -57,3 +57,4 @@ internal static class PluginLatencyRegistryServiceCollectionCaller
             ).FirstOrDefault();
         methodInfo?.Invoke(services, new object[] { action });
     }
+}

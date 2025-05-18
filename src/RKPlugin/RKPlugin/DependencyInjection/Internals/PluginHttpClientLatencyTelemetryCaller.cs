@@ -43,4 +43,6 @@ internal static class PluginHttpClientLatencyTelemetryCaller
                 && x.GetParameters()[0].Name == nameof(configure)
                 && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 1
             ).FirstOrDefault();
-        return methodInfo?.Invoke(services, new object[] { configure
+        return methodInfo?.Invoke(services, new object[] { configure });
+    }
+}

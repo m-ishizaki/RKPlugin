@@ -43,4 +43,6 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters()[0].Name == nameof(section)
                 && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 0
             ).FirstOrDefault();
-        return methodInfo?.Invoke(services, new object[] { section
+        return methodInfo?.Invoke(services, new object[] { section });
+    }
+}

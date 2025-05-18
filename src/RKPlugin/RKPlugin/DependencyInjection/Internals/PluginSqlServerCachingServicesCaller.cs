@@ -22,4 +22,6 @@ public static class PluginSqlServerCachingServicesCaller
         if (methodInfo == null)
             throw new InvalidOperationException("AddDistributedSqlServerCache method not found.");
 
-        return methodInfo.Invoke(services, new object[] { setupAction
+        return methodInfo.Invoke(services, new object[] { setupAction });
+    }
+}

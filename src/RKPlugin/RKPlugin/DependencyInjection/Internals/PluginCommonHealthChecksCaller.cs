@@ -45,3 +45,5 @@ internal static class PluginCommonHealthChecksCaller
         ).FirstOrDefault();
         var method = methodInfo;
         return method?.Invoke(services, [configure]);
+    }
+}

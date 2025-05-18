@@ -42,3 +42,4 @@ internal static class PluginOptionsConfigurationServiceCollectionCaller
         var genericMethod = methodInfo.MakeGenericMethod(optionsType);
         return genericMethod.Invoke(services, new object[] { name!, config! });
     }
+}

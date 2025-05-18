@@ -35,3 +35,4 @@ internal static class PluginStackExchangeRedisCacheServiceCollectionCaller
         var method = methodInfo;
         return method?.Invoke(services, new object[] { configure });
     }
+}

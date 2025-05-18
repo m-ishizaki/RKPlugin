@@ -47,4 +47,6 @@ internal static class PluginServiceCollectionHostedServiceCaller
             throw new InvalidOperationException("AddHostedService method with factory not found.");
 
         var genericMethod = methodInfo.MakeGenericMethod(hostedServiceType);
-        return genericMethod.Invoke(services, new object[] { implementationFactory
+        return genericMethod.Invoke(services, new object[] { implementationFactory });
+    }
+}

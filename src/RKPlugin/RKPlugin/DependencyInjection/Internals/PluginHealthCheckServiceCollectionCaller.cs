@@ -45,3 +45,4 @@ internal static class PluginHealthCheckServiceCollectionCaller
             ).FirstOrDefault();
         return methodInfo?.Invoke(services, new object[] { section });
     }
+}

@@ -54,3 +54,4 @@ internal static class PluginServiceCollectionContainerBuilderCaller
         );
         return methodInfo?.Invoke(services, new object[] { validateScopes });
     }
+}

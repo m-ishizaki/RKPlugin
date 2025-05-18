@@ -41,3 +41,4 @@ public static class WindowsServiceLifetimeHostBuilderExtensions
 
         return methodInfo.Invoke(services, new object[] { configure });
     }
+}

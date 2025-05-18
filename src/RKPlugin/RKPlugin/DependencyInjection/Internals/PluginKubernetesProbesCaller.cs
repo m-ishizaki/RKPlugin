@@ -44,3 +44,5 @@ internal static class PluginKubernetesProbesCaller
                 && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 1
             ).FirstOrDefault();
         return methodInfo?.Invoke(services, new object[] { configure });
+    }
+}

@@ -57,3 +57,5 @@ internal static class PluginObjectPoolServiceCollectionCaller
             ).FirstOrDefault();
 
         return methodInfo?.Invoke(services, new object[] { section! });
+    }
+}

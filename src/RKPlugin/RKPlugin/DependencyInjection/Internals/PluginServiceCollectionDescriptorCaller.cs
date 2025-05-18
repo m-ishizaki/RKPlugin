@@ -40,4 +40,6 @@ public static class PluginServiceCollectionDescriptorCaller
         if (methodInfo == null)
             throw new InvalidOperationException("RemoveAllDescriptors method not found.");
 
-        return methodInfo.Invoke(services, new object[] { serviceType
+        return methodInfo.Invoke(services, new object[] { serviceType });
+    }
+}

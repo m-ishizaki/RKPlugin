@@ -56,3 +56,5 @@ internal static class PluginEnrichmentServiceCollectionCaller
                 && x.GetParameters()[0].ParameterType == enricher?.GetType()
             );
         return methodInfo?.Invoke(services, new object[] { enricher! });
+    }
+}

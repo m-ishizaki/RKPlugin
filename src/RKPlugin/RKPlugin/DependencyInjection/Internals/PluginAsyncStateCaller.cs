@@ -31,3 +31,4 @@ internal static class PluginAsyncStateCaller
             );
         return methodInfo?.Invoke(services, new object[] { configure });
     }
+}
