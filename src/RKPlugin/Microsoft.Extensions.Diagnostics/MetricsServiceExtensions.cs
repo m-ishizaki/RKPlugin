@@ -1,49 +1,18 @@
-﻿#region アセンブリ Microsoft.Extensions.Diagnostics, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
-#endregion
+﻿namespace Microsoft.Extensions.DependencyInjection;
 
-#nullable enable
-
-using Microsoft.Extensions.Diagnostics.Metrics;
-using System;
-
-namespace Microsoft.Extensions.DependencyInjection
+public static class MetricsServiceExtensions
 {
-    //
-    // 概要:
-    //     Extension methods for setting up metrics services in an Microsoft.Extensions.DependencyInjection.IServiceCollection.
-    public static class MetricsServiceExtensions
+    public static List<string> Invoked = new List<string>();
+
+    static object? Add(string name)
     {
-        //
-        // 概要:
-        //     Adds metrics services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
-        //
-        //
-        // パラメーター:
-        //   services:
-        //     The Microsoft.Extensions.DependencyInjection.IServiceCollection to add services
-        //     to.
-        //
-        // 戻り値:
-        //     The Microsoft.Extensions.DependencyInjection.IServiceCollection so that additional
-        //     calls can be chained.
-        public static IServiceCollection AddMetrics(this IServiceCollection services);
-        //
-        // 概要:
-        //     Adds metrics services to the specified Microsoft.Extensions.DependencyInjection.IServiceCollection.
-        //
-        //
-        // パラメーター:
-        //   services:
-        //     The Microsoft.Extensions.DependencyInjection.IServiceCollection to add services
-        //     to.
-        //
-        //   configure:
-        //     A callback to configure the Microsoft.Extensions.Diagnostics.Metrics.IMetricsBuilder.
-        //
-        //
-        // 戻り値:
-        //     The Microsoft.Extensions.DependencyInjection.IServiceCollection so that additional
-        //     calls can be chained.
-        public static IServiceCollection AddMetrics(this IServiceCollection services, Action<IMetricsBuilder> configure);
+        Invoked.Add(name);
+        return null;
     }
+
+    public static object? AddMetrics(this object? services)
+        => Add("public static object? AddMetrics(this object? services)");
+
+    public static object? AddMetrics(this object? services, Action<object?> configure)
+        => Add("public static object? AddMetrics(this object? services, Action<object?> configure)");
 }
