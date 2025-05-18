@@ -1,18 +1,33 @@
-﻿namespace Microsoft.Extensions.WebEncoders;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 
-public static class EncoderServiceCollectionExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginEncoderServiceCollectionCaller
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    public static object? AddWebEncoders(this object? services)
     {
-        Invoked.Add(name);
-        return null;
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(AddWebEncoders)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 0
+            );
+        return methodInfo?.Invoke(services, Array.Empty<object>());
     }
 
-    public static object? AddWebEncoders(this object? services)
-        => Add("public static object? AddWebEncoders(this object? services)");
-
     public static object? AddWebEncoders(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddWebEncoders(this object? services, Action<object?> setupAction)");
-}
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(AddWebEncoders)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].Name == nameof(setupAction)
+                && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 1
+            );
+        return methodInfo?.Invoke(services, new object[] { setupAction });
+    }

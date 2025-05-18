@@ -1,26 +1,44 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
-public static class OptionsConfigurationServiceCollectionExtensions
+internal static class PluginOptionsConfigurationServiceCollectionCaller
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    public static object? Configure(this object? services, Type optionsType, object? config)
     {
-        Invoked.Add(name);
-        return null;
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(Configure)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == config?.GetType()
+            ).FirstOrDefault();
+
+        if (methodInfo == null)
+            return null;
+
+        var genericMethod = methodInfo.MakeGenericMethod(optionsType);
+        return genericMethod.Invoke(services, new object[] { config! });
     }
 
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, object? config) where TOptions : class
-        => Add("public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, object? config) where TOptions : class");
+    public static object? Configure(this object? services, Type optionsType, string? name, object? config)
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(Configure)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 2
+                && x.GetParameters()[0].ParameterType == typeof(string)
+                && x.GetParameters()[1].ParameterType == config?.GetType()
+            ).FirstOrDefault();
 
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, string? name, object? config) where TOptions : class
-        => Add("public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, string? name, object? config) where TOptions : class");
+        if (methodInfo == null)
+            return null;
 
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, object? config, Action<object?>? configureBinder) where TOptions : class
-        => Add("public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, object? config, Action<object?>? configureBinder) where TOptions : class");
-
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, string? name, object? config, Action<object?>? configureBinder) where TOptions : class
-        => Add("public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(this object? services, string? name, object? config, Action<object?>? configureBinder) where TOptions : class");
-}
+        var genericMethod = methodInfo.MakeGenericMethod(optionsType);
+        return genericMethod.Invoke(services, new object[] { name!, config! });
+    }

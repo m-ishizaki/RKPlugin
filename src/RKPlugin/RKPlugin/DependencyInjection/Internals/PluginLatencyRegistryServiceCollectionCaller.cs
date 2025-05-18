@@ -1,24 +1,59 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 
-public static class LatencyRegistryServiceCollectionExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginLatencyRegistryServiceCollectionCaller
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    public static object? RegisterCheckpointNames(this object? services, params string[] names)
     {
-        Invoked.Add(name);
-        return null;
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(RegisterCheckpointNames)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == typeof(string[])
+            ).FirstOrDefault();
+        return methodInfo?.Invoke(services, new object[] { names });
     }
 
-    public static object? RegisterCheckpointNames(this object? services, params string[] names)
-        => Add("public static object? RegisterCheckpointNames(this object? services, params string[] names)");
-
     public static object? RegisterMeasureNames(this object? services, params string[] names)
-        => Add("public static object? RegisterMeasureNames(this object? services, params string[] names)");
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(RegisterMeasureNames)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == typeof(string[])
+            ).FirstOrDefault();
+        return methodInfo?.Invoke(services, new object[] { names });
+    }
 
     public static object? RegisterTagNames(this object? services, params string[] names)
-        => Add("public static object? RegisterTagNames(this object? services, params string[] names)");
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(RegisterTagNames)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == typeof(string[])
+            ).FirstOrDefault();
+        return methodInfo?.Invoke(services, new object[] { names });
+    }
 
     private static void ConfigureOption(this object? services, Action<object?> action)
-        => Add("private static void ConfigureOption(this object? services, Action<object?> action)");
-}
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(ConfigureOption)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == typeof(Action<object?>)
+            ).FirstOrDefault();
+        methodInfo?.Invoke(services, new object[] { action });
+    }

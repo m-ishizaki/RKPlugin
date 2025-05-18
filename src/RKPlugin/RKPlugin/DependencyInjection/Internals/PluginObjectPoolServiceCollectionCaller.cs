@@ -1,29 +1,59 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
-public static class ObjectPoolServiceCollectionExtensions
+internal static class PluginObjectPoolServiceCollectionCaller
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    public static object? AddPooled(this object? services, Type serviceType, Action<object?>? configure = null)
     {
-        Invoked.Add(name);
-        return null;
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(AddPooled)
+                && x.GetGenericArguments().Length == 1
+                && (configure == null
+                    ? x.GetParameters().Length == 0
+                    : x.GetParameters().Length == 1 && x.GetParameters()[0].ParameterType == typeof(Action<object?>))
+            ).FirstOrDefault();
+
+        if (methodInfo == null)
+            return null;
+
+        var genericMethod = methodInfo.MakeGenericMethod(serviceType);
+        return configure == null
+            ? genericMethod.Invoke(services, null)
+            : genericMethod.Invoke(services, new object[] { configure });
     }
 
-    public static object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services, Action<object?>? configure = null) where TService : class
-        => Add("public static object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services, Action<object?>? configure = null) where TService : class");
+    public static object? ConfigurePool(this object? services, Type serviceType, Action<object?> configure)
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(ConfigurePool)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == typeof(Action<object?>)
+            ).FirstOrDefault();
 
-    public static object? AddPooled<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<object?>? configure = null) where TService : class where TImplementation : class, TService
-        => Add("public static object? AddPooled<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<object?>? configure = null) where TService : class where TImplementation : class, TService");
+        if (methodInfo == null)
+            return null;
 
-    public static object? ConfigurePool<TService>(this object? services, Action<object?> configure) where TService : class
-        => Add("public static object? ConfigurePool<TService>(this object? services, Action<object?> configure) where TService : class");
+        var genericMethod = methodInfo.MakeGenericMethod(serviceType);
+        return genericMethod.Invoke(services, new object[] { configure });
+    }
 
-    public static object? ConfigurePools(this object? services, object?section)
-        => Add("public static object? ConfigurePools(this object? services, object? section)");
+    public static object? ConfigurePools(this object? services, object? section)
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(ConfigurePools)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == section?.GetType()
+            ).FirstOrDefault();
 
-    private static object? AddPooledInternal<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<object?>? configure) where TService : class where TImplementation : class, TService
-        => Add("private static object? AddPooledInternal<TService, [DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<object?>? configure) where TService : class where TImplementation : class, TService");
-}
+        return methodInfo?.Invoke(services, new object[] { section! });

@@ -1,21 +1,48 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Reflection;
+using System.Linq;
 
-public static class ProcessEnricherServiceCollectionExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginProcessEnricherServiceCollectionCaller
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    public static object? AddProcessLogEnricher(this object? services)
     {
-        Invoked.Add(name);
-        return null;
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(AddProcessLogEnricher)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 0
+            ).FirstOrDefault();
+        return methodInfo?.Invoke(services, Array.Empty<object>());
     }
 
-    public static object? AddProcessLogEnricher(this object? services)
-        => Add("public static object? AddProcessLogEnricher(this object? services)");
-
     public static object? AddProcessLogEnricher(this object? services, Action<object?> configure)
-        => Add("public static object? AddProcessLogEnricher(this object? services, Action<object?> configure)");
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(AddProcessLogEnricher)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].Name == nameof(configure)
+                && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 1
+            ).FirstOrDefault();
+        return methodInfo?.Invoke(services, new object[] { configure });
+    }
 
     public static object? AddProcessLogEnricher(this object? services, object? section)
-        => Add("public static object? AddProcessLogEnricher(this object? services, object? section)");
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .Where(x =>
+                x.Name == nameof(AddProcessLogEnricher)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].Name == nameof(section)
+                && x.GetParameters()[0].ParameterType.GenericTypeArguments.Length == 0
+            ).FirstOrDefault();
+        return methodInfo?.Invoke(services, new object[] { section });
+    }
 }
