@@ -11,75 +11,75 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlugin", "TestPlugin\Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mocks", "Mocks", "{DDB4EF12-CC4E-5E88-E6FC-71A802F4DE97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Http", "Microsoft.Extensions.Http\Microsoft.Extensions.Http.csproj", "{4E2AAE12-42DC-4CC1-9F5F-9D2C63D256F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Http", "Mock\Microsoft.Extensions.Http\Microsoft.Extensions.Http.csproj", "{4E2AAE12-42DC-4CC1-9F5F-9D2C63D256F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{A2EE8394-6736-4F7E-BEB6-A75BD05B1EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.Abstractions", "Microsoft.Extensions.DependencyInjection.Abstractions\Microsoft.Extensions.DependencyInjection.Abstractions.csproj", "{170A0255-73CF-4300-B8B7-BA9B3A2E60DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.Abstractions", "Mock\Microsoft.Extensions.DependencyInjection.Abstractions\Microsoft.Extensions.DependencyInjection.Abstractions.csproj", "{170A0255-73CF-4300-B8B7-BA9B3A2E60DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Telemetry", "Microsoft.Extensions.Telemetry\Microsoft.Extensions.Telemetry.csproj", "{D0A9C809-823D-4999-B430-19E05AFA119B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Telemetry", "Mock\Microsoft.Extensions.Telemetry\Microsoft.Extensions.Telemetry.csproj", "{D0A9C809-823D-4999-B430-19E05AFA119B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.AmbientMetadata.Application", "Microsoft.Extensions.AmbientMetadata.Application\Microsoft.Extensions.AmbientMetadata.Application.csproj", "{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.AmbientMetadata.Application", "Mock\Microsoft.Extensions.AmbientMetadata.Application\Microsoft.Extensions.AmbientMetadata.Application.csproj", "{DF99B1FB-BDBA-4706-A4AE-99D21D895DA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.AsyncState", "Microsoft.Extensions.AsyncState\Microsoft.Extensions.AsyncState.csproj", "{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.AsyncState", "Mock\Microsoft.Extensions.AsyncState\Microsoft.Extensions.AsyncState.csproj", "{363A7113-7D5B-40E3-A5A9-91A73E9DB03A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.AutoActivation", "Microsoft.Extensions.DependencyInjection.AutoActivation\Microsoft.Extensions.DependencyInjection.AutoActivation.csproj", "{BEBF0557-7240-469D-B632-BB5C4822E1EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection.AutoActivation", "Mock\Microsoft.Extensions.DependencyInjection.AutoActivation\Microsoft.Extensions.DependencyInjection.AutoActivation.csproj", "{BEBF0557-7240-469D-B632-BB5C4822E1EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.HealthChecks.Common", "Microsoft.Extensions.Diagnostics.HealthChecks.Common\Microsoft.Extensions.Diagnostics.HealthChecks.Common.csproj", "{95218729-296D-4114-8142-A00F990984A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.HealthChecks.Common", "Mock\Microsoft.Extensions.Diagnostics.HealthChecks.Common\Microsoft.Extensions.Diagnostics.HealthChecks.Common.csproj", "{95218729-296D-4114-8142-A00F990984A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextualOptionsServiceCollectionExtensions", "ContextualOptionsServiceCollectionExtensions\ContextualOptionsServiceCollectionExtensions.csproj", "{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.WebEncoders", "Microsoft.Extensions.WebEncoders\Microsoft.Extensions.WebEncoders.csproj", "{D4C5D50B-F607-424A-A899-A1B8A7C87B03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.WebEncoders", "Mock\Microsoft.Extensions.WebEncoders\Microsoft.Extensions.WebEncoders.csproj", "{D4C5D50B-F607-424A-A899-A1B8A7C87B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Telemetry.Abstractions", "Microsoft.Extensions.Telemetry.Abstractions\Microsoft.Extensions.Telemetry.Abstractions.csproj", "{AD418DE7-AD01-4D2D-8AC8-968EF612843D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Telemetry.Abstractions", "Mock\Microsoft.Extensions.Telemetry.Abstractions\Microsoft.Extensions.Telemetry.Abstractions.csproj", "{AD418DE7-AD01-4D2D-8AC8-968EF612843D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.ExceptionSummarization", "Microsoft.Extensions.Diagnostics.ExceptionSummarization\Microsoft.Extensions.Diagnostics.ExceptionSummarization.csproj", "{C6146288-5E96-4E23-BFA1-0B6B66C22336}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.ExceptionSummarization", "Mock\Microsoft.Extensions.Diagnostics.ExceptionSummarization\Microsoft.Extensions.Diagnostics.ExceptionSummarization.csproj", "{C6146288-5E96-4E23-BFA1-0B6B66C22336}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.Testing", "Microsoft.Extensions.Diagnostics.Testing\Microsoft.Extensions.Diagnostics.Testing.csproj", "{92B9CE00-DC21-402F-9213-2116174BE422}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.Testing", "Mock\Microsoft.Extensions.Diagnostics.Testing\Microsoft.Extensions.Diagnostics.Testing.csproj", "{92B9CE00-DC21-402F-9213-2116174BE422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Compliance.Testing", "Microsoft.Extensions.Compliance.Testing\Microsoft.Extensions.Compliance.Testing.csproj", "{5D57130F-DF66-4DC9-9FFF-2F84CA40D357}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Compliance.Testing", "Mock\Microsoft.Extensions.Compliance.Testing\Microsoft.Extensions.Compliance.Testing.csproj", "{5D57130F-DF66-4DC9-9FFF-2F84CA40D357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.HealthChecks", "Microsoft.Extensions.Diagnostics.HealthChecks\Microsoft.Extensions.Diagnostics.HealthChecks.csproj", "{1AA11384-8775-43E2-8A11-29079797C161}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.HealthChecks", "Mock\Microsoft.Extensions.Diagnostics.HealthChecks\Microsoft.Extensions.Diagnostics.HealthChecks.csproj", "{1AA11384-8775-43E2-8A11-29079797C161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.Hybrid", "Microsoft.Extensions.Caching.Hybrid\Microsoft.Extensions.Caching.Hybrid.csproj", "{882F38E1-1BC5-4EC9-A9B6-CEDC1DE4326D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.Hybrid", "Mock\Microsoft.Extensions.Caching.Hybrid\Microsoft.Extensions.Caching.Hybrid.csproj", "{882F38E1-1BC5-4EC9-A9B6-CEDC1DE4326D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.Probes,", "Microsoft.Extensions.Diagnostics.Probes,\Microsoft.Extensions.Diagnostics.Probes,.csproj", "{65315A1E-57D1-4A52-BBF1-E0F28E07F707}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.Probes,", "Mock\Microsoft.Extensions.Diagnostics.Probes,\Microsoft.Extensions.Diagnostics.Probes,.csproj", "{65315A1E-57D1-4A52-BBF1-E0F28E07F707}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Localization", "Microsoft.Extensions.Localization\Microsoft.Extensions.Localization.csproj", "{373DF0AC-8048-423C-97FE-D28CB689B6DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Localization", "Mock\Microsoft.Extensions.Localization\Microsoft.Extensions.Localization.csproj", "{373DF0AC-8048-423C-97FE-D28CB689B6DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Logging", "Microsoft.Extensions.Logging\Microsoft.Extensions.Logging.csproj", "{09DD715F-E502-4F6F-B67C-420C520F53CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Logging", "Mock\Microsoft.Extensions.Logging\Microsoft.Extensions.Logging.csproj", "{09DD715F-E502-4F6F-B67C-420C520F53CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.Memory", "Microsoft.Extensions.Caching.Memory\Microsoft.Extensions.Caching.Memory.csproj", "{45D85A2E-9832-47F2-AB0C-F02ECC40901E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.Memory", "Mock\Microsoft.Extensions.Caching.Memory\Microsoft.Extensions.Caching.Memory.csproj", "{45D85A2E-9832-47F2-AB0C-F02ECC40901E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics", "Microsoft.Extensions.Diagnostics\Microsoft.Extensions.Diagnostics.csproj", "{6D8AEDF7-A771-47FB-8809-D6FAF19F9DF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics", "Mock\Microsoft.Extensions.Diagnostics\Microsoft.Extensions.Diagnostics.csproj", "{6D8AEDF7-A771-47FB-8809-D6FAF19F9DF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.ObjectPool.DependencyInjection", "Microsoft.Extensions.ObjectPool.DependencyInjection\Microsoft.Extensions.ObjectPool.DependencyInjection.csproj", "{A7BFB2DB-FADE-4F5D-8121-5BC436D8BD55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.ObjectPool.DependencyInjection", "Mock\Microsoft.Extensions.ObjectPool.DependencyInjection\Microsoft.Extensions.ObjectPool.DependencyInjection.csproj", "{A7BFB2DB-FADE-4F5D-8121-5BC436D8BD55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Options.ConfigurationExtensions", "Microsoft.Extensions.Options.ConfigurationExtensions\Microsoft.Extensions.Options.ConfigurationExtensions.csproj", "{C96E8926-C252-4047-A370-BC83E339369A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Options.ConfigurationExtensions", "Mock\Microsoft.Extensions.Options.ConfigurationExtensions\Microsoft.Extensions.Options.ConfigurationExtensions.csproj", "{C96E8926-C252-4047-A370-BC83E339369A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Options", "Microsoft.Extensions.Options\Microsoft.Extensions.Options.csproj", "{53AE4249-AA97-40E3-A783-B81B122CA908}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Options", "Mock\Microsoft.Extensions.Options\Microsoft.Extensions.Options.csproj", "{53AE4249-AA97-40E3-A783-B81B122CA908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Compliance.Redaction", "Microsoft.Extensions.Compliance.Redaction\Microsoft.Extensions.Compliance.Redaction.csproj", "{F00FC339-3310-4958-ADA5-8977AD17E5CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Compliance.Redaction", "Mock\Microsoft.Extensions.Compliance.Redaction\Microsoft.Extensions.Compliance.Redaction.csproj", "{F00FC339-3310-4958-ADA5-8977AD17E5CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Resilience", "Microsoft.Extensions.Resilience\Microsoft.Extensions.Resilience.csproj", "{DC1C74C9-19BC-4F60-9D48-641435CB4BD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Resilience", "Mock\Microsoft.Extensions.Resilience\Microsoft.Extensions.Resilience.csproj", "{DC1C74C9-19BC-4F60-9D48-641435CB4BD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection", "Microsoft.Extensions.DependencyInjection\Microsoft.Extensions.DependencyInjection.csproj", "{BEDF7413-107B-43C1-B664-10FF98E4C425}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.DependencyInjection", "Mock\Microsoft.Extensions.DependencyInjection\Microsoft.Extensions.DependencyInjection.csproj", "{BEDF7413-107B-43C1-B664-10FF98E4C425}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Hosting.Abstractions", "Microsoft.Extensions.Hosting.Abstractions\Microsoft.Extensions.Hosting.Abstractions.csproj", "{5E1DC976-108A-438C-8BB4-2671CB15EB40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Hosting.Abstractions", "Mock\Microsoft.Extensions.Hosting.Abstractions\Microsoft.Extensions.Hosting.Abstractions.csproj", "{5E1DC976-108A-438C-8BB4-2671CB15EB40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.SqlServer", "Microsoft.Extensions.Caching.SqlServer\Microsoft.Extensions.Caching.SqlServer.csproj", "{1F948D71-8633-4E18-9500-4DFCE29059F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.SqlServer", "Mock\Microsoft.Extensions.Caching.SqlServer\Microsoft.Extensions.Caching.SqlServer.csproj", "{1F948D71-8633-4E18-9500-4DFCE29059F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.StackExchangeRedis", "Microsoft.Extensions.Caching.StackExchangeRedis\Microsoft.Extensions.Caching.StackExchangeRedis.csproj", "{FCCE941E-430C-4406-A40E-2FE907615D67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Caching.StackExchangeRedis", "Mock\Microsoft.Extensions.Caching.StackExchangeRedis\Microsoft.Extensions.Caching.StackExchangeRedis.csproj", "{FCCE941E-430C-4406-A40E-2FE907615D67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.Probes", "Microsoft.Extensions.Diagnostics.Probes\Microsoft.Extensions.Diagnostics.Probes.csproj", "{DDB3A8F6-18A2-4965-A0F6-01FDA1FD26B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.Probes", "Mock\Microsoft.Extensions.Diagnostics.Probes\Microsoft.Extensions.Diagnostics.Probes.csproj", "{DDB3A8F6-18A2-4965-A0F6-01FDA1FD26B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Hosting.Systemd", "Microsoft.Extensions.Hosting.Systemd\Microsoft.Extensions.Hosting.Systemd.csproj", "{EA6FB15A-029D-4E99-A341-2067DDECCBE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Hosting.Systemd", "Mock\Microsoft.Extensions.Hosting.Systemd\Microsoft.Extensions.Hosting.Systemd.csproj", "{EA6FB15A-029D-4E99-A341-2067DDECCBE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Hosting.WindowsServices", "Microsoft.Extensions.Hosting.WindowsServices\Microsoft.Extensions.Hosting.WindowsServices.csproj", "{A0A3DA49-926E-4C67-81EB-123553DB922A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Hosting.WindowsServices", "Mock\Microsoft.Extensions.Hosting.WindowsServices\Microsoft.Extensions.Hosting.WindowsServices.csproj", "{A0A3DA49-926E-4C67-81EB-123553DB922A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.ResourceMonitoring", "Microsoft.Extensions.Diagnostics.ResourceMonitoring\Microsoft.Extensions.Diagnostics.ResourceMonitoring.csproj", "{2E4BEF46-CE8C-4BA8-8C51-02BE4A8587CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.ResourceMonitoring", "Mock\Microsoft.Extensions.Diagnostics.ResourceMonitoring\Microsoft.Extensions.Diagnostics.ResourceMonitoring.csproj", "{2E4BEF46-CE8C-4BA8-8C51-02BE4A8587CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Http.Diagnostics", "Microsoft.Extensions.Http.Diagnostics\Microsoft.Extensions.Http.Diagnostics.csproj", "{F3CBF715-1E0D-43E2-84A1-1721215C53E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Http.Diagnostics", "Mock\Microsoft.Extensions.Http.Diagnostics\Microsoft.Extensions.Http.Diagnostics.csproj", "{F3CBF715-1E0D-43E2-84A1-1721215C53E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
