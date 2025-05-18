@@ -1,4 +1,10 @@
+using Microsoft.Extensions.Caching.SqlServer;
+using Microsoft.Extensions.Caching.StackExchangeRedis;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Diagnostics.Metrics;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Http.Diagnostics;
+using Microsoft.Extensions.ObjectPool;
 using RkSoftware.RKPlugin;
 using System.Diagnostics;
 using System.Reflection;
@@ -48,7 +54,7 @@ app.Run();
 
 
 #region
-
+/*
 ServiceCollectionDescriptorExtensions.Add(IServiceCollection, ServiceDescriptor);
 ServiceCollectionDescriptorExtensions.Add(IServiceCollection, IEnumerable<ServiceDescriptor>);
 ServiceCollectionDescriptorExtensions.RemoveAll(IServiceCollection, Type);
@@ -251,5 +257,5 @@ TcpEndpointProbesExtensions.AddTcpEndpointProbe(IServiceCollection, String, Acti
 SystemdHostBuilderExtensions.AddSystemd(IServiceCollection)
 WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(IServiceCollection)
 WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(IServiceCollection, Action<WindowsServiceLifetimeOptions>)	
-
+*/
 #endregion
