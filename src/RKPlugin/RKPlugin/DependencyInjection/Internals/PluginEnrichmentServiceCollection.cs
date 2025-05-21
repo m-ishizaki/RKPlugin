@@ -1,26 +1,70 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
-public static class EnrichmentServiceCollectionExtensions
+internal static class PluginEnrichmentServiceCollection
 {
-    public static List<string> Invoked = new List<string>();
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.EnrichmentServiceCollectionExtensions,Microsoft.Extensions.Telemetry.Enrichment";
 
-    static object? Add(string name)
+    public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) 
+        where T : class
     {
-        Invoked.Add(name);
-        return null;
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddLogEnricher)
+            && x.GetGenericArguments().Length == 1
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo?.MakeGenericMethod(typeof(T));
+        var result = method?.Invoke(null, [services]);
+        return result;
     }
 
-    public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
-        => Add("public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class");
-
     public static object? AddLogEnricher(this object? services, object? enricher)
-        => Add("public static object? AddLogEnricher(this object? services, object? enricher)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddLogEnricher)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(enricher)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, enricher]);
+        return result;
+    }
 
-    public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
-        => Add("public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class");
+    public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) 
+        where T : class
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddStaticLogEnricher)
+            && x.GetGenericArguments().Length == 1
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo?.MakeGenericMethod(typeof(T));
+        var result = method?.Invoke(null, [services]);
+        return result;
+    }
 
     public static object? AddStaticLogEnricher(this object? services, object? enricher)
-        => Add("public static object? AddStaticLogEnricher(this object? services, object? enricher)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddStaticLogEnricher)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(enricher)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, enricher]);
+        return result;
+    }
 }
