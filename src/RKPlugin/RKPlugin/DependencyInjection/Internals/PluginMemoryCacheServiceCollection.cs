@@ -1,24 +1,67 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Linq;
 
-    public static class MemoryCacheServiceCollectionExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginMemoryCacheServiceCollection
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
-    {
-        Invoked.Add(name);
-        return null;
-    }
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions,Microsoft.Extensions.Caching.Memory";
 
     public static object? AddDistributedMemoryCache(this object? services)
-        => Add("public static object? AddDistributedMemoryCache(this object? services)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddDistributedMemoryCache)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services]);
+        return result;
+    }
 
     public static object? AddDistributedMemoryCache(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddDistributedMemoryCache(this object? services, Action<object?> setupAction)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddDistributedMemoryCache)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(setupAction)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, setupAction]);
+        return result;
+    }
 
     public static object? AddMemoryCache(this object? services)
-        => Add("public static object? AddMemoryCache(this object? services)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddMemoryCache)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services]);
+        return result;
+    }
 
     public static object? AddMemoryCache(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddMemoryCache(this object? services, Action<object?> setupAction)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddMemoryCache)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(setupAction)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, setupAction]);
+        return result;
+    }
 }

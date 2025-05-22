@@ -1,26 +1,53 @@
-﻿#nullable enable
+﻿using System;
+using System.Linq;
 
-using System;
-using System.Collections.Generic;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
-namespace Microsoft.Extensions.DependencyInjection;
+internal static class PluginServiceCollectionContainerBuilder
+{
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions,Microsoft.Extensions.DependencyInjection";
 
-    public static class ServiceCollectionContainerBuilderExtensions
+    public static object? BuildServiceProvider(this object? services)
     {
-        public static List<string> Invoked = new List<string>();
-
-        static object? Add(string name)
-        {
-            Invoked.Add(name);
-            return null;
-        }
-
-        public static object? BuildServiceProvider(this object? services)
-            => Add("public static object? BuildServiceProvider(this object? services)");
-
-        public static object? BuildServiceProvider(this object? services, object? options)
-            => Add("public static object? BuildServiceProvider(this object? services, object? options)");
-
-        public static object? BuildServiceProvider(this object? services, bool validateScopes)
-            => Add("public static object? BuildServiceProvider(this object? services, bool validateScopes)");
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(BuildServiceProvider)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services]);
+        return result;
     }
+
+    public static object? BuildServiceProvider(this object? services, object? options)
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(BuildServiceProvider)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(options)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, options]);
+        return result;
+    }
+
+    public static object? BuildServiceProvider(this object? services, bool validateScopes)
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(BuildServiceProvider)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(validateScopes)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, validateScopes]);
+        return result;
+    }
+}

@@ -1,15 +1,22 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System.Linq;
 
-public static class HealthCheckServiceCollectionExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginHealthCheckServiceCollection
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
-    {
-        Invoked.Add(name);
-        return null;
-    }
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions,Microsoft.Extensions.Diagnostics.HealthChecks";
 
     public static object? AddHealthChecks(this object? services)
-        => Add("public static object? AddHealthChecks(this object? services)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddHealthChecks)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services]);
+        return result;
+    }
 }

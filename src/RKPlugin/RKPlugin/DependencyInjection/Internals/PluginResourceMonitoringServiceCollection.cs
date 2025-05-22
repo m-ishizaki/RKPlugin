@@ -1,21 +1,38 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.Linq;
 
-public static class ResourceMonitoringServiceCollectionExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginResourceMonitoringServiceCollection
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
-    {
-        Invoked.Add(name);
-        return null;
-    }
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ResourceMonitoringServiceCollectionExtensions,Microsoft.Extensions.ResourceMonitoring";
 
     public static object? AddResourceMonitoring(this object? services)
-        => Add("public static object? AddResourceMonitoring(this object? services)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddResourceMonitoring)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services]);
+        return result;
+    }
 
     public static object? AddResourceMonitoring(this object? services, Action<object?> configure)
-        => Add("public static object? AddResourceMonitoring(this object? services, Action<object?> configure)");
-
-    private static object? AddResourceMonitoringInternal(this object? services, Action<object?> configure)
-        => Add("private static object? AddResourceMonitoringInternal(this object? services, Action<object?> configure)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddResourceMonitoring)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 2
+            && x.GetParameters()[0].Name == nameof(services)
+            && x.GetParameters()[1].Name == nameof(configure)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services, configure]);
+        return result;
+    }
 }

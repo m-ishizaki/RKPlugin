@@ -1,15 +1,22 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using System.Linq;
 
-public static class AsyncStateExtensions
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+
+internal static class PluginAsyncState
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
-    {
-        Invoked.Add(name);
-        return null;
-    }
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.AsyncStateExtensions,Microsoft.Extensions.AsyncState";
 
     public static object? AddAsyncState(this object? services)
-        => Add("public static object? AddAsyncState(this object? services)");
+    {
+        var type = Type.GetType(BaseType);
+        var methodInfo = type?.GetMethods().Where(x =>
+            x.Name == nameof(AddAsyncState)
+            && x.GetGenericArguments().Length == 0
+            && x.GetParameters().Length == 1
+            && x.GetParameters()[0].Name == nameof(services)
+        ).FirstOrDefault();
+        var method = methodInfo;
+        var result = method?.Invoke(null, [services]);
+        return result;
+    }
 }
