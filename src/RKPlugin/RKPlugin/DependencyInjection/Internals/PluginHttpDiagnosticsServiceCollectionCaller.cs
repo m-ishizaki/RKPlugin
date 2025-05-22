@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -19,7 +20,7 @@ internal static class PluginHttpDiagnosticsServiceCollectionCaller
         return methodInfo?.Invoke(services, new object[] { downstreamDependencyMetadata });
     }
 
-    public static object? AddDownstreamDependencyMetadata<T>(this object? services) where T : class
+    public static object? AddDownstreamDependencyMetadata<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
     {
         var type = services!.GetType();
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
