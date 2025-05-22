@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -48,6 +49,21 @@ internal static class PluginAutoActivationCaller
         return genericMethod?.Invoke(services, new object[] { implementationFactory });
     }
 
+    public static object? AddActivatedSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services)
+        where TService : class
+        where TImplementation : class, TService
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(AddActivatedSingleton)
+                && x.GetGenericArguments().Length == 2
+                && x.GetParameters().Length == 0
+            );
+        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService), typeof(TImplementation));
+        return genericMethod?.Invoke(services, Array.Empty<object>());
+    }
+
     public static object? AddActivatedSingleton<TService>(this object? services, Func<IServiceProvider, TService> implementationFactory)
         where TService : class
     {
@@ -63,6 +79,20 @@ internal static class PluginAutoActivationCaller
         return genericMethod?.Invoke(services, new object[] { implementationFactory });
     }
 
+    public static object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services)
+        where TService : class
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(AddActivatedSingleton)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 0
+            );
+        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService));
+        return genericMethod?.Invoke(services, Array.Empty<object>());
+    }
+
     public static object? AddActivatedSingleton(this object? services, Type serviceType, Func<IServiceProvider, object> implementationFactory)
     {
         var type = services!.GetType();
@@ -75,5 +105,18 @@ internal static class PluginAutoActivationCaller
                 && x.GetParameters()[1].ParameterType == typeof(Func<IServiceProvider, object>)
             );
         return methodInfo?.Invoke(services, new object[] { serviceType, implementationFactory });
+    }
+
+    public static object? AddActivatedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType)
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(AddActivatedSingleton)
+                && x.GetGenericArguments().Length == 0
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType == typeof(Type)
+            );
+        return methodInfo?.Invoke(services, new object[] { serviceType });
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -6,7 +7,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginEnrichmentServiceCollectionCaller
 {
-    public static object? AddLogEnricher<T>(this object? services) where T : class
+    public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
     {
         var type = services!.GetType();
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
@@ -32,7 +33,7 @@ internal static class PluginEnrichmentServiceCollectionCaller
         return methodInfo?.Invoke(services, new object[] { enricher! });
     }
 
-    public static object? AddStaticLogEnricher<T>(this object? services) where T : class
+    public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
     {
         var type = services!.GetType();
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)

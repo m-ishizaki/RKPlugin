@@ -47,6 +47,35 @@ internal static class PluginContextualOptionsServiceCollectionCaller
         return genericMethod?.Invoke(services, new object[] { name, loadOptions });
     }
 
+    public static object? Configure<TOptions>(this object? services, Action<object?, TOptions> configure) where TOptions : class
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(Configure)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType.GetGenericTypeDefinition() == typeof(Action<,>)
+            );
+        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TOptions));
+        return genericMethod?.Invoke(services, new object[] { configure });
+    }
+
+    public static object? Configure<TOptions>(this object? services, string? name, Action<object?, TOptions> configure) where TOptions : class
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(Configure)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 2
+                && x.GetParameters()[0].ParameterType == typeof(string)
+                && x.GetParameters()[1].ParameterType.GetGenericTypeDefinition() == typeof(Action<,>)
+            );
+        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TOptions));
+        return genericMethod?.Invoke(services, new object[] { name, configure });
+    }
+
     public static object? ConfigureAll<TOptions>(this object? services, Func<object?, object?, object?> loadOptions) where TOptions : class
     {
         var type = services!.GetType();
@@ -59,5 +88,19 @@ internal static class PluginContextualOptionsServiceCollectionCaller
             );
         var genericMethod = methodInfo?.MakeGenericMethod(typeof(TOptions));
         return genericMethod?.Invoke(services, new object[] { loadOptions });
+    }
+
+    public static object? ConfigureAll<TOptions>(this object? services, Action<object?, TOptions> configure) where TOptions : class
+    {
+        var type = services!.GetType();
+        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+            .FirstOrDefault(x =>
+                x.Name == nameof(ConfigureAll)
+                && x.GetGenericArguments().Length == 1
+                && x.GetParameters().Length == 1
+                && x.GetParameters()[0].ParameterType.GetGenericTypeDefinition() == typeof(Action<,>)
+            );
+        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TOptions));
+        return genericMethod?.Invoke(services, new object[] { configure });
     }
 }
