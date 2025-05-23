@@ -358,18 +358,95 @@ public class PluginServiceCollection
     #endregion HybridCacheServiceExtensions
 
     #region KubernetesProbesExtensions
+    
+    object? AddKubernetesProbes() =>
+        PluginKubernetesProbes.AddKubernetesProbes(Services);
+    public static object? AddKubernetesProbes(object? services) =>
+        PluginKubernetesProbesCaller.AddKubernetesProbes(services);
+        
+    object? AddKubernetesProbes(object? section) =>
+        PluginKubernetesProbes.AddKubernetesProbes(Services, section);
+    public static object? AddKubernetesProbes(object? services, object? section) =>
+        PluginKubernetesProbesCaller.AddKubernetesProbes(services, section);
+        
+    object? AddKubernetesProbes(Action<object?> configure) =>
+        PluginKubernetesProbes.AddKubernetesProbes(Services, configure);
+    public static object? AddKubernetesProbes(object? services, Action<object?> configure) =>
+        PluginKubernetesProbesCaller.AddKubernetesProbes(services, configure);
+        
     #endregion KubernetesProbesExtensions
 
     #region LatencyConsoleExtensions
+    
+    object? AddConsoleLatencyDataExporter() =>
+        PluginLatencyConsole.AddConsoleLatencyDataExporter(Services);
+    public static object? AddConsoleLatencyDataExporter(object? services) =>
+        PluginLatencyConsoleCaller.AddConsoleLatencyDataExporter(services);
+        
+    object? AddConsoleLatencyDataExporter(Action<object?> configure) =>
+        PluginLatencyConsole.AddConsoleLatencyDataExporter(Services, configure);
+    public static object? AddConsoleLatencyDataExporter(object? services, Action<object?> configure) =>
+        PluginLatencyConsoleCaller.AddConsoleLatencyDataExporter(services, configure);
+        
+    object? AddConsoleLatencyDataExporter(object? section) =>
+        PluginLatencyConsole.AddConsoleLatencyDataExporter(Services, section);
+    public static object? AddConsoleLatencyDataExporter(object? services, object? section) =>
+        PluginLatencyConsoleCaller.AddConsoleLatencyDataExporter(services, section);
+        
     #endregion LatencyConsoleExtensions
 
     #region LatencyContextExtensions
+    
+    object? AddLatencyContext() =>
+        PluginLatencyContext.AddLatencyContext(Services);
+    public static object? AddLatencyContext(object? services) =>
+        PluginLatencyContextCaller.AddLatencyContext(services);
+        
+    object? AddLatencyContext(Action<object?> configure) =>
+        PluginLatencyContext.AddLatencyContext(Services, configure);
+    public static object? AddLatencyContext(object? services, Action<object?> configure) =>
+        PluginLatencyContextCaller.AddLatencyContext(services, configure);
+        
+    object? AddLatencyContext(object? section) =>
+        PluginLatencyContext.AddLatencyContext(Services, section);
+    public static object? AddLatencyContext(object? services, object? section) =>
+        PluginLatencyContextCaller.AddLatencyContext(services, section);
+        
     #endregion LatencyContextExtensions
 
     #region LatencyRegistryServiceCollectionExtensions
+    
+    object? RegisterCheckpointNames(params string[] names) =>
+        PluginLatencyRegistryServiceCollection.RegisterCheckpointNames(Services, names);
+    public static object? RegisterCheckpointNames(object? services, params string[] names) =>
+        PluginLatencyRegistryServiceCollectionCaller.RegisterCheckpointNames(services, names);
+        
+    object? RegisterMeasureNames(params string[] names) =>
+        PluginLatencyRegistryServiceCollection.RegisterMeasureNames(Services, names);
+    public static object? RegisterMeasureNames(object? services, params string[] names) =>
+        PluginLatencyRegistryServiceCollectionCaller.RegisterMeasureNames(services, names);
+        
+    object? RegisterTagNames(params string[] names) =>
+        PluginLatencyRegistryServiceCollection.RegisterTagNames(Services, names);
+    public static object? RegisterTagNames(object? services, params string[] names) =>
+        PluginLatencyRegistryServiceCollectionCaller.RegisterTagNames(services, names);
+        
+    // Note: private method ConfigureOption is not exposed in the public API
+        
     #endregion LatencyRegistryServiceCollectionExtensions
 
     #region LocalizationServiceCollectionExtensions
+    
+    object? AddLocalization() =>
+        PluginLocalizationServiceCollection.AddLocalization(Services);
+    public static object? AddLocalization(object? services) =>
+        PluginLocalizationServiceCollectionCaller.AddLocalization(services);
+        
+    object? AddLocalization(Action<object?> setupAction) =>
+        PluginLocalizationServiceCollection.AddLocalization(Services, setupAction);
+    public static object? AddLocalization(object? services, Action<object?> setupAction) =>
+        PluginLocalizationServiceCollectionCaller.AddLocalization(services, setupAction);
+        
     #endregion LocalizationServiceCollectionExtensions
 
     #region LoggingServiceCollectionExtensions
