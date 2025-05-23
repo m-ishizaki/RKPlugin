@@ -282,7 +282,13 @@ public sealed class Test1
         PluginServiceCollection.AddApplicationMetadata(services, configure);
     */
 
-    // ContextualOptionsServiceCollectionExtensions
+
+
+
+
+
+
+
     // ApplicationMetadataServiceCollectionExtensions
     // AsyncStateExtensions
     // AutoActivationExtensions

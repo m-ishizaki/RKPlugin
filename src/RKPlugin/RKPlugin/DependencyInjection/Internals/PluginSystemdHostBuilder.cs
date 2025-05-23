@@ -1,24 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Microsoft.Extensions.Hosting;
-
-public static class SystemdHostBuilderExtensions
-{
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
-    {
-        Invoked.Add(name);
-        return null;
-    }
-
-    public static object? AddSystemd(this object? services)
-        => Add("public static object? AddSystemd(this object? services)");
-}
-
-namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+﻿namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginSystemdHostBuilder
 {

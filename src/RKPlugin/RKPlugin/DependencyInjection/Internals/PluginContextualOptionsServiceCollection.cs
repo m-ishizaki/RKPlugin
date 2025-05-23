@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginContextualOptionsServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ContextualOptionsServiceCollectionExtensions,Microsoft.Extensions.ContextualOptions";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ContextualOptionsServiceCollectionExtensions,Microsoft.Extensions.Options.Contextual";
 
     public static object? AddContextualOptions(this object? services)
     {

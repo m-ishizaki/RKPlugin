@@ -20,7 +20,7 @@
 	<ProjectReference Include="..\Mock\Microsoft.Extensions.AsyncState\Microsoft.Extensions.AsyncState.csproj" />
 	<ProjectReference Include="..\Mock\Microsoft.Extensions.DependencyInjection.AutoActivation\Microsoft.Extensions.DependencyInjection.AutoActivation.csproj" />
 	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.HealthChecks.Common\Microsoft.Extensions.Diagnostics.HealthChecks.Common.csproj" />
-	<ProjectReference Include="..\Mock\ContextualOptionsServiceCollectionExtensions\ContextualOptionsServiceCollectionExtensions.csproj" />
+	<ProjectReference Include="..\Mock\ContextualOptionsServiceCollectionExtensions\Microsoft.Extensions.Options.Contextual.csproj" />
 	<ProjectReference Include="..\Mock\Microsoft.Extensions.WebEncoders\Microsoft.Extensions.WebEncoders.csproj" />
 	<ProjectReference Include="..\Mock\Microsoft.Extensions.Telemetry.Abstractions\Microsoft.Extensions.Telemetry.Abstractions.csproj" />
 	<ProjectReference Include="..\Mock\Microsoft.Extensions.Diagnostics.ExceptionSummarization\Microsoft.Extensions.Diagnostics.ExceptionSummarization.csproj" />
