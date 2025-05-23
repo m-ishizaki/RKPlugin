@@ -787,8 +787,25 @@ public class PluginServiceCollection
     #endregion TcpEndpointProbesExtensions
 
     #region SystemdHostBuilderExtensions
+    
+    object? AddSystemd() =>
+        PluginSystemdHostBuilder.AddSystemd(Services);
+    public static object? AddSystemd(object? services) =>
+        PluginSystemdHostBuilderCaller.AddSystemd(services);
+        
     #endregion SystemdHostBuilderExtensions
 
     #region WindowsServiceLifetimeHostBuilderExtensions
+    
+    object? AddWindowsService() =>
+        PluginWindowsServiceLifetimeHostBuilder.AddWindowsService(Services);
+    public static object? AddWindowsService(object? services) =>
+        PluginWindowsServiceLifetimeHostBuilderCaller.AddWindowsService(services);
+        
+    object? AddWindowsService(Action<object?> configure) =>
+        PluginWindowsServiceLifetimeHostBuilder.AddWindowsService(Services, configure);
+    public static object? AddWindowsService(object? services, Action<object?> configure) =>
+        PluginWindowsServiceLifetimeHostBuilderCaller.AddWindowsService(services, configure);
+        
     #endregion WindowsServiceLifetimeHostBuilderExtensions
 }
