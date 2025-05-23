@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Depend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Diagnostics.HealthChecks.Common", "Mock\Microsoft.Extensions.Diagnostics.HealthChecks.Common\Microsoft.Extensions.Diagnostics.HealthChecks.Common.csproj", "{95218729-296D-4114-8142-A00F990984A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextualOptionsServiceCollectionExtensions", "Mock\ContextualOptionsServiceCollectionExtensions\ContextualOptionsServiceCollectionExtensions.csproj", "{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.Options.Contextual", "Mock\ContextualOptionsServiceCollectionExtensions\Microsoft.Extensions.Options.Contextual.csproj", "{E0283250-82F0-4DF5-91CF-C9DB8AE6E86B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Extensions.WebEncoders", "Mock\Microsoft.Extensions.WebEncoders\Microsoft.Extensions.WebEncoders.csproj", "{D4C5D50B-F607-424A-A899-A1B8A7C87B03}"
 EndProject

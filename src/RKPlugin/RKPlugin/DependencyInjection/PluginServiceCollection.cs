@@ -115,4 +115,44 @@ public class PluginServiceCollection
     public static object? AddSingleton(object? services, Type serviceType, object implementationInstance) => PluginServiceCollectionServiceCaller.AddSingleton(services, serviceType, implementationInstance);
     object? AddSingleton<TService>(TService implementationInstance) where TService : class => PluginServiceCollectionService.AddSingleton<TService>(Services, implementationInstance);
     public static object? AddSingleton<TService>(object? services, TService implementationInstance) where TService : class => PluginServiceCollectionServiceCaller.AddSingleton<TService>(services, implementationInstance);
+
+    #region ContextualOptionsServiceCollectionExtensions
+
+    object? AddContextualOptions() =>
+        PluginContextualOptionsServiceCollection.AddContextualOptions(Services);
+    public static object? AddContextualOptions(object? services) =>
+        PluginContextualOptionsServiceCollectionCaller.AddContextualOptions(services);
+
+    object? Configure<TOptions>(Func<object?, object?, object?> loadOptions) where TOptions : class =>
+        PluginContextualOptionsServiceCollection.Configure<TOptions>(Services, loadOptions);
+    public static object? Configure<TOptions>(object? services, Func<object?, object?, object?> loadOptions) where TOptions : class =>
+        PluginContextualOptionsServiceCollectionCaller.Configure<TOptions>(services, loadOptions);
+
+    object? Configure<TOptions>(string? name, Func<object?, object?, object?> loadOptions) where TOptions : class =>
+        PluginContextualOptionsServiceCollection.Configure<TOptions>(Services, name, loadOptions);
+    public static object? Configure<TOptions>(object? services, string? name, Func<object?, object?, object?> loadOptions) where TOptions : class =>
+        PluginContextualOptionsServiceCollectionCaller.Configure<TOptions>(services, name, loadOptions);
+
+    object? Configure<TOptions>(Action<object?, TOptions> configure) where TOptions : class =>
+        PluginContextualOptionsServiceCollection.Configure<TOptions>(Services, configure);
+    public static object? Configure<TOptions>(object? services, Action<object?, TOptions> configure) where TOptions : class =>
+        PluginContextualOptionsServiceCollectionCaller.Configure<TOptions>(services, configure);
+
+    object? Configure<TOptions>(string? name, Action<object?, TOptions> configure) where TOptions : class =>
+        PluginContextualOptionsServiceCollection.Configure<TOptions>(Services, name, configure);
+    public static object? Configure<TOptions>(object? services, string? name, Action<object?, TOptions> configure) where TOptions : class =>
+        PluginContextualOptionsServiceCollectionCaller.Configure<TOptions>(services, name, configure);
+
+    object? ConfigureAll<TOptions>(Func<object?, object?, object?> loadOptions) where TOptions : class =>
+        PluginContextualOptionsServiceCollection.ConfigureAll<TOptions>(Services, loadOptions);
+    public static object? ConfigureAll<TOptions>(object? services, Func<object?, object?, object?> loadOptions) where TOptions : class =>
+        PluginContextualOptionsServiceCollectionCaller.ConfigureAll<TOptions>(services, loadOptions);
+
+    object? ConfigureAll<TOptions>(Action<object?, TOptions> configure) where TOptions : class =>
+        PluginContextualOptionsServiceCollection.ConfigureAll<TOptions>(Services, configure);
+    public static object? ConfigureAll<TOptions>(object? services, Action<object?, TOptions> configure) where TOptions : class =>
+        PluginContextualOptionsServiceCollectionCaller.ConfigureAll<TOptions>(services, configure);
+
+    #endregion ContextualOptionsServiceCollectionExtensions
+
 }
