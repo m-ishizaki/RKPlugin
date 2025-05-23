@@ -174,110 +174,638 @@ public class PluginServiceCollection
     #endregion EncoderServiceCollectionExtensions
 
     #region EnrichmentServiceCollectionExtensions
-    #endregion EnrichmentServiceCollectionExtensions
-
-    #region EnrichmentServiceCollectionExtensions
+    
+    object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>() where T : class =>
+        PluginEnrichmentServiceCollection.AddLogEnricher<T>(Services);
+    public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(object? services) where T : class =>
+        PluginEnrichmentServiceCollectionCaller.AddLogEnricher<T>(services);
+        
+    object? AddLogEnricher(object? enricher) =>
+        PluginEnrichmentServiceCollection.AddLogEnricher(Services, enricher);
+    public static object? AddLogEnricher(object? services, object? enricher) =>
+        PluginEnrichmentServiceCollectionCaller.AddLogEnricher(services, enricher);
+        
+    object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>() where T : class =>
+        PluginEnrichmentServiceCollection.AddStaticLogEnricher<T>(Services);
+    public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(object? services) where T : class =>
+        PluginEnrichmentServiceCollectionCaller.AddStaticLogEnricher<T>(services);
+        
+    object? AddStaticLogEnricher(object? enricher) =>
+        PluginEnrichmentServiceCollection.AddStaticLogEnricher(Services, enricher);
+    public static object? AddStaticLogEnricher(object? services, object? enricher) =>
+        PluginEnrichmentServiceCollectionCaller.AddStaticLogEnricher(services, enricher);
+        
     #endregion EnrichmentServiceCollectionExtensions
 
     #region ExceptionSummarizationServiceCollectionExtensions
+    
+    object? AddExceptionSummarizer() =>
+        PluginExceptionSummarizationServiceCollection.AddExceptionSummarizer(Services);
+    public static object? AddExceptionSummarizer(object? services) =>
+        PluginExceptionSummarizationServiceCollectionCaller.AddExceptionSummarizer(services);
+        
+    object? AddExceptionSummarizer(Action<object?> configure) =>
+        PluginExceptionSummarizationServiceCollection.AddExceptionSummarizer(Services, configure);
+    public static object? AddExceptionSummarizer(object? services, Action<object?> configure) =>
+        PluginExceptionSummarizationServiceCollectionCaller.AddExceptionSummarizer(services, configure);
+        
     #endregion ExceptionSummarizationServiceCollectionExtensions
 
     #region ServiceCollectionDescriptorExtensions
+    
+    object? Add(object? descriptor) =>
+        PluginServiceCollectionDescriptor.Add(Services, descriptor);
+    public static object? Add(object? collection, object? descriptor) =>
+        PluginServiceCollectionDescriptorCaller.Add(collection, descriptor);
+        
+    object? Add(IEnumerable<object?> descriptors) =>
+        PluginServiceCollectionDescriptor.Add(Services, descriptors);
+    public static object? Add(object? collection, IEnumerable<object?> descriptors) =>
+        PluginServiceCollectionDescriptorCaller.Add(collection, descriptors);
+        
+    object? RemoveAll(Type serviceType) =>
+        PluginServiceCollectionDescriptor.RemoveAll(Services, serviceType);
+    public static object? RemoveAll(object? collection, Type serviceType) =>
+        PluginServiceCollectionDescriptorCaller.RemoveAll(collection, serviceType);
+        
+    object? RemoveAll<T>() =>
+        PluginServiceCollectionDescriptor.RemoveAll<T>(Services);
+    public static object? RemoveAll<T>(object? collection) =>
+        PluginServiceCollectionDescriptorCaller.RemoveAll<T>(collection);
+        
+    object? RemoveAllKeyed<T>(object? serviceKey) =>
+        PluginServiceCollectionDescriptor.RemoveAllKeyed<T>(Services, serviceKey);
+    public static object? RemoveAllKeyed<T>(object? collection, object? serviceKey) =>
+        PluginServiceCollectionDescriptorCaller.RemoveAllKeyed<T>(collection, serviceKey);
+    
     #endregion ServiceCollectionDescriptorExtensions
 
     #region FakeLoggerServiceCollectionExtensions
+    
+    object? AddFakeLogging(object? section) =>
+        PluginFakeLoggerServiceCollection.AddFakeLogging(Services, section);
+    public static object? AddFakeLogging(object? services, object? section) =>
+        PluginFakeLoggerServiceCollectionCaller.AddFakeLogging(services, section);
+        
+    object? AddFakeLogging(Action<object?> configure) =>
+        PluginFakeLoggerServiceCollection.AddFakeLogging(Services, configure);
+    public static object? AddFakeLogging(object? services, Action<object?> configure) =>
+        PluginFakeLoggerServiceCollectionCaller.AddFakeLogging(services, configure);
+        
+    object? AddFakeLogging() =>
+        PluginFakeLoggerServiceCollection.AddFakeLogging(Services);
+    public static object? AddFakeLogging(object? services) =>
+        PluginFakeLoggerServiceCollectionCaller.AddFakeLogging(services);
+        
     #endregion FakeLoggerServiceCollectionExtensions
 
     #region FakeRedactionServiceCollectionExtensions
+    
+    object? AddFakeRedaction() =>
+        PluginFakeRedactionServiceCollection.AddFakeRedaction(Services);
+    public static object? AddFakeRedaction(object? services) =>
+        PluginFakeRedactionServiceCollectionCaller.AddFakeRedaction(services);
+        
+    object? AddFakeRedaction(Action<object?> configure) =>
+        PluginFakeRedactionServiceCollection.AddFakeRedaction(Services, configure);
+    public static object? AddFakeRedaction(object? services, Action<object?> configure) =>
+        PluginFakeRedactionServiceCollectionCaller.AddFakeRedaction(services, configure);
+        
     #endregion FakeRedactionServiceCollectionExtensions
 
     #region HealthCheckServiceCollectionExtensions
+    
+    object? AddHealthChecks() =>
+        PluginHealthCheckServiceCollection.AddHealthChecks(Services);
+    public static object? AddHealthChecks(object? services) =>
+        PluginHealthCheckServiceCollectionCaller.AddHealthChecks(services);
+        
     #endregion HealthCheckServiceCollectionExtensions
 
     #region HttpClientFactoryServiceCollectionExtensions
+    // Methods already implemented at the top of the file (lines 30-71)
     #endregion HttpClientFactoryServiceCollectionExtensions
 
     #region HttpClientLatencyTelemetryExtensions
+    
+    object? AddHttpClientLatencyTelemetry() =>
+        PluginHttpClientLatencyTelemetry.AddHttpClientLatencyTelemetry(Services);
+    public static object? AddHttpClientLatencyTelemetry(object? services) =>
+        PluginHttpClientLatencyTelemetryCaller.AddHttpClientLatencyTelemetry(services);
+        
+    object? AddHttpClientLatencyTelemetry(object? section) =>
+        PluginHttpClientLatencyTelemetry.AddHttpClientLatencyTelemetry(Services, section);
+    public static object? AddHttpClientLatencyTelemetry(object? services, object? section) =>
+        PluginHttpClientLatencyTelemetryCaller.AddHttpClientLatencyTelemetry(services, section);
+        
+    object? AddHttpClientLatencyTelemetry(Action<object?> configure) =>
+        PluginHttpClientLatencyTelemetry.AddHttpClientLatencyTelemetry(Services, configure);
+    public static object? AddHttpClientLatencyTelemetry(object? services, Action<object?> configure) =>
+        PluginHttpClientLatencyTelemetryCaller.AddHttpClientLatencyTelemetry(services, configure);
+        
     #endregion HttpClientLatencyTelemetryExtensions
 
     #region HttpClientLoggingServiceCollectionExtensions
+    
+    object? AddExtendedHttpClientLogging() =>
+        PluginHttpClientLoggingServiceCollection.AddExtendedHttpClientLogging(Services);
+    public static object? AddExtendedHttpClientLogging(object? services) =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddExtendedHttpClientLogging(services);
+        
+    object? AddExtendedHttpClientLogging(object? section) =>
+        PluginHttpClientLoggingServiceCollection.AddExtendedHttpClientLogging(Services, section);
+    public static object? AddExtendedHttpClientLogging(object? services, object? section) =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddExtendedHttpClientLogging(services, section);
+        
+    object? AddExtendedHttpClientLogging(Action<object?> configure) =>
+        PluginHttpClientLoggingServiceCollection.AddExtendedHttpClientLogging(Services, configure);
+    public static object? AddExtendedHttpClientLogging(object? services, Action<object?> configure) =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddExtendedHttpClientLogging(services, configure);
+        
+    object? AddHttpClientLogEnricher<T>() where T : class =>
+        PluginHttpClientLoggingServiceCollection.AddHttpClientLogEnricher<T>(Services);
+    public static object? AddHttpClientLogEnricher<T>(object? services) where T : class =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddHttpClientLogEnricher<T>(services);
+        
     #endregion HttpClientLoggingServiceCollectionExtensions
 
     #region HttpDiagnosticsServiceCollectionExtensions
+    
+    object? AddDownstreamDependencyMetadata(object? downstreamDependencyMetadata) =>
+        PluginHttpDiagnosticsServiceCollection.AddDownstreamDependencyMetadata(Services, downstreamDependencyMetadata);
+    public static object? AddDownstreamDependencyMetadata(object? services, object? downstreamDependencyMetadata) =>
+        PluginHttpDiagnosticsServiceCollectionCaller.AddDownstreamDependencyMetadata(services, downstreamDependencyMetadata);
+        
+    object? AddDownstreamDependencyMetadata<T>() where T : class =>
+        PluginHttpDiagnosticsServiceCollection.AddDownstreamDependencyMetadata<T>(Services);
+    public static object? AddDownstreamDependencyMetadata<T>(object? services) where T : class =>
+        PluginHttpDiagnosticsServiceCollectionCaller.AddDownstreamDependencyMetadata<T>(services);
+        
     #endregion HttpDiagnosticsServiceCollectionExtensions
 
     #region HybridCacheServiceExtensions
+    
+    object? AddHybridCache() =>
+        PluginHybridCacheService.AddHybridCache(Services);
+    public static object? AddHybridCache(object? services) =>
+        PluginHybridCacheServiceCaller.AddHybridCache(services);
+        
+    object? AddHybridCache(Action<object?> setupAction) =>
+        PluginHybridCacheService.AddHybridCache(Services, setupAction);
+    public static object? AddHybridCache(object? services, Action<object?> setupAction) =>
+        PluginHybridCacheServiceCaller.AddHybridCache(services, setupAction);
+        
     #endregion HybridCacheServiceExtensions
 
     #region KubernetesProbesExtensions
+    
+    object? AddKubernetesProbes() =>
+        PluginKubernetesProbes.AddKubernetesProbes(Services);
+    public static object? AddKubernetesProbes(object? services) =>
+        PluginKubernetesProbesCaller.AddKubernetesProbes(services);
+        
+    object? AddKubernetesProbes(object? section) =>
+        PluginKubernetesProbes.AddKubernetesProbes(Services, section);
+    public static object? AddKubernetesProbes(object? services, object? section) =>
+        PluginKubernetesProbesCaller.AddKubernetesProbes(services, section);
+        
+    object? AddKubernetesProbes(Action<object?> configure) =>
+        PluginKubernetesProbes.AddKubernetesProbes(Services, configure);
+    public static object? AddKubernetesProbes(object? services, Action<object?> configure) =>
+        PluginKubernetesProbesCaller.AddKubernetesProbes(services, configure);
+        
     #endregion KubernetesProbesExtensions
 
     #region LatencyConsoleExtensions
+    
+    object? AddConsoleLatencyDataExporter() =>
+        PluginLatencyConsole.AddConsoleLatencyDataExporter(Services);
+    public static object? AddConsoleLatencyDataExporter(object? services) =>
+        PluginLatencyConsoleCaller.AddConsoleLatencyDataExporter(services);
+        
+    object? AddConsoleLatencyDataExporter(Action<object?> configure) =>
+        PluginLatencyConsole.AddConsoleLatencyDataExporter(Services, configure);
+    public static object? AddConsoleLatencyDataExporter(object? services, Action<object?> configure) =>
+        PluginLatencyConsoleCaller.AddConsoleLatencyDataExporter(services, configure);
+        
+    object? AddConsoleLatencyDataExporter(object? section) =>
+        PluginLatencyConsole.AddConsoleLatencyDataExporter(Services, section);
+    public static object? AddConsoleLatencyDataExporter(object? services, object? section) =>
+        PluginLatencyConsoleCaller.AddConsoleLatencyDataExporter(services, section);
+        
     #endregion LatencyConsoleExtensions
 
     #region LatencyContextExtensions
+    
+    object? AddLatencyContext() =>
+        PluginLatencyContext.AddLatencyContext(Services);
+    public static object? AddLatencyContext(object? services) =>
+        PluginLatencyContextCaller.AddLatencyContext(services);
+        
+    object? AddLatencyContext(Action<object?> configure) =>
+        PluginLatencyContext.AddLatencyContext(Services, configure);
+    public static object? AddLatencyContext(object? services, Action<object?> configure) =>
+        PluginLatencyContextCaller.AddLatencyContext(services, configure);
+        
+    object? AddLatencyContext(object? section) =>
+        PluginLatencyContext.AddLatencyContext(Services, section);
+    public static object? AddLatencyContext(object? services, object? section) =>
+        PluginLatencyContextCaller.AddLatencyContext(services, section);
+        
     #endregion LatencyContextExtensions
 
     #region LatencyRegistryServiceCollectionExtensions
+    
+    object? RegisterCheckpointNames(params string[] names) =>
+        PluginLatencyRegistryServiceCollection.RegisterCheckpointNames(Services, names);
+    public static object? RegisterCheckpointNames(object? services, params string[] names) =>
+        PluginLatencyRegistryServiceCollectionCaller.RegisterCheckpointNames(services, names);
+        
+    object? RegisterMeasureNames(params string[] names) =>
+        PluginLatencyRegistryServiceCollection.RegisterMeasureNames(Services, names);
+    public static object? RegisterMeasureNames(object? services, params string[] names) =>
+        PluginLatencyRegistryServiceCollectionCaller.RegisterMeasureNames(services, names);
+        
+    object? RegisterTagNames(params string[] names) =>
+        PluginLatencyRegistryServiceCollection.RegisterTagNames(Services, names);
+    public static object? RegisterTagNames(object? services, params string[] names) =>
+        PluginLatencyRegistryServiceCollectionCaller.RegisterTagNames(services, names);
+        
+    // Note: private method ConfigureOption is not exposed in the public API
+        
     #endregion LatencyRegistryServiceCollectionExtensions
 
     #region LocalizationServiceCollectionExtensions
+    
+    object? AddLocalization() =>
+        PluginLocalizationServiceCollection.AddLocalization(Services);
+    public static object? AddLocalization(object? services) =>
+        PluginLocalizationServiceCollectionCaller.AddLocalization(services);
+        
+    object? AddLocalization(Action<object?> setupAction) =>
+        PluginLocalizationServiceCollection.AddLocalization(Services, setupAction);
+    public static object? AddLocalization(object? services, Action<object?> setupAction) =>
+        PluginLocalizationServiceCollectionCaller.AddLocalization(services, setupAction);
+        
     #endregion LocalizationServiceCollectionExtensions
 
     #region LoggingServiceCollectionExtensions
+    
+    object? AddLogging() =>
+        PluginLoggingServiceCollection.AddLogging(Services);
+    public static object? AddLogging(object? services) =>
+        PluginLoggingServiceCollectionCaller.AddLogging(services);
+        
+    object? AddLogging(Action<object?> configure) =>
+        PluginLoggingServiceCollection.AddLogging(Services, configure);
+    public static object? AddLogging(object? services, Action<object?> configure) =>
+        PluginLoggingServiceCollectionCaller.AddLogging(services, configure);
+        
     #endregion LoggingServiceCollectionExtensions
 
     #region MemoryCacheServiceCollectionExtensions
+    
+    object? AddDistributedMemoryCache() =>
+        PluginMemoryCacheServiceCollection.AddDistributedMemoryCache(Services);
+    public static object? AddDistributedMemoryCache(object? services) =>
+        PluginMemoryCacheServiceCollectionCaller.AddDistributedMemoryCache(services);
+        
+    object? AddDistributedMemoryCache(Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollection.AddDistributedMemoryCache(Services, setupAction);
+    public static object? AddDistributedMemoryCache(object? services, Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollectionCaller.AddDistributedMemoryCache(services, setupAction);
+        
+    object? AddMemoryCache() =>
+        PluginMemoryCacheServiceCollection.AddMemoryCache(Services);
+    public static object? AddMemoryCache(object? services) =>
+        PluginMemoryCacheServiceCollectionCaller.AddMemoryCache(services);
+        
+    object? AddMemoryCache(Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollection.AddMemoryCache(Services, setupAction);
+    public static object? AddMemoryCache(object? services, Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollectionCaller.AddMemoryCache(services, setupAction);
+        
     #endregion MemoryCacheServiceCollectionExtensions
 
     #region MetricsServiceExtensions
+    
+    object? AddMetrics() =>
+        PluginMetricsService.AddMetrics(Services);
+    public static object? AddMetrics(object? services) =>
+        PluginMetricsServiceCaller.AddMetrics(services);
+        
+    object? AddMetrics(Action<object?> configure) =>
+        PluginMetricsService.AddMetrics(Services, configure);
+    public static object? AddMetrics(object? services, Action<object?> configure) =>
+        PluginMetricsServiceCaller.AddMetrics(services, configure);
+        
     #endregion MetricsServiceExtensions
 
     #region NullLatencyContextServiceCollectionExtensions
+    
+    object? AddNullLatencyContext() =>
+        PluginNullLatencyContextServiceCollection.AddNullLatencyContext(Services);
+    public static object? AddNullLatencyContext(object? services) =>
+        PluginNullLatencyContextServiceCollectionCaller.AddNullLatencyContext(services);
+        
     #endregion NullLatencyContextServiceCollectionExtensions
 
     #region ObjectPoolServiceCollectionExtensions
+    
+    object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(Action<object?>? configure = null) where TService : class =>
+        PluginObjectPoolServiceCollection.AddPooled<TService>(Services, configure);
+    public static object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services, Action<object?>? configure = null) where TService : class =>
+        PluginObjectPoolServiceCollectionCaller.AddPooled<TService>(services, configure);
+        
+    object? AddPooled<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(Action<object?>? configure = null) where TService : class where TImplementation : class, TService =>
+        PluginObjectPoolServiceCollection.AddPooled<TService, TImplementation>(Services, configure);
+    public static object? AddPooled<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, Action<object?>? configure = null) where TService : class where TImplementation : class, TService =>
+        PluginObjectPoolServiceCollectionCaller.AddPooled<TService, TImplementation>(services, configure);
+        
+    object? ConfigurePool<TService>(Action<object?> configure) where TService : class =>
+        PluginObjectPoolServiceCollection.ConfigurePool<TService>(Services, configure);
+    public static object? ConfigurePool<TService>(object? services, Action<object?> configure) where TService : class =>
+        PluginObjectPoolServiceCollectionCaller.ConfigurePool<TService>(services, configure);
+        
+    object? ConfigurePools(object? section) =>
+        PluginObjectPoolServiceCollection.ConfigurePools(Services, section);
+    public static object? ConfigurePools(object? services, object? section) =>
+        PluginObjectPoolServiceCollectionCaller.ConfigurePools(services, section);
+        
+    // Note: private method AddPooledInternal is not exposed in the public API
+        
     #endregion ObjectPoolServiceCollectionExtensions
 
     #region OptionsConfigurationServiceCollectionExtensions
+    
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, config);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, config);
+        
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, name, config);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, name, config);
+        
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, config, configureBinder);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, config, configureBinder);
+        
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, name, config, configureBinder);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, name, config, configureBinder);
+        
     #endregion OptionsConfigurationServiceCollectionExtensions
 
     #region OptionsServiceCollectionExtensions
+    
+    object? AddOptions() =>
+        PluginOptionsServiceCollection.AddOptions(Services);
+    public static object? AddOptions(object? services) =>
+        PluginOptionsServiceCollectionCaller.AddOptions(services);
+        
+    object? AddOptions<TOptions>() where TOptions : class =>
+        PluginOptionsServiceCollection.AddOptions<TOptions>(Services);
+    public static object? AddOptions<TOptions>(object? services) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptions<TOptions>(services);
+        
+    object? AddOptions<TOptions>(string? name) where TOptions : class =>
+        PluginOptionsServiceCollection.AddOptions<TOptions>(Services, name);
+    public static object? AddOptions<TOptions>(object? services, string? name) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptions<TOptions>(services, name);
+        
+    object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions>(string? name = null) where TOptions : class =>
+        PluginOptionsServiceCollection.AddOptionsWithValidateOnStart<TOptions>(Services, name);
+    public static object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions>(object? services, string? name = null) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptionsWithValidateOnStart<TOptions>(services, name);
+        
+    object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(string? name = null) where TOptions : class where TValidateOptions : class =>
+        PluginOptionsServiceCollection.AddOptionsWithValidateOnStart<TOptions, TValidateOptions>(Services, name);
+    public static object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(object? services, string? name = null) where TOptions : class where TValidateOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptionsWithValidateOnStart<TOptions, TValidateOptions>(services, name);
+
+    object? Configure<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.Configure<TOptions>(Services, configureOptions);
+    public static object? Configure<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.Configure<TOptions>(services, configureOptions);
+        
+    object? Configure<TOptions>(string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.Configure<TOptions>(Services, name, configureOptions);
+    public static object? Configure<TOptions>(object? services, string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.Configure<TOptions>(services, name, configureOptions);
+        
+    object? ConfigureAll<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.ConfigureAll<TOptions>(Services, configureOptions);
+    public static object? ConfigureAll<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.ConfigureAll<TOptions>(services, configureOptions);
+        
+    object? ConfigureOptions<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TConfigureOptions>() where TConfigureOptions : class =>
+        PluginOptionsServiceCollection.ConfigureOptions<TConfigureOptions>(Services);
+    public static object? ConfigureOptions<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TConfigureOptions>(object? services) where TConfigureOptions : class =>
+        PluginOptionsServiceCollectionCaller.ConfigureOptions<TConfigureOptions>(services);
+        
+    object? ConfigureOptions([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type configureType) =>
+        PluginOptionsServiceCollection.ConfigureOptions(Services, configureType);
+    public static object? ConfigureOptions(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type configureType) =>
+        PluginOptionsServiceCollectionCaller.ConfigureOptions(services, configureType);
+        
+    object? ConfigureOptions(object configureInstance) =>
+        PluginOptionsServiceCollection.ConfigureOptions(Services, configureInstance);
+    public static object? ConfigureOptions(object? services, object configureInstance) =>
+        PluginOptionsServiceCollectionCaller.ConfigureOptions(services, configureInstance);
+        
+    object? PostConfigure<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.PostConfigure<TOptions>(Services, configureOptions);
+    public static object? PostConfigure<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.PostConfigure<TOptions>(services, configureOptions);
+        
+    object? PostConfigure<TOptions>(string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.PostConfigure<TOptions>(Services, name, configureOptions);
+    public static object? PostConfigure<TOptions>(object? services, string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.PostConfigure<TOptions>(services, name, configureOptions);
+        
+    object? PostConfigureAll<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.PostConfigureAll<TOptions>(Services, configureOptions);
+    public static object? PostConfigureAll<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.PostConfigureAll<TOptions>(services, configureOptions);
+        
     #endregion OptionsServiceCollectionExtensions
 
     #region ProcessEnricherServiceCollectionExtensions
+    
+    object? AddProcessLogEnricher() =>
+        PluginProcessEnricherServiceCollection.AddProcessLogEnricher(Services);
+    public static object? AddProcessLogEnricher(object? services) =>
+        PluginProcessEnricherServiceCollectionCaller.AddProcessLogEnricher(services);
+        
+    object? AddProcessLogEnricher(Action<object?> configure) =>
+        PluginProcessEnricherServiceCollection.AddProcessLogEnricher(Services, configure);
+    public static object? AddProcessLogEnricher(object? services, Action<object?> configure) =>
+        PluginProcessEnricherServiceCollectionCaller.AddProcessLogEnricher(services, configure);
+        
+    object? AddProcessLogEnricher(object? section) =>
+        PluginProcessEnricherServiceCollection.AddProcessLogEnricher(Services, section);
+    public static object? AddProcessLogEnricher(object? services, object? section) =>
+        PluginProcessEnricherServiceCollectionCaller.AddProcessLogEnricher(services, section);
+        
     #endregion ProcessEnricherServiceCollectionExtensions
 
     #region RedactionServiceCollectionExtensions
+    
+    object? AddRedaction(object? section) =>
+        PluginRedactionServiceCollection.AddRedaction(Services, section);
+    public static object? AddRedaction(object? services, object? section) =>
+        PluginRedactionServiceCollectionCaller.AddRedaction(services, section);
+        
+    object? AddRedaction(Action<object?> configure) =>
+        PluginRedactionServiceCollection.AddRedaction(Services, configure);
+    public static object? AddRedaction(object? services, Action<object?> configure) =>
+        PluginRedactionServiceCollectionCaller.AddRedaction(services, configure);
+        
     #endregion RedactionServiceCollectionExtensions
 
     #region ResilienceServiceCollectionExtensions
+    
+    object? AddResilienceEnricher() =>
+        PluginResilienceServiceCollection.AddResilienceEnricher(Services);
+    public static object? AddResilienceEnricher(object? services) =>
+        PluginResilienceServiceCollectionCaller.AddResilienceEnricher(services);
+        
     #endregion ResilienceServiceCollectionExtensions
 
     #region ResourceMonitoringServiceCollectionExtensions
+    
+    object? AddResourceMonitoring() =>
+        PluginResourceMonitoringServiceCollection.AddResourceMonitoring(Services);
+    public static object? AddResourceMonitoring(object? services) =>
+        PluginResourceMonitoringServiceCollectionCaller.AddResourceMonitoring(services);
+        
+    object? AddResourceMonitoring(Action<object?> configure) =>
+        PluginResourceMonitoringServiceCollection.AddResourceMonitoring(Services, configure);
+    public static object? AddResourceMonitoring(object? services, Action<object?> configure) =>
+        PluginResourceMonitoringServiceCollectionCaller.AddResourceMonitoring(services, configure);
+        
+    // Note: private method AddResourceMonitoringInternal is not exposed in the public API
+        
     #endregion ResourceMonitoringServiceCollectionExtensions
 
     #region ServiceCollectionContainerBuilderExtensions
+    
+    object? BuildServiceProvider() =>
+        PluginServiceCollectionContainerBuilder.BuildServiceProvider(Services);
+    public static object? BuildServiceProvider(object? services) =>
+        PluginServiceCollectionContainerBuilderCaller.BuildServiceProvider(services);
+        
+    object? BuildServiceProvider(object? options) =>
+        PluginServiceCollectionContainerBuilder.BuildServiceProvider(Services, options);
+    public static object? BuildServiceProvider(object? services, object? options) =>
+        PluginServiceCollectionContainerBuilderCaller.BuildServiceProvider(services, options);
+        
+    object? BuildServiceProvider(bool validateScopes) =>
+        PluginServiceCollectionContainerBuilder.BuildServiceProvider(Services, validateScopes);
+    public static object? BuildServiceProvider(object? services, bool validateScopes) =>
+        PluginServiceCollectionContainerBuilderCaller.BuildServiceProvider(services, validateScopes);
+        
     #endregion ServiceCollectionContainerBuilderExtensions
 
     #region ServiceCollectionHostedServiceExtensions
+    
+    object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>() where THostedService : class =>
+        PluginServiceCollectionHostedService.AddHostedService<THostedService>(Services);
+    public static object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(object? services) where THostedService : class =>
+        PluginServiceCollectionHostedServiceCaller.AddHostedService<THostedService>(services);
+        
+    object? AddHostedService<THostedService>(Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
+        PluginServiceCollectionHostedService.AddHostedService<THostedService>(Services, implementationFactory);
+    public static object? AddHostedService<THostedService>(object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
+        PluginServiceCollectionHostedServiceCaller.AddHostedService<THostedService>(services, implementationFactory);
+        
     #endregion ServiceCollectionHostedServiceExtensions
 
     #region ServiceCollectionServiceExtensions
+    // Methods already implemented at the top of the file (lines 72-117)
     #endregion ServiceCollectionServiceExtensions
 
     #region SqlServerCachingServicesExtensions
+    
+    object? AddDistributedSqlServerCache(Action<object?> setupAction) =>
+        PluginSqlServerCachingServices.AddDistributedSqlServerCache(Services, setupAction);
+    public static object? AddDistributedSqlServerCache(object? services, Action<object?> setupAction) =>
+        PluginSqlServerCachingServicesCaller.AddDistributedSqlServerCache(services, setupAction);
+        
     #endregion SqlServerCachingServicesExtensions
 
     #region StackExchangeRedisCacheServiceCollectionExtensions
+    
+    object? AddStackExchangeRedisCache(object? section) =>
+        PluginStackExchangeRedisCacheServiceCollection.AddStackExchangeRedisCache(Services, section);
+    public static object? AddStackExchangeRedisCache(object? services, object? section) =>
+        PluginStackExchangeRedisCacheServiceCollectionCaller.AddStackExchangeRedisCache(services, section);
+        
+    object? AddStackExchangeRedisCache(Action<object?> configure) =>
+        PluginStackExchangeRedisCacheServiceCollection.AddStackExchangeRedisCache(Services, configure);
+    public static object? AddStackExchangeRedisCache(object? services, Action<object?> configure) =>
+        PluginStackExchangeRedisCacheServiceCollectionCaller.AddStackExchangeRedisCache(services, configure);
+        
     #endregion StackExchangeRedisCacheServiceCollectionExtensions
 
     #region TcpEndpointProbesExtensions
+    
+    object? AddTcpEndpointProbe() =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services);
+    public static object? AddTcpEndpointProbe(object? services) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services);
+        
+    object? AddTcpEndpointProbe(string name) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name);
+    public static object? AddTcpEndpointProbe(object? services, string name) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, name);
+        
+    object? AddTcpEndpointProbe(Action<object?> configure) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, configure);
+    public static object? AddTcpEndpointProbe(object? services, Action<object?> configure) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, configure);
+        
+    object? AddTcpEndpointProbe(string name, Action<object?> configure) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name, configure);
+    public static object? AddTcpEndpointProbe(object? services, string name, Action<object?> configure) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, name, configure);
+        
+    object? AddTcpEndpointProbe(object? configurationSection) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, configurationSection);
+    public static object? AddTcpEndpointProbe(object? services, object? configurationSection) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, configurationSection);
+        
+    object? AddTcpEndpointProbe(string name, object? configurationSection) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name, configurationSection);
+    public static object? AddTcpEndpointProbe(object? services, string name, object? configurationSection) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, name, configurationSection);
+        
     #endregion TcpEndpointProbesExtensions
 
     #region SystemdHostBuilderExtensions
+    
+    object? AddSystemd() =>
+        PluginSystemdHostBuilder.AddSystemd(Services);
+    public static object? AddSystemd(object? services) =>
+        PluginSystemdHostBuilderCaller.AddSystemd(services);
+        
     #endregion SystemdHostBuilderExtensions
 
     #region WindowsServiceLifetimeHostBuilderExtensions
+    
+    object? AddWindowsService() =>
+        PluginWindowsServiceLifetimeHostBuilder.AddWindowsService(Services);
+    public static object? AddWindowsService(object? services) =>
+        PluginWindowsServiceLifetimeHostBuilderCaller.AddWindowsService(services);
+        
+    object? AddWindowsService(Action<object?> configure) =>
+        PluginWindowsServiceLifetimeHostBuilder.AddWindowsService(Services, configure);
+    public static object? AddWindowsService(object? services, Action<object?> configure) =>
+        PluginWindowsServiceLifetimeHostBuilderCaller.AddWindowsService(services, configure);
+        
     #endregion WindowsServiceLifetimeHostBuilderExtensions
 }
