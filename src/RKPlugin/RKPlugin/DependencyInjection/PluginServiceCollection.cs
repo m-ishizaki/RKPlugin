@@ -537,9 +537,58 @@ public class PluginServiceCollection
     #endregion ObjectPoolServiceCollectionExtensions
 
     #region OptionsConfigurationServiceCollectionExtensions
+    
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, config);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, config);
+        
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, name, config);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, name, config);
+        
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, config, configureBinder);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, config, configureBinder);
+        
+    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, name, config, configureBinder);
+    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
+        PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, name, config, configureBinder);
+        
     #endregion OptionsConfigurationServiceCollectionExtensions
 
     #region OptionsServiceCollectionExtensions
+    
+    object? AddOptions() =>
+        PluginOptionsServiceCollection.AddOptions(Services);
+    public static object? AddOptions(object? services) =>
+        PluginOptionsServiceCollectionCaller.AddOptions(services);
+        
+    object? AddOptions<TOptions>() where TOptions : class =>
+        PluginOptionsServiceCollection.AddOptions<TOptions>(Services);
+    public static object? AddOptions<TOptions>(object? services) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptions<TOptions>(services);
+        
+    object? AddOptions<TOptions>(string? name) where TOptions : class =>
+        PluginOptionsServiceCollection.AddOptions<TOptions>(Services, name);
+    public static object? AddOptions<TOptions>(object? services, string? name) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptions<TOptions>(services, name);
+        
+    object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions>(string? name = null) where TOptions : class =>
+        PluginOptionsServiceCollection.AddOptionsWithValidateOnStart<TOptions>(Services, name);
+    public static object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions>(object? services, string? name = null) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptionsWithValidateOnStart<TOptions>(services, name);
+        
+    object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(string? name = null) where TOptions : class where TValidateOptions : class =>
+        PluginOptionsServiceCollection.AddOptionsWithValidateOnStart<TOptions, TValidateOptions>(Services, name);
+    public static object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(object? services, string? name = null) where TOptions : class where TValidateOptions : class =>
+        PluginOptionsServiceCollectionCaller.AddOptionsWithValidateOnStart<TOptions, TValidateOptions>(services, name);
+        
+    // Configure, ConfigureAll, ConfigureOptions, PostConfigure, etc. methods continue in the next commit...
+    
     #endregion OptionsServiceCollectionExtensions
 
     #region ProcessEnricherServiceCollectionExtensions
