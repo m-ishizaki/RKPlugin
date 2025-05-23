@@ -450,18 +450,90 @@ public class PluginServiceCollection
     #endregion LocalizationServiceCollectionExtensions
 
     #region LoggingServiceCollectionExtensions
+    
+    object? AddLogging() =>
+        PluginLoggingServiceCollection.AddLogging(Services);
+    public static object? AddLogging(object? services) =>
+        PluginLoggingServiceCollectionCaller.AddLogging(services);
+        
+    object? AddLogging(Action<object?> configure) =>
+        PluginLoggingServiceCollection.AddLogging(Services, configure);
+    public static object? AddLogging(object? services, Action<object?> configure) =>
+        PluginLoggingServiceCollectionCaller.AddLogging(services, configure);
+        
     #endregion LoggingServiceCollectionExtensions
 
     #region MemoryCacheServiceCollectionExtensions
+    
+    object? AddDistributedMemoryCache() =>
+        PluginMemoryCacheServiceCollection.AddDistributedMemoryCache(Services);
+    public static object? AddDistributedMemoryCache(object? services) =>
+        PluginMemoryCacheServiceCollectionCaller.AddDistributedMemoryCache(services);
+        
+    object? AddDistributedMemoryCache(Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollection.AddDistributedMemoryCache(Services, setupAction);
+    public static object? AddDistributedMemoryCache(object? services, Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollectionCaller.AddDistributedMemoryCache(services, setupAction);
+        
+    object? AddMemoryCache() =>
+        PluginMemoryCacheServiceCollection.AddMemoryCache(Services);
+    public static object? AddMemoryCache(object? services) =>
+        PluginMemoryCacheServiceCollectionCaller.AddMemoryCache(services);
+        
+    object? AddMemoryCache(Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollection.AddMemoryCache(Services, setupAction);
+    public static object? AddMemoryCache(object? services, Action<object?> setupAction) =>
+        PluginMemoryCacheServiceCollectionCaller.AddMemoryCache(services, setupAction);
+        
     #endregion MemoryCacheServiceCollectionExtensions
 
     #region MetricsServiceExtensions
+    
+    object? AddMetrics() =>
+        PluginMetricsService.AddMetrics(Services);
+    public static object? AddMetrics(object? services) =>
+        PluginMetricsServiceCaller.AddMetrics(services);
+        
+    object? AddMetrics(Action<object?> configure) =>
+        PluginMetricsService.AddMetrics(Services, configure);
+    public static object? AddMetrics(object? services, Action<object?> configure) =>
+        PluginMetricsServiceCaller.AddMetrics(services, configure);
+        
     #endregion MetricsServiceExtensions
 
     #region NullLatencyContextServiceCollectionExtensions
+    
+    object? AddNullLatencyContext() =>
+        PluginNullLatencyContextServiceCollection.AddNullLatencyContext(Services);
+    public static object? AddNullLatencyContext(object? services) =>
+        PluginNullLatencyContextServiceCollectionCaller.AddNullLatencyContext(services);
+        
     #endregion NullLatencyContextServiceCollectionExtensions
 
     #region ObjectPoolServiceCollectionExtensions
+    
+    object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(Action<object?>? configure = null) where TService : class =>
+        PluginObjectPoolServiceCollection.AddPooled<TService>(Services, configure);
+    public static object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services, Action<object?>? configure = null) where TService : class =>
+        PluginObjectPoolServiceCollectionCaller.AddPooled<TService>(services, configure);
+        
+    object? AddPooled<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(Action<object?>? configure = null) where TService : class where TImplementation : class, TService =>
+        PluginObjectPoolServiceCollection.AddPooled<TService, TImplementation>(Services, configure);
+    public static object? AddPooled<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, Action<object?>? configure = null) where TService : class where TImplementation : class, TService =>
+        PluginObjectPoolServiceCollectionCaller.AddPooled<TService, TImplementation>(services, configure);
+        
+    object? ConfigurePool<TService>(Action<object?> configure) where TService : class =>
+        PluginObjectPoolServiceCollection.ConfigurePool<TService>(Services, configure);
+    public static object? ConfigurePool<TService>(object? services, Action<object?> configure) where TService : class =>
+        PluginObjectPoolServiceCollectionCaller.ConfigurePool<TService>(services, configure);
+        
+    object? ConfigurePools(object? section) =>
+        PluginObjectPoolServiceCollection.ConfigurePools(Services, section);
+    public static object? ConfigurePools(object? services, object? section) =>
+        PluginObjectPoolServiceCollectionCaller.ConfigurePools(services, section);
+        
+    // Note: private method AddPooledInternal is not exposed in the public API
+        
     #endregion ObjectPoolServiceCollectionExtensions
 
     #region OptionsConfigurationServiceCollectionExtensions
