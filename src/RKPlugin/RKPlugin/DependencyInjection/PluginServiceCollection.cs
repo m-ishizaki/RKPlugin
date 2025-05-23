@@ -116,6 +116,18 @@ public class PluginServiceCollection
     object? AddSingleton<TService>(TService implementationInstance) where TService : class => PluginServiceCollectionService.AddSingleton<TService>(Services, implementationInstance);
     public static object? AddSingleton<TService>(object? services, TService implementationInstance) where TService : class => PluginServiceCollectionServiceCaller.AddSingleton<TService>(services, implementationInstance);
 
+    #region ApplicationMetadataServiceCollectionExtensions
+    #endregion ApplicationMetadataServiceCollectionExtensions
+
+    #region AsyncStateExtensions
+    #endregion AsyncStateExtensions
+
+    #region AutoActivationExtensions
+    #endregion AutoActivationExtensions
+
+    #region CommonHealthChecksExtensions
+    #endregion CommonHealthChecksExtensions
+
     #region ContextualOptionsServiceCollectionExtensions
 
     object? AddContextualOptions() =>
@@ -155,4 +167,117 @@ public class PluginServiceCollection
 
     #endregion ContextualOptionsServiceCollectionExtensions
 
+    #region EncoderServiceCollectionExtensions
+    #endregion EncoderServiceCollectionExtensions
+
+    #region EncoderServiceCollectionExtensions
+    #endregion EncoderServiceCollectionExtensions
+
+    #region EnrichmentServiceCollectionExtensions
+    #endregion EnrichmentServiceCollectionExtensions
+
+    #region EnrichmentServiceCollectionExtensions
+    #endregion EnrichmentServiceCollectionExtensions
+
+    #region ExceptionSummarizationServiceCollectionExtensions
+    #endregion ExceptionSummarizationServiceCollectionExtensions
+
+    #region ServiceCollectionDescriptorExtensions
+    #endregion ServiceCollectionDescriptorExtensions
+
+    #region FakeLoggerServiceCollectionExtensions
+    #endregion FakeLoggerServiceCollectionExtensions
+
+    #region FakeRedactionServiceCollectionExtensions
+    #endregion FakeRedactionServiceCollectionExtensions
+
+    #region HealthCheckServiceCollectionExtensions
+    #endregion HealthCheckServiceCollectionExtensions
+
+    #region HttpClientFactoryServiceCollectionExtensions
+    #endregion HttpClientFactoryServiceCollectionExtensions
+
+    #region HttpClientLatencyTelemetryExtensions
+    #endregion HttpClientLatencyTelemetryExtensions
+
+    #region HttpClientLoggingServiceCollectionExtensions
+    #endregion HttpClientLoggingServiceCollectionExtensions
+
+    #region HttpDiagnosticsServiceCollectionExtensions
+    #endregion HttpDiagnosticsServiceCollectionExtensions
+
+    #region HybridCacheServiceExtensions
+    #endregion HybridCacheServiceExtensions
+
+    #region KubernetesProbesExtensions
+    #endregion KubernetesProbesExtensions
+
+    #region LatencyConsoleExtensions
+    #endregion LatencyConsoleExtensions
+
+    #region LatencyContextExtensions
+    #endregion LatencyContextExtensions
+
+    #region LatencyRegistryServiceCollectionExtensions
+    #endregion LatencyRegistryServiceCollectionExtensions
+
+    #region LocalizationServiceCollectionExtensions
+    #endregion LocalizationServiceCollectionExtensions
+
+    #region LoggingServiceCollectionExtensions
+    #endregion LoggingServiceCollectionExtensions
+
+    #region MemoryCacheServiceCollectionExtensions
+    #endregion MemoryCacheServiceCollectionExtensions
+
+    #region MetricsServiceExtensions
+    #endregion MetricsServiceExtensions
+
+    #region NullLatencyContextServiceCollectionExtensions
+    #endregion NullLatencyContextServiceCollectionExtensions
+
+    #region ObjectPoolServiceCollectionExtensions
+    #endregion ObjectPoolServiceCollectionExtensions
+
+    #region OptionsConfigurationServiceCollectionExtensions
+    #endregion OptionsConfigurationServiceCollectionExtensions
+
+    #region OptionsServiceCollectionExtensions
+    #endregion OptionsServiceCollectionExtensions
+
+    #region ProcessEnricherServiceCollectionExtensions
+    #endregion ProcessEnricherServiceCollectionExtensions
+
+    #region RedactionServiceCollectionExtensions
+    #endregion RedactionServiceCollectionExtensions
+
+    #region ResilienceServiceCollectionExtensions
+    #endregion ResilienceServiceCollectionExtensions
+
+    #region ResourceMonitoringServiceCollectionExtensions
+    #endregion ResourceMonitoringServiceCollectionExtensions
+
+    #region ServiceCollectionContainerBuilderExtensions
+    #endregion ServiceCollectionContainerBuilderExtensions
+
+    #region ServiceCollectionHostedServiceExtensions
+    #endregion ServiceCollectionHostedServiceExtensions
+
+    #region ServiceCollectionServiceExtensions
+    #endregion ServiceCollectionServiceExtensions
+
+    #region SqlServerCachingServicesExtensions
+    #endregion SqlServerCachingServicesExtensions
+
+    #region StackExchangeRedisCacheServiceCollectionExtensions
+    #endregion StackExchangeRedisCacheServiceCollectionExtensions
+
+    #region TcpEndpointProbesExtensions
+    #endregion TcpEndpointProbesExtensions
+
+    #region SystemdHostBuilderExtensions
+    #endregion SystemdHostBuilderExtensions
+
+    #region WindowsServiceLifetimeHostBuilderExtensions
+    #endregion WindowsServiceLifetimeHostBuilderExtensions
 }
