@@ -174,24 +174,112 @@ public class PluginServiceCollection
     #endregion EncoderServiceCollectionExtensions
 
     #region EnrichmentServiceCollectionExtensions
-    #endregion EnrichmentServiceCollectionExtensions
-
-    #region EnrichmentServiceCollectionExtensions
+    
+    object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>() where T : class =>
+        PluginEnrichmentServiceCollection.AddLogEnricher<T>(Services);
+    public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(object? services) where T : class =>
+        PluginEnrichmentServiceCollectionCaller.AddLogEnricher<T>(services);
+        
+    object? AddLogEnricher(object? enricher) =>
+        PluginEnrichmentServiceCollection.AddLogEnricher(Services, enricher);
+    public static object? AddLogEnricher(object? services, object? enricher) =>
+        PluginEnrichmentServiceCollectionCaller.AddLogEnricher(services, enricher);
+        
+    object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>() where T : class =>
+        PluginEnrichmentServiceCollection.AddStaticLogEnricher<T>(Services);
+    public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(object? services) where T : class =>
+        PluginEnrichmentServiceCollectionCaller.AddStaticLogEnricher<T>(services);
+        
+    object? AddStaticLogEnricher(object? enricher) =>
+        PluginEnrichmentServiceCollection.AddStaticLogEnricher(Services, enricher);
+    public static object? AddStaticLogEnricher(object? services, object? enricher) =>
+        PluginEnrichmentServiceCollectionCaller.AddStaticLogEnricher(services, enricher);
+        
     #endregion EnrichmentServiceCollectionExtensions
 
     #region ExceptionSummarizationServiceCollectionExtensions
+    
+    object? AddExceptionSummarizer() =>
+        PluginExceptionSummarizationServiceCollection.AddExceptionSummarizer(Services);
+    public static object? AddExceptionSummarizer(object? services) =>
+        PluginExceptionSummarizationServiceCollectionCaller.AddExceptionSummarizer(services);
+        
+    object? AddExceptionSummarizer(Action<object?> configure) =>
+        PluginExceptionSummarizationServiceCollection.AddExceptionSummarizer(Services, configure);
+    public static object? AddExceptionSummarizer(object? services, Action<object?> configure) =>
+        PluginExceptionSummarizationServiceCollectionCaller.AddExceptionSummarizer(services, configure);
+        
     #endregion ExceptionSummarizationServiceCollectionExtensions
 
     #region ServiceCollectionDescriptorExtensions
+    
+    object? Add(object? descriptor) =>
+        PluginServiceCollectionDescriptor.Add(Services, descriptor);
+    public static object? Add(object? collection, object? descriptor) =>
+        PluginServiceCollectionDescriptorCaller.Add(collection, descriptor);
+        
+    object? Add(IEnumerable<object?> descriptors) =>
+        PluginServiceCollectionDescriptor.Add(Services, descriptors);
+    public static object? Add(object? collection, IEnumerable<object?> descriptors) =>
+        PluginServiceCollectionDescriptorCaller.Add(collection, descriptors);
+        
+    object? RemoveAll(Type serviceType) =>
+        PluginServiceCollectionDescriptor.RemoveAll(Services, serviceType);
+    public static object? RemoveAll(object? collection, Type serviceType) =>
+        PluginServiceCollectionDescriptorCaller.RemoveAll(collection, serviceType);
+        
+    object? RemoveAll<T>() =>
+        PluginServiceCollectionDescriptor.RemoveAll<T>(Services);
+    public static object? RemoveAll<T>(object? collection) =>
+        PluginServiceCollectionDescriptorCaller.RemoveAll<T>(collection);
+        
+    object? RemoveAllKeyed<T>(object? serviceKey) =>
+        PluginServiceCollectionDescriptor.RemoveAllKeyed<T>(Services, serviceKey);
+    public static object? RemoveAllKeyed<T>(object? collection, object? serviceKey) =>
+        PluginServiceCollectionDescriptorCaller.RemoveAllKeyed<T>(collection, serviceKey);
+    
     #endregion ServiceCollectionDescriptorExtensions
 
     #region FakeLoggerServiceCollectionExtensions
+    
+    object? AddFakeLogging(object? section) =>
+        PluginFakeLoggerServiceCollection.AddFakeLogging(Services, section);
+    public static object? AddFakeLogging(object? services, object? section) =>
+        PluginFakeLoggerServiceCollectionCaller.AddFakeLogging(services, section);
+        
+    object? AddFakeLogging(Action<object?> configure) =>
+        PluginFakeLoggerServiceCollection.AddFakeLogging(Services, configure);
+    public static object? AddFakeLogging(object? services, Action<object?> configure) =>
+        PluginFakeLoggerServiceCollectionCaller.AddFakeLogging(services, configure);
+        
+    object? AddFakeLogging() =>
+        PluginFakeLoggerServiceCollection.AddFakeLogging(Services);
+    public static object? AddFakeLogging(object? services) =>
+        PluginFakeLoggerServiceCollectionCaller.AddFakeLogging(services);
+        
     #endregion FakeLoggerServiceCollectionExtensions
 
     #region FakeRedactionServiceCollectionExtensions
+    
+    object? AddFakeRedaction() =>
+        PluginFakeRedactionServiceCollection.AddFakeRedaction(Services);
+    public static object? AddFakeRedaction(object? services) =>
+        PluginFakeRedactionServiceCollectionCaller.AddFakeRedaction(services);
+        
+    object? AddFakeRedaction(Action<object?> configure) =>
+        PluginFakeRedactionServiceCollection.AddFakeRedaction(Services, configure);
+    public static object? AddFakeRedaction(object? services, Action<object?> configure) =>
+        PluginFakeRedactionServiceCollectionCaller.AddFakeRedaction(services, configure);
+        
     #endregion FakeRedactionServiceCollectionExtensions
 
     #region HealthCheckServiceCollectionExtensions
+    
+    object? AddHealthChecks() =>
+        PluginHealthCheckServiceCollection.AddHealthChecks(Services);
+    public static object? AddHealthChecks(object? services) =>
+        PluginHealthCheckServiceCollectionCaller.AddHealthChecks(services);
+        
     #endregion HealthCheckServiceCollectionExtensions
 
     #region HttpClientFactoryServiceCollectionExtensions
