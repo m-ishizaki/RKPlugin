@@ -693,21 +693,97 @@ public class PluginServiceCollection
     #endregion ResourceMonitoringServiceCollectionExtensions
 
     #region ServiceCollectionContainerBuilderExtensions
+    
+    object? BuildServiceProvider() =>
+        PluginServiceCollectionContainerBuilder.BuildServiceProvider(Services);
+    public static object? BuildServiceProvider(object? services) =>
+        PluginServiceCollectionContainerBuilderCaller.BuildServiceProvider(services);
+        
+    object? BuildServiceProvider(object? options) =>
+        PluginServiceCollectionContainerBuilder.BuildServiceProvider(Services, options);
+    public static object? BuildServiceProvider(object? services, object? options) =>
+        PluginServiceCollectionContainerBuilderCaller.BuildServiceProvider(services, options);
+        
+    object? BuildServiceProvider(bool validateScopes) =>
+        PluginServiceCollectionContainerBuilder.BuildServiceProvider(Services, validateScopes);
+    public static object? BuildServiceProvider(object? services, bool validateScopes) =>
+        PluginServiceCollectionContainerBuilderCaller.BuildServiceProvider(services, validateScopes);
+        
     #endregion ServiceCollectionContainerBuilderExtensions
 
     #region ServiceCollectionHostedServiceExtensions
+    
+    object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>() where THostedService : class =>
+        PluginServiceCollectionHostedService.AddHostedService<THostedService>(Services);
+    public static object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(object? services) where THostedService : class =>
+        PluginServiceCollectionHostedServiceCaller.AddHostedService<THostedService>(services);
+        
+    object? AddHostedService<THostedService>(Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
+        PluginServiceCollectionHostedService.AddHostedService<THostedService>(Services, implementationFactory);
+    public static object? AddHostedService<THostedService>(object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
+        PluginServiceCollectionHostedServiceCaller.AddHostedService<THostedService>(services, implementationFactory);
+        
     #endregion ServiceCollectionHostedServiceExtensions
 
     #region ServiceCollectionServiceExtensions
+    // Methods already implemented at the top of the file (lines 72-117)
     #endregion ServiceCollectionServiceExtensions
 
     #region SqlServerCachingServicesExtensions
+    
+    object? AddDistributedSqlServerCache(Action<object?> setupAction) =>
+        PluginSqlServerCachingServices.AddDistributedSqlServerCache(Services, setupAction);
+    public static object? AddDistributedSqlServerCache(object? services, Action<object?> setupAction) =>
+        PluginSqlServerCachingServicesCaller.AddDistributedSqlServerCache(services, setupAction);
+        
     #endregion SqlServerCachingServicesExtensions
 
     #region StackExchangeRedisCacheServiceCollectionExtensions
+    
+    object? AddStackExchangeRedisCache(object? section) =>
+        PluginStackExchangeRedisCacheServiceCollection.AddStackExchangeRedisCache(Services, section);
+    public static object? AddStackExchangeRedisCache(object? services, object? section) =>
+        PluginStackExchangeRedisCacheServiceCollectionCaller.AddStackExchangeRedisCache(services, section);
+        
+    object? AddStackExchangeRedisCache(Action<object?> configure) =>
+        PluginStackExchangeRedisCacheServiceCollection.AddStackExchangeRedisCache(Services, configure);
+    public static object? AddStackExchangeRedisCache(object? services, Action<object?> configure) =>
+        PluginStackExchangeRedisCacheServiceCollectionCaller.AddStackExchangeRedisCache(services, configure);
+        
     #endregion StackExchangeRedisCacheServiceCollectionExtensions
 
     #region TcpEndpointProbesExtensions
+    
+    object? AddTcpEndpointProbe() =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services);
+    public static object? AddTcpEndpointProbe(object? services) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services);
+        
+    object? AddTcpEndpointProbe(string name) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name);
+    public static object? AddTcpEndpointProbe(object? services, string name) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, name);
+        
+    object? AddTcpEndpointProbe(Action<object?> configure) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, configure);
+    public static object? AddTcpEndpointProbe(object? services, Action<object?> configure) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, configure);
+        
+    object? AddTcpEndpointProbe(string name, Action<object?> configure) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name, configure);
+    public static object? AddTcpEndpointProbe(object? services, string name, Action<object?> configure) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, name, configure);
+        
+    object? AddTcpEndpointProbe(object? configurationSection) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, configurationSection);
+    public static object? AddTcpEndpointProbe(object? services, object? configurationSection) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, configurationSection);
+        
+    object? AddTcpEndpointProbe(string name, object? configurationSection) =>
+        PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name, configurationSection);
+    public static object? AddTcpEndpointProbe(object? services, string name, object? configurationSection) =>
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, name, configurationSection);
+        
     #endregion TcpEndpointProbesExtensions
 
     #region SystemdHostBuilderExtensions
