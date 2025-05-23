@@ -283,18 +283,78 @@ public class PluginServiceCollection
     #endregion HealthCheckServiceCollectionExtensions
 
     #region HttpClientFactoryServiceCollectionExtensions
+    // Methods already implemented at the top of the file (lines 30-71)
     #endregion HttpClientFactoryServiceCollectionExtensions
 
     #region HttpClientLatencyTelemetryExtensions
+    
+    object? AddHttpClientLatencyTelemetry() =>
+        PluginHttpClientLatencyTelemetry.AddHttpClientLatencyTelemetry(Services);
+    public static object? AddHttpClientLatencyTelemetry(object? services) =>
+        PluginHttpClientLatencyTelemetryCaller.AddHttpClientLatencyTelemetry(services);
+        
+    object? AddHttpClientLatencyTelemetry(object? section) =>
+        PluginHttpClientLatencyTelemetry.AddHttpClientLatencyTelemetry(Services, section);
+    public static object? AddHttpClientLatencyTelemetry(object? services, object? section) =>
+        PluginHttpClientLatencyTelemetryCaller.AddHttpClientLatencyTelemetry(services, section);
+        
+    object? AddHttpClientLatencyTelemetry(Action<object?> configure) =>
+        PluginHttpClientLatencyTelemetry.AddHttpClientLatencyTelemetry(Services, configure);
+    public static object? AddHttpClientLatencyTelemetry(object? services, Action<object?> configure) =>
+        PluginHttpClientLatencyTelemetryCaller.AddHttpClientLatencyTelemetry(services, configure);
+        
     #endregion HttpClientLatencyTelemetryExtensions
 
     #region HttpClientLoggingServiceCollectionExtensions
+    
+    object? AddExtendedHttpClientLogging() =>
+        PluginHttpClientLoggingServiceCollection.AddExtendedHttpClientLogging(Services);
+    public static object? AddExtendedHttpClientLogging(object? services) =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddExtendedHttpClientLogging(services);
+        
+    object? AddExtendedHttpClientLogging(object? section) =>
+        PluginHttpClientLoggingServiceCollection.AddExtendedHttpClientLogging(Services, section);
+    public static object? AddExtendedHttpClientLogging(object? services, object? section) =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddExtendedHttpClientLogging(services, section);
+        
+    object? AddExtendedHttpClientLogging(Action<object?> configure) =>
+        PluginHttpClientLoggingServiceCollection.AddExtendedHttpClientLogging(Services, configure);
+    public static object? AddExtendedHttpClientLogging(object? services, Action<object?> configure) =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddExtendedHttpClientLogging(services, configure);
+        
+    object? AddHttpClientLogEnricher<T>() where T : class =>
+        PluginHttpClientLoggingServiceCollection.AddHttpClientLogEnricher<T>(Services);
+    public static object? AddHttpClientLogEnricher<T>(object? services) where T : class =>
+        PluginHttpClientLoggingServiceCollectionCaller.AddHttpClientLogEnricher<T>(services);
+        
     #endregion HttpClientLoggingServiceCollectionExtensions
 
     #region HttpDiagnosticsServiceCollectionExtensions
+    
+    object? AddDownstreamDependencyMetadata(object? downstreamDependencyMetadata) =>
+        PluginHttpDiagnosticsServiceCollection.AddDownstreamDependencyMetadata(Services, downstreamDependencyMetadata);
+    public static object? AddDownstreamDependencyMetadata(object? services, object? downstreamDependencyMetadata) =>
+        PluginHttpDiagnosticsServiceCollectionCaller.AddDownstreamDependencyMetadata(services, downstreamDependencyMetadata);
+        
+    object? AddDownstreamDependencyMetadata<T>() where T : class =>
+        PluginHttpDiagnosticsServiceCollection.AddDownstreamDependencyMetadata<T>(Services);
+    public static object? AddDownstreamDependencyMetadata<T>(object? services) where T : class =>
+        PluginHttpDiagnosticsServiceCollectionCaller.AddDownstreamDependencyMetadata<T>(services);
+        
     #endregion HttpDiagnosticsServiceCollectionExtensions
 
     #region HybridCacheServiceExtensions
+    
+    object? AddHybridCache() =>
+        PluginHybridCacheService.AddHybridCache(Services);
+    public static object? AddHybridCache(object? services) =>
+        PluginHybridCacheServiceCaller.AddHybridCache(services);
+        
+    object? AddHybridCache(Action<object?> setupAction) =>
+        PluginHybridCacheService.AddHybridCache(Services, setupAction);
+    public static object? AddHybridCache(object? services, Action<object?> setupAction) =>
+        PluginHybridCacheServiceCaller.AddHybridCache(services, setupAction);
+        
     #endregion HybridCacheServiceExtensions
 
     #region KubernetesProbesExtensions
