@@ -586,21 +586,110 @@ public class PluginServiceCollection
         PluginOptionsServiceCollection.AddOptionsWithValidateOnStart<TOptions, TValidateOptions>(Services, name);
     public static object? AddOptionsWithValidateOnStart<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(object? services, string? name = null) where TOptions : class where TValidateOptions : class =>
         PluginOptionsServiceCollectionCaller.AddOptionsWithValidateOnStart<TOptions, TValidateOptions>(services, name);
+
+    object? Configure<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.Configure<TOptions>(Services, configureOptions);
+    public static object? Configure<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.Configure<TOptions>(services, configureOptions);
         
-    // Configure, ConfigureAll, ConfigureOptions, PostConfigure, etc. methods continue in the next commit...
-    
+    object? Configure<TOptions>(string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.Configure<TOptions>(Services, name, configureOptions);
+    public static object? Configure<TOptions>(object? services, string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.Configure<TOptions>(services, name, configureOptions);
+        
+    object? ConfigureAll<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.ConfigureAll<TOptions>(Services, configureOptions);
+    public static object? ConfigureAll<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.ConfigureAll<TOptions>(services, configureOptions);
+        
+    object? ConfigureOptions<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TConfigureOptions>() where TConfigureOptions : class =>
+        PluginOptionsServiceCollection.ConfigureOptions<TConfigureOptions>(Services);
+    public static object? ConfigureOptions<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TConfigureOptions>(object? services) where TConfigureOptions : class =>
+        PluginOptionsServiceCollectionCaller.ConfigureOptions<TConfigureOptions>(services);
+        
+    object? ConfigureOptions([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type configureType) =>
+        PluginOptionsServiceCollection.ConfigureOptions(Services, configureType);
+    public static object? ConfigureOptions(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type configureType) =>
+        PluginOptionsServiceCollectionCaller.ConfigureOptions(services, configureType);
+        
+    object? ConfigureOptions(object configureInstance) =>
+        PluginOptionsServiceCollection.ConfigureOptions(Services, configureInstance);
+    public static object? ConfigureOptions(object? services, object configureInstance) =>
+        PluginOptionsServiceCollectionCaller.ConfigureOptions(services, configureInstance);
+        
+    object? PostConfigure<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.PostConfigure<TOptions>(Services, configureOptions);
+    public static object? PostConfigure<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.PostConfigure<TOptions>(services, configureOptions);
+        
+    object? PostConfigure<TOptions>(string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.PostConfigure<TOptions>(Services, name, configureOptions);
+    public static object? PostConfigure<TOptions>(object? services, string? name, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.PostConfigure<TOptions>(services, name, configureOptions);
+        
+    object? PostConfigureAll<TOptions>(Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollection.PostConfigureAll<TOptions>(Services, configureOptions);
+    public static object? PostConfigureAll<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class =>
+        PluginOptionsServiceCollectionCaller.PostConfigureAll<TOptions>(services, configureOptions);
+        
     #endregion OptionsServiceCollectionExtensions
 
     #region ProcessEnricherServiceCollectionExtensions
+    
+    object? AddProcessLogEnricher() =>
+        PluginProcessEnricherServiceCollection.AddProcessLogEnricher(Services);
+    public static object? AddProcessLogEnricher(object? services) =>
+        PluginProcessEnricherServiceCollectionCaller.AddProcessLogEnricher(services);
+        
+    object? AddProcessLogEnricher(Action<object?> configure) =>
+        PluginProcessEnricherServiceCollection.AddProcessLogEnricher(Services, configure);
+    public static object? AddProcessLogEnricher(object? services, Action<object?> configure) =>
+        PluginProcessEnricherServiceCollectionCaller.AddProcessLogEnricher(services, configure);
+        
+    object? AddProcessLogEnricher(object? section) =>
+        PluginProcessEnricherServiceCollection.AddProcessLogEnricher(Services, section);
+    public static object? AddProcessLogEnricher(object? services, object? section) =>
+        PluginProcessEnricherServiceCollectionCaller.AddProcessLogEnricher(services, section);
+        
     #endregion ProcessEnricherServiceCollectionExtensions
 
     #region RedactionServiceCollectionExtensions
+    
+    object? AddRedaction(object? section) =>
+        PluginRedactionServiceCollection.AddRedaction(Services, section);
+    public static object? AddRedaction(object? services, object? section) =>
+        PluginRedactionServiceCollectionCaller.AddRedaction(services, section);
+        
+    object? AddRedaction(Action<object?> configure) =>
+        PluginRedactionServiceCollection.AddRedaction(Services, configure);
+    public static object? AddRedaction(object? services, Action<object?> configure) =>
+        PluginRedactionServiceCollectionCaller.AddRedaction(services, configure);
+        
     #endregion RedactionServiceCollectionExtensions
 
     #region ResilienceServiceCollectionExtensions
+    
+    object? AddResilienceEnricher() =>
+        PluginResilienceServiceCollection.AddResilienceEnricher(Services);
+    public static object? AddResilienceEnricher(object? services) =>
+        PluginResilienceServiceCollectionCaller.AddResilienceEnricher(services);
+        
     #endregion ResilienceServiceCollectionExtensions
 
     #region ResourceMonitoringServiceCollectionExtensions
+    
+    object? AddResourceMonitoring() =>
+        PluginResourceMonitoringServiceCollection.AddResourceMonitoring(Services);
+    public static object? AddResourceMonitoring(object? services) =>
+        PluginResourceMonitoringServiceCollectionCaller.AddResourceMonitoring(services);
+        
+    object? AddResourceMonitoring(Action<object?> configure) =>
+        PluginResourceMonitoringServiceCollection.AddResourceMonitoring(Services, configure);
+    public static object? AddResourceMonitoring(object? services, Action<object?> configure) =>
+        PluginResourceMonitoringServiceCollectionCaller.AddResourceMonitoring(services, configure);
+        
+    // Note: private method AddResourceMonitoringInternal is not exposed in the public API
+        
     #endregion ResourceMonitoringServiceCollectionExtensions
 
     #region ServiceCollectionContainerBuilderExtensions
