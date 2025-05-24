@@ -42,7 +42,4 @@ public sealed class TestLatencyRegistryServiceCollectionExtensions
             _Test_RegisterTagNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_RegisterTagNames_001(object? services, params string[] names) =>
         LatencyRegistryServiceCollectionExtensions.RegisterTagNames(services, names);
-
-    private static void ConfigureOption(this object? services, Action<object?> action)
-        => Add("private static void ConfigureOption(this object? services, Action<object?> action)");
 }

@@ -49,11 +49,4 @@ public sealed class TestObjectPoolServiceCollectionExtensions
             _Test_ConfigurePools_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_ConfigurePools_001(object? services, object? section) =>
         ObjectPoolServiceCollectionExtensions.ConfigurePools(services, section);
-
-    [TestMethod]
-    public void Test_AddPooledInternal_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddPooledInternal_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_AddPooledInternal_001(object? services, Action<object?>? configure = null) =>
-        AddPooledInternal<object, object>(services, configure);
 }
