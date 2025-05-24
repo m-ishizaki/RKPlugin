@@ -23,10 +23,16 @@ public sealed class TestHybridCacheServiceExtensions
     static List<string> Invoked = HybridCacheServiceExtensions.Invoked;
 
     [TestMethod]
-    public static object? AddHybridCache(this object? services)
-        => Add("public static object? AddHybridCache(this object? services)");
+    public void Test_AddHybridCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHybridCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHybridCache_001(object? services) =>
+        PluginServiceCollection.AddHybridCache(services);
 
     [TestMethod]
-    public static object? AddHybridCache(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddHybridCache(this object? services, Action<object?> setupAction)");
+    public void Test_AddHybridCache_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHybridCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddHybridCache_002(object? services, Action<object?> setupAction) =>
+        PluginServiceCollection.AddHybridCache(services, setupAction);
 }

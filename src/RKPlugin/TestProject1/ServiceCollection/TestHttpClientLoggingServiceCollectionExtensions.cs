@@ -23,18 +23,30 @@ public sealed class TestHttpClientLoggingServiceCollectionExtensions
     static List<string> Invoked = HttpClientLoggingServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public static object? AddExtendedHttpClientLogging(this object? services)
-        => Add("public static object? AddExtendedHttpClientLogging(this object? services)");
+    public void Test_AddExtendedHttpClientLogging_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddExtendedHttpClientLogging_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddExtendedHttpClientLogging_001(object? services) =>
+        HttpClientLoggingServiceCollectionExtensions.AddExtendedHttpClientLogging(services);
 
     [TestMethod]
-    public static object? AddExtendedHttpClientLogging(this object? services, object? section)
-        => Add("public static object? AddExtendedHttpClientLogging(this object? services, object? section)");
+    public void Test_AddExtendedHttpClientLogging_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddExtendedHttpClientLogging_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddExtendedHttpClientLogging_002(object? services, object? section) =>
+        HttpClientLoggingServiceCollectionExtensions.AddExtendedHttpClientLogging(services, section);
 
     [TestMethod]
-    public static object? AddExtendedHttpClientLogging(this object? services, Action<object?> configure)
-        => Add("public static object? AddExtendedHttpClientLogging(this object? services, Action<object?> configure)");
+    public void Test_AddExtendedHttpClientLogging_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddExtendedHttpClientLogging_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddExtendedHttpClientLogging_003(object? services, Action<object?> configure) =>
+        HttpClientLoggingServiceCollectionExtensions.AddExtendedHttpClientLogging(services, configure);
 
     [TestMethod]
-    public static object? AddHttpClientLogEnricher<T>(this object? services) where T : class
-        => Add("public static object? AddHttpClientLogEnricher<T>(this object? services) where T : class");
+    public void Test_AddHttpClientLogEnricher_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHttpClientLogEnricher_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClientLogEnricher_001(object? services) =>
+        HttpClientLoggingServiceCollectionExtensions.AddHttpClientLogEnricher<DummyEnricher>(services);
 }

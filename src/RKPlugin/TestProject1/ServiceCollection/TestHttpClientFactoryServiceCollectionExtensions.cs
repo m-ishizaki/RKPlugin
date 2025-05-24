@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
@@ -23,87 +24,150 @@ public sealed class TestHttpClientFactoryServiceCollectionExtensions
     static List<string> Invoked = HttpClientFactoryServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public static object? AddHttpClient(this object? services)
-        => Add("public static object? AddHttpClient(this object? services)");
+    public void Test_AddHttpClient_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHttpClient_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_001(object? services)
+        => HttpClientFactoryServiceCollectionExtensions.AddHttpClient(services);
 
     [TestMethod]
-    public static object? ConfigureHttpClientDefaults(this object? services, Action<object?> configure)
-        => Add("public static object? ConfigureHttpClientDefaults(this object? services, Action<object?> configure)");
+    public void Test_ConfigureHttpClientDefaults_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_ConfigureHttpClientDefaults_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_ConfigureHttpClientDefaults_002(object? services, Action<object?> configure)
+    => HttpClientFactoryServiceCollectionExtensions.ConfigureHttpClientDefaults(services, configure);
 
     [TestMethod]
-    public static object? AddHttpClient(this object? services, string name)
-        => Add("public static object? AddHttpClient(this object? services, string name)");
+    public void Test_AddHttpClient_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHttpClient_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_003(object? services, string name)
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient(services, name);
 
     [TestMethod]
-    public static object? AddHttpClient(this object? services, string name, Action<HttpClient> configureClient)
-        => Add("public static object? AddHttpClient(this object? services, string name, Action<HttpClient> configureClient)");
+    public void Test_AddHttpClient_004() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+           _Test_AddHttpClient_004), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_004(object? services, string name, Action<HttpClient> configureClient)
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient(services, name, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient(this object? services, string name, Action<IServiceProvider, HttpClient> configureClient)
-        => Add("public static object? AddHttpClient(this object? services, string name, Action<IServiceProvider, HttpClient> configureClient)");
+    public void Test_AddHttpClient_005() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_005), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_005(object? services, string name, Action<IServiceProvider, HttpClient> configureClient)
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient(services, name, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services) where TClient : class
-        => Add("public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services) where TClient : class");
+    public void Test_AddHttpClient_006() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_006), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_006<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(object? services) where TClient : class
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_007() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _Test_AddHttpClient_007), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_007<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services);
 
     [TestMethod]
-    public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, string name) where TClient : class
-        => Add("public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, string name) where TClient : class");
+    public void Test_AddHttpClient_008() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+           _Test_AddHttpClient_008), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_008<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(object? services, string name) where TClient : class
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, name);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, string name) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, string name) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_009() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_009), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_009<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, string name) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, name);
 
     [TestMethod]
-    public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, Action<HttpClient> configureClient) where TClient : class
-        => Add("public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, Action<HttpClient> configureClient) where TClient : class");
+    public void Test_AddHttpClient_010() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+           _Test_AddHttpClient_010), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_010<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(object? services, Action<HttpClient> configureClient) where TClient : class
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, Action<IServiceProvider, HttpClient> configureClient) where TClient : class
-        => Add("public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, Action<IServiceProvider, HttpClient> configureClient) where TClient : class");
+    public void Test_AddHttpClient_011() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+         _Test_AddHttpClient_011), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_011<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(object? services, Action<IServiceProvider, HttpClient> configureClient) where TClient : class
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<HttpClient> configureClient) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_012() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_012), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_012<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, Action<HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<IServiceProvider, HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, Action<IServiceProvider, HttpClient> configureClient) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_013() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+       _Test_AddHttpClient_013), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_013<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, Action<IServiceProvider, HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, string name, Action<HttpClient> configureClient) where TClient : class
-        => Add("public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, string name, Action<HttpClient> configureClient) where TClient : class");
+    public void Test_AddHttpClient_014() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+           _Test_AddHttpClient_014), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_014<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(object? services, string name, Action<HttpClient> configureClient) where TClient : class
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, name, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, string name, Action<IServiceProvider, HttpClient> configureClient) where TClient : class
-        => Add("public static object? AddHttpClient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(this object? services, string name, Action<IServiceProvider, HttpClient> configureClient) where TClient : class");
+    public void Test_AddHttpClient_015() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+         _Test_AddHttpClient_015), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_015<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TClient>(object? services, string name, Action<IServiceProvider, HttpClient> configureClient) where TClient : class
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, name, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, string name, Action<HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, string name, Action<HttpClient> configureClient) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_016() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_016), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_016<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, string name, Action<HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, name, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, string name, Action<IServiceProvider, HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, string name, Action<IServiceProvider, HttpClient> configureClient) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_017() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+        _Test_AddHttpClient_017), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_017<TClient, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, string name, Action<IServiceProvider, HttpClient> configureClient) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<object>(services, name, configureClient);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, TImplementation>(object? services, Func<HttpClient, TImplementation> factory) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, TImplementation>(object? services, Func<HttpClient, TImplementation> factory) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_018() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_018), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_018<TClient, TImplementation>(object? services, Func<HttpClient, TImplementation> factory) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<TClient, TImplementation>(services, factory);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, TImplementation>(this object? services, string name, Func<HttpClient, TImplementation> factory) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, TImplementation>(this object? services, string name, Func<HttpClient, TImplementation> factory) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_019() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_019), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_019<TClient, TImplementation>(object? services, string name, Func<HttpClient, TImplementation> factory) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<TClient, TImplementation>(services, name, factory);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, TImplementation>(this object? services, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, TImplementation>(this object? services, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_020() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_020), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_020<TClient, TImplementation>(object? services, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<TClient, TImplementation>(services, factory);
 
     [TestMethod]
-    public static object? AddHttpClient<TClient, TImplementation>(this object? services, string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient
-        => Add("public static object? AddHttpClient<TClient, TImplementation>(this object? services, string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient");
+    public void Test_AddHttpClient_021() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+          _Test_AddHttpClient_021), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClient_021<TClient, TImplementation>(object? services, string name, Func<HttpClient, IServiceProvider, TImplementation> factory) where TClient : class where TImplementation : class, TClient
+    => HttpClientFactoryServiceCollectionExtensions.AddHttpClient<TClient, TImplementation>(services, name, factory);
 }
 

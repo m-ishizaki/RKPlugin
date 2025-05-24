@@ -23,14 +23,23 @@ public sealed class TestKubernetesProbesExtensions
     static List<string> Invoked = KubernetesProbesExtensions.Invoked;
 
     [TestMethod]
-    public static object? AddKubernetesProbes(this object? services)
-        => Add("public static object? AddKubernetesProbes(this object? services)");
+    public void Test_AddKubernetesProbes_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddKubernetesProbes_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddKubernetesProbes_001(object? services) =>
+        PluginServiceCollection.AddKubernetesProbes(services);
 
     [TestMethod]
-    public static object? AddKubernetesProbes(this object? services, object? section)
-        => Add("public static object? AddKubernetesProbes(this object? services, object? section)");
+    public void Test_AddKubernetesProbes_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddKubernetesProbes_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddKubernetesProbes_002(object? services, object? section) =>
+        PluginServiceCollection.AddKubernetesProbes(services, section);
 
     [TestMethod]
-    public static object? AddKubernetesProbes(this object? services, Action<object?> configure)
-        => Add("public static object? AddKubernetesProbes(this object? services, Action<object?> configure)");
+    public void Test_AddKubernetesProbes_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddKubernetesProbes_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddKubernetesProbes_003(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddKubernetesProbes(services, configure);
 }

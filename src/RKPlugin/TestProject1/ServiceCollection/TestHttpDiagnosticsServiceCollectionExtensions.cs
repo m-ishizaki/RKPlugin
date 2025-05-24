@@ -23,10 +23,16 @@ public sealed class TestHttpDiagnosticsServiceCollectionExtensions
     static List<string> Invoked = ApplicationEnricherServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public static object? AddDownstreamDependencyMetadata(this object? services, object? downstreamDependencyMetadata)
-        => Add("public static object? AddDownstreamDependencyMetadata(this object? services, object? downstreamDependencyMetadata)");
+    public void Test_AddDownstreamDependencyMetadata_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddDownstreamDependencyMetadata_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddDownstreamDependencyMetadata_001(object? services, object? downstreamDependencyMetadata) =>
+        PluginServiceCollection.AddDownstreamDependencyMetadata(services, downstreamDependencyMetadata);
 
     [TestMethod]
-    public static object? AddDownstreamDependencyMetadata<T>(this object? services) where T : class
-        => Add("public static object? AddDownstreamDependencyMetadata<T>(this object? services) where T : class");
+    public void Test_AddDownstreamDependencyMetadata_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddDownstreamDependencyMetadata_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddDownstreamDependencyMetadata_002(object? services) =>
+        PluginServiceCollection.AddDownstreamDependencyMetadata<object>(services);
 }
