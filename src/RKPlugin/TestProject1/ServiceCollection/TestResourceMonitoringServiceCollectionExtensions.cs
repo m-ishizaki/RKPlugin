@@ -35,11 +35,4 @@ public sealed class TestResourceMonitoringServiceCollectionExtensions
             _Test_AddResourceMonitoring_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddResourceMonitoring_002(object? services, Action<object?> configure) =>
         PluginServiceCollection.AddResourceMonitoring(services, configure);
-
-    [TestMethod]
-    public void Test_AddResourceMonitoringInternal_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddResourceMonitoringInternal_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddResourceMonitoringInternal_001(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddResourceMonitoringInternal(services, configure);
 }
