@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Extensions.WebEncoders;
+﻿namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 public static class EncoderServiceCollectionExtensions
 {
