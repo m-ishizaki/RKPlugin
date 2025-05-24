@@ -1,18 +1,39 @@
-﻿namespace Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-public static class WindowsServiceLifetimeHostBuilderExtensions
+namespace TestProject1.ServiceCollection;
+
+[TestClass]
+public sealed class TestWindowsServiceLifetimeHostBuilderExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Object();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
 
-    public static object? AddWindowsService(this object? services)
-        => Add("public static object? AddWindowsService(this object? services)");
+    static List<string> Invoked = WindowsServiceLifetimeHostBuilderExtensions.Invoked;
 
-    public static object? AddWindowsService(this object? services, Action<object?> configure)
-        => Add("public static object? AddWindowsService(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddWindowsService_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddWindowsService_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
+    static void _Test_AddWindowsService_001(object? services) =>
+        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services);
+
+    [TestMethod]
+    public void Test_AddWindowsService_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddWindowsService_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddWindowsService_002(object? services, Action<object?> configure) =>
+        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services, configure);
 }

@@ -6,10 +6,9 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginServiceCollectionHostedServiceCaller
 {
-    public static object? AddHostedService(this object? services, Type hostedServiceType)
+    public static object? AddHostedService(this object? services)
     {
         if (services == null) throw new ArgumentNullException(nameof(services));
-        if (hostedServiceType == null) throw new ArgumentNullException(nameof(hostedServiceType));
 
         var type = services.GetType();
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
@@ -23,14 +22,12 @@ internal static class PluginServiceCollectionHostedServiceCaller
         if (methodInfo == null)
             throw new InvalidOperationException("AddHostedService method not found.");
 
-        var genericMethod = methodInfo.MakeGenericMethod(hostedServiceType);
-        return genericMethod.Invoke(services, null);
+        return methodInfo.Invoke(services, null);
     }
 
-    public static object? AddHostedService(this object? services, Type hostedServiceType, Func<IServiceProvider, object> implementationFactory)
+    public static object? AddHostedService(this object? services, Func<IServiceProvider, object> implementationFactory)
     {
         if (services == null) throw new ArgumentNullException(nameof(services));
-        if (hostedServiceType == null) throw new ArgumentNullException(nameof(hostedServiceType));
         if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
 
         var type = services.GetType();
@@ -46,7 +43,6 @@ internal static class PluginServiceCollectionHostedServiceCaller
         if (methodInfo == null)
             throw new InvalidOperationException("AddHostedService method with factory not found.");
 
-        var genericMethod = methodInfo.MakeGenericMethod(hostedServiceType);
-        return genericMethod.Invoke(services, new object[] { implementationFactory });
+        return methodInfo.Invoke(services, new object[] { implementationFactory });
     }
 }

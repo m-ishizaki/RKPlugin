@@ -7,116 +7,71 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginAutoActivationCaller
 {
-    public static object? ActivateSingleton<TService>(this object? services) where TService : class
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(ActivateSingleton)
-                && x.GetGenericArguments().Length == 1
-                && x.GetParameters().Length == 0
-            );
-        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService));
-        return genericMethod?.Invoke(services, Array.Empty<object>());
-    }
+    public static object? ActivateSingleton<TService>(this object? services) where TService : class => null;
 
-    public static object? ActivateSingleton(this object? services, Type serviceType)
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(ActivateSingleton)
-                && x.GetGenericArguments().Length == 0
-                && x.GetParameters().Length == 1
-                && x.GetParameters()[0].ParameterType == typeof(Type)
-            );
-        return methodInfo?.Invoke(services, new object[] { serviceType });
-    }
+    public static object? ActivateSingleton(this object? services, Type serviceType) => null;
 
-    public static object? AddActivatedSingleton<TService, TImplementation>(this object? services, Func<IServiceProvider, TImplementation> implementationFactory)
-        where TService : class
-        where TImplementation : class, TService
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(AddActivatedSingleton)
-                && x.GetGenericArguments().Length == 2
-                && x.GetParameters().Length == 1
-                && x.GetParameters()[0].ParameterType == typeof(Func<IServiceProvider, TImplementation>)
-            );
-        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService), typeof(TImplementation));
-        return genericMethod?.Invoke(services, new object[] { implementationFactory });
-    }
+    public static object? AddActivatedSingleton<TService, TImplementation>(this object? services, Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService => null;
 
-    public static object? AddActivatedSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services)
-        where TService : class
-        where TImplementation : class, TService
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(AddActivatedSingleton)
-                && x.GetGenericArguments().Length == 2
-                && x.GetParameters().Length == 0
-            );
-        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService), typeof(TImplementation));
-        return genericMethod?.Invoke(services, Array.Empty<object>());
-    }
+    public static object? AddActivatedSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services) where TService : class where TImplementation : class, TService => null;
 
-    public static object? AddActivatedSingleton<TService>(this object? services, Func<IServiceProvider, TService> implementationFactory)
-        where TService : class
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(AddActivatedSingleton)
-                && x.GetGenericArguments().Length == 1
-                && x.GetParameters().Length == 1
-                && x.GetParameters()[0].ParameterType == typeof(Func<IServiceProvider, TService>)
-            );
-        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService));
-        return genericMethod?.Invoke(services, new object[] { implementationFactory });
-    }
+    public static object? AddActivatedSingleton<TService>(this object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class => null;
 
-    public static object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services)
-        where TService : class
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(AddActivatedSingleton)
-                && x.GetGenericArguments().Length == 1
-                && x.GetParameters().Length == 0
-            );
-        var genericMethod = methodInfo?.MakeGenericMethod(typeof(TService));
-        return genericMethod?.Invoke(services, Array.Empty<object>());
-    }
+    public static object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services) where TService : class => null;
 
-    public static object? AddActivatedSingleton(this object? services, Type serviceType, Func<IServiceProvider, object> implementationFactory)
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(AddActivatedSingleton)
-                && x.GetGenericArguments().Length == 0
-                && x.GetParameters().Length == 2
-                && x.GetParameters()[0].ParameterType == typeof(Type)
-                && x.GetParameters()[1].ParameterType == typeof(Func<IServiceProvider, object>)
-            );
-        return methodInfo?.Invoke(services, new object[] { serviceType, implementationFactory });
-    }
+    public static object? AddActivatedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType) => null;
 
-    public static object? AddActivatedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType)
-    {
-        var type = services!.GetType();
-        var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-            .FirstOrDefault(x =>
-                x.Name == nameof(AddActivatedSingleton)
-                && x.GetGenericArguments().Length == 0
-                && x.GetParameters().Length == 1
-                && x.GetParameters()[0].ParameterType == typeof(Type)
-            );
-        return methodInfo?.Invoke(services, new object[] { serviceType });
-    }
+    public static object? AddActivatedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType, Func<IServiceProvider, object> implementationFactory) => null;
+
+    public static object? AddActivatedSingleton(this object? services, Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => null;
+
+    public static void TryAddActivatedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType) { }
+
+    public static void TryAddActivatedSingleton(this object? services, Type serviceType, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) { }
+
+    public static void TryAddActivatedSingleton(this object? services, Type serviceType, Func<IServiceProvider, object> implementationFactory) { }
+
+    public static void TryAddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services) where TService : class { }
+
+    public static void TryAddActivatedSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services) where TService : class where TImplementation : class, TService { }
+
+    public static void TryAddActivatedSingleton<TService>(this object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class { }
+
+    private static void TryAddAndActivate<TService>(this object? services, object? descriptor) where TService : class { }
+
+    private static void TryAddAndActivate(this object? services, object? descriptor) { }
+
+    public static object? ActivateKeyedSingleton<TService>(this object? services, object? serviceKey) where TService : class => null;
+
+    public static object? ActivateKeyedSingleton(this object? services, Type serviceType, object? serviceKey) => null;
+
+    public static object? AddActivatedKeyedSingleton<TService, TImplementation>(this object? services, object? serviceKey, Func<IServiceProvider, object?, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService => null;
+
+    public static object? AddActivatedKeyedSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, object? serviceKey) where TService : class where TImplementation : class, TService => null;
+
+    public static object? AddActivatedKeyedSingleton<TService>(this object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class => null;
+
+    public static object? AddActivatedKeyedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services, object? serviceKey) where TService : class => null;
+
+    public static object? AddActivatedKeyedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType, object? serviceKey) => null;
+
+    public static object? AddActivatedKeyedSingleton(this object? services, Type serviceType, object? serviceKey, Func<IServiceProvider, object?, object> implementationFactory) => null;
+
+    public static object? AddActivatedKeyedSingleton(this object? services, Type serviceType, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) => null;
+
+    public static void TryAddActivatedKeyedSingleton(this object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type serviceType, object? serviceKey) { }
+
+    public static void TryAddActivatedKeyedSingleton(this object? services, Type serviceType, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType) { }
+
+    public static void TryAddActivatedKeyedSingleton(this object? services, Type serviceType, object? serviceKey, Func<IServiceProvider, object?, object> implementationFactory) { }
+
+    public static void TryAddActivatedKeyedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services, object? serviceKey) where TService : class { }
+
+    public static void TryAddActivatedKeyedSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(this object? services, object? serviceKey) where TService : class where TImplementation : class, TService { }
+
+    public static void TryAddActivatedKeyedSingleton<TService>(this object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class { }
+
+    private static void TryAddAndActivateKeyed<TService>(this object? services, object? descriptor) where TService : class { }
+
+    private static void TryAddAndActivateKeyed(this object? services, object? descriptor) { }
 }

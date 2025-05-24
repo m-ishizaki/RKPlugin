@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 public static class AutoActivationExtensions
 {

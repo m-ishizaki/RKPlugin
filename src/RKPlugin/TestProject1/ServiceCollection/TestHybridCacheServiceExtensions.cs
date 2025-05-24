@@ -1,18 +1,38 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-public static class HybridCacheServiceExtensions
+namespace TestProject1.ServiceCollection;
+
+[TestClass]
+public sealed class TestHybridCacheServiceExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Object();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
 
-    public static object? AddHybridCache(this object? services)
-        => Add("public static object? AddHybridCache(this object? services)");
+    static List<string> Invoked = HybridCacheServiceExtensions.Invoked;
 
-    public static object? AddHybridCache(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddHybridCache(this object? services, Action<object?> setupAction)");
+    [TestMethod]
+    public void Test_AddHybridCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHybridCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHybridCache_001(object? services) =>
+        PluginServiceCollection.AddHybridCache(services);
+
+    [TestMethod]
+    public void Test_AddHybridCache_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHybridCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddHybridCache_002(object? services, Action<object?> setupAction) =>
+        PluginServiceCollection.AddHybridCache(services, setupAction);
 }

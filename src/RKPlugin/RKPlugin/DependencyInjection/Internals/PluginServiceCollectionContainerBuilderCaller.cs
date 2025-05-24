@@ -1,10 +1,8 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginServiceCollectionContainerBuilderCaller
 {

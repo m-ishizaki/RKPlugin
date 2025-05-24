@@ -1,26 +1,52 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace TestProject1.ServiceCollection;
 
-public static class EnrichmentServiceCollectionExtensions
+[TestClass]
+public sealed class TestEnrichmentServiceCollectionExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Lock();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
 
-    public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
-        => Add("public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class");
+    static List<string> Invoked = EnrichmentServiceCollectionExtensions.Invoked;
 
-    public static object? AddLogEnricher(this object? services, object? enricher)
-        => Add("public static object? AddLogEnricher(this object? services, object? enricher)");
+    [TestMethod]
+    public void Test_AddLogEnricher_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLogEnricher_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddLogEnricher_001(object? services) =>
+        EnrichmentServiceCollectionExtensions.AddLogEnricher<object>(services);
 
-    public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class
-        => Add("public static object? AddStaticLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) where T : class");
+    [TestMethod]
+    public void Test_AddLogEnricher_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddLogEnricher_002(object? services, object? enricher) =>
+        EnrichmentServiceCollectionExtensions.AddLogEnricher(services, enricher);
 
-    public static object? AddStaticLogEnricher(this object? services, object? enricher)
-        => Add("public static object? AddStaticLogEnricher(this object? services, object? enricher)");
+    [TestMethod]
+    public void Test_AddStaticLogEnricher_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddStaticLogEnricher_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddStaticLogEnricher_001(object? services) =>
+        EnrichmentServiceCollectionExtensions.AddStaticLogEnricher<object>(services);
+
+    [TestMethod]
+    public void Test_AddStaticLogEnricher_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddStaticLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddStaticLogEnricher_002(object? services, object? enricher) =>
+        EnrichmentServiceCollectionExtensions.AddStaticLogEnricher(services, enricher);
 }

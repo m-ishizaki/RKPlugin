@@ -1,18 +1,38 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-public static class StackExchangeRedisCacheServiceCollectionExtensions
+namespace TestProject1.ServiceCollection;
+
+[TestClass]
+public sealed class TestStackExchangeRedisCacheServiceCollectionExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Object();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
 
-    public static object? AddStackExchangeRedisCache(this object? services, object? section)
-        => Add("public static object? AddStackExchangeRedisCache(this object? services, object? section)");
+    static List<string> Invoked = StackExchangeRedisCacheServiceCollectionExtensions.Invoked;
 
-    public static object? AddStackExchangeRedisCache(this object? services, Action<object?> configure)
-        => Add("public static object? AddStackExchangeRedisCache(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddStackExchangeRedisCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddStackExchangeRedisCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddStackExchangeRedisCache_001(object? services, object? section) =>
+        StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(services, section);
+
+    [TestMethod]
+    public void Test_AddStackExchangeRedisCache_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddStackExchangeRedisCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddStackExchangeRedisCache_002(object? services, Action<object?> configure) =>
+        StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(services, configure);
 }
