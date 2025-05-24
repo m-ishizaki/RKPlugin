@@ -1,16 +1,26 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection.Extensions;
+namespace TestProject1.ServiceCollection;
 
-public static class ServiceCollectionDescriptorExtensions
+[TestClass]
+public sealed class TestServiceCollectionDescriptorExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Object();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
+
+    static List<string> Invoked = ServiceCollectionDescriptorExtensions.Invoked;
 
     public static object? Add(this object? collection, object? descriptor)
         => Add("public static object? Add(this object? collection, object? descriptor)");

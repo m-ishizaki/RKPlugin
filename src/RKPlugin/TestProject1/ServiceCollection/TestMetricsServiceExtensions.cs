@@ -1,14 +1,26 @@
-﻿namespace Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-public static class MetricsServiceExtensions
+namespace TestProject1.ServiceCollection;
+
+[TestClass]
+public sealed class TestMetricsServiceExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Object();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
+
+    static List<string> Invoked = MetricsServiceExtensions.Invoked;
 
     public static object? AddMetrics(this object? services)
         => Add("public static object? AddMetrics(this object? services)");

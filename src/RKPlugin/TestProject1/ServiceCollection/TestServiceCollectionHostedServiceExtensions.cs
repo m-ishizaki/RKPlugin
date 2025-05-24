@@ -1,16 +1,26 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Microsoft.Extensions.DependencyInjection;
+using RkSoftware.RKPlugin;
+using RkSoftware.RKPlugin.DependencyInjection;
+using System.Reflection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace TestProject1.ServiceCollection;
 
-public static class ServiceCollectionHostedServiceExtensions
+[TestClass]
+public sealed class TestServiceCollectionHostedServiceExtensions
 {
-    public static List<string> Invoked = new List<string>();
-
-    static object? Add(string name)
+    static Object _lock = new Object();
+    void Test(List<string> args, Action act)
     {
-        Invoked.Add(name);
-        return null;
+        lock (_lock)
+        {
+            int count = args.Count;
+            act();
+            Assert.AreEqual(count + 1, args.Count);
+            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
+        }
     }
+
+    static List<string> Invoked = ServiceCollectionHostedServiceExtensions.Invoked;
 
     public static object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(this object? services) where THostedService : class
         => Add("public static object? AddHostedService<[DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(this object? services) where THostedService : class");
