@@ -22,6 +22,10 @@ public sealed class TestSqlServerCachingServicesExtensions
 
     static List<string> Invoked = ApplicationEnricherServiceCollectionExtensions.Invoked;
 
-    public static object? AddDistributedSqlServerCache(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddDistributedSqlServerCache(this object? services, Action<object?> setupAction)");
+    [TestMethod]
+    public void Test_AddDistributedSqlServerCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddDistributedSqlServerCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddDistributedSqlServerCache_001(object? services, Action<object?> setupAction) =>
+        PluginServiceCollection.AddDistributedSqlServerCache(services, setupAction);
 }

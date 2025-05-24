@@ -22,9 +22,17 @@ public sealed class TestExceptionSummarizationServiceCollectionExtensions
 
     static List<string> Invoked = ExceptionSummarizationServiceCollectionExtensions.Invoked;
 
-    public static object? AddExceptionSummarizer(this object? services)
-        => Add("public static object? AddExceptionSummarizer(this object? services)");
+    [TestMethod]
+    public void Test_AddExceptionSummarizer_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddExceptionSummarizer_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddExceptionSummarizer_001(object? services) =>
+        ExceptionSummarizationServiceCollectionExtensions.AddExceptionSummarizer(services);
 
-    public static object? AddExceptionSummarizer(this object? services, Action<object?> configure)
-        => Add("public static object? AddExceptionSummarizer(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddExceptionSummarizer_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddExceptionSummarizer_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddExceptionSummarizer_002(object? services, Action<object?> configure) =>
+        ExceptionSummarizationServiceCollectionExtensions.AddExceptionSummarizer(services, configure);
 }

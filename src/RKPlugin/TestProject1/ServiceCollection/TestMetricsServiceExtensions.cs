@@ -22,9 +22,18 @@ public sealed class TestMetricsServiceExtensions
 
     static List<string> Invoked = MetricsServiceExtensions.Invoked;
 
-    public static object? AddMetrics(this object? services)
-        => Add("public static object? AddMetrics(this object? services)");
+    [TestMethod]
+    public void Test_AddMetrics_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddMetrics_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddMetrics_001(object? services) =>
+        MetricsServiceExtensions.AddMetrics(services);
 
-    public static object? AddMetrics(this object? services, Action<object?> configure)
-        => Add("public static object? AddMetrics(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddServiceLogEnricher_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddServiceLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddServiceLogEnricher_002(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddServiceLogEnricher(services, configure);
+
 }

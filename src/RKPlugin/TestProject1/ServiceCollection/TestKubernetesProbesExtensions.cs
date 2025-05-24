@@ -22,12 +22,15 @@ public sealed class TestKubernetesProbesExtensions
 
     static List<string> Invoked = KubernetesProbesExtensions.Invoked;
 
+    [TestMethod]
     public static object? AddKubernetesProbes(this object? services)
         => Add("public static object? AddKubernetesProbes(this object? services)");
 
+    [TestMethod]
     public static object? AddKubernetesProbes(this object? services, object? section)
         => Add("public static object? AddKubernetesProbes(this object? services, object? section)");
 
+    [TestMethod]
     public static object? AddKubernetesProbes(this object? services, Action<object?> configure)
         => Add("public static object? AddKubernetesProbes(this object? services, Action<object?> configure)");
 }

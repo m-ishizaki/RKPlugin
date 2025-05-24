@@ -22,14 +22,26 @@ public sealed class TestLatencyRegistryServiceCollectionExtensions
 
     static List<string> Invoked = LatencyRegistryServiceCollectionExtensions.Invoked;
 
-    public static object? RegisterCheckpointNames(this object? services, params string[] names)
-        => Add("public static object? RegisterCheckpointNames(this object? services, params string[] names)");
+    [TestMethod]
+    public void Test_RegisterCheckpointNames_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_RegisterCheckpointNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_RegisterCheckpointNames_001(object? services, params string[] names) =>
+        LatencyRegistryServiceCollectionExtensions.RegisterCheckpointNames(services, names);
 
-    public static object? RegisterMeasureNames(this object? services, params string[] names)
-        => Add("public static object? RegisterMeasureNames(this object? services, params string[] names)");
+    [TestMethod]
+    public void Test_RegisterMeasureNames_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_RegisterMeasureNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_RegisterMeasureNames_001(object? services, params string[] names) =>
+        LatencyRegistryServiceCollectionExtensions.RegisterMeasureNames(services, names);
 
-    public static object? RegisterTagNames(this object? services, params string[] names)
-        => Add("public static object? RegisterTagNames(this object? services, params string[] names)");
+    [TestMethod]
+    public void Test_RegisterTagNames_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_RegisterTagNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_RegisterTagNames_001(object? services, params string[] names) =>
+        LatencyRegistryServiceCollectionExtensions.RegisterTagNames(services, names);
 
     private static void ConfigureOption(this object? services, Action<object?> action)
         => Add("private static void ConfigureOption(this object? services, Action<object?> action)");

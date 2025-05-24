@@ -22,12 +22,24 @@ public sealed class TestHttpClientLatencyTelemetryExtensions
 
     static List<string> Invoked = HttpClientLatencyTelemetryExtensions.Invoked;
 
-    public static object? AddHttpClientLatencyTelemetry(this object? services)
-        => Add("public static object? AddHttpClientLatencyTelemetry(this object? services)");
+    [TestMethod]
+    public void Test_AddHttpClientLatencyTelemetry_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHttpClientLatencyTelemetry_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHttpClientLatencyTelemetry_001(object? services) =>
+        HttpClientLatencyTelemetryExtensions.AddHttpClientLatencyTelemetry(services);
 
-    public static object? AddHttpClientLatencyTelemetry(this object? services, object? section)
-        => Add("public static object? AddHttpClientLatencyTelemetry(this object? services, object? section)");
+    [TestMethod]
+    public void Test_AddHttpClientLatencyTelemetry_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHttpClientLatencyTelemetry_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddHttpClientLatencyTelemetry_002(object? services, object? section) =>
+        HttpClientLatencyTelemetryExtensions.AddHttpClientLatencyTelemetry(services, section);
 
-    public static object? AddHttpClientLatencyTelemetry(this object? services, Action<object?> configure)
-        => Add("public static object? AddHttpClientLatencyTelemetry(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddHttpClientLatencyTelemetry_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHttpClientLatencyTelemetry_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddHttpClientLatencyTelemetry_003(object? services, Action<object?> configure) =>
+        HttpClientLatencyTelemetryExtensions.AddHttpClientLatencyTelemetry(services, configure);
 }

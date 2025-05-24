@@ -22,9 +22,17 @@ public sealed class TestServiceCollectionHostedServiceExtensions
 
     static List<string> Invoked = ServiceCollectionHostedServiceExtensions.Invoked;
 
-    public static object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(this object? services) where THostedService : class
-        => Add("public static object? AddHostedService<[DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(this object? services) where THostedService : class");
+    [TestMethod]
+    public void Test_AddHostedService_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHostedService_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHostedService_001<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(object? services) where THostedService : class =>
+        PluginServiceCollection.AddHostedService<THostedService>(services);
 
-    public static object? AddHostedService<THostedService>(this object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class
-        => Add("public static object? AddHostedService<THostedService>(this object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class");
+    [TestMethod]
+    public void Test_AddHostedService_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHostedService_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddHostedService_002<THostedService>(object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
+        PluginServiceCollection.AddHostedService<THostedService>(services, implementationFactory);
 }

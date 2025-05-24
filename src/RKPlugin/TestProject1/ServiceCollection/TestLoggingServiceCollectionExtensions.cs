@@ -22,9 +22,18 @@ public sealed class TestLoggingServiceCollectionExtensions
 
     static List<string> Invoked = LoggingServiceCollectionExtensions.Invoked;
 
-    public static object? AddLogging(this object? services)
-        => Add("public static object? AddLogging(this object? services)");
+    [TestMethod]
+    public void Test_AddLogging_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLogging_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddLogging_001(object? services) =>
+        PluginServiceCollection.AddLogging(services);
 
-    public static object? AddLogging(this object? services, Action<object?> configure)
-        => Add("public static object? AddLogging(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddServiceLogEnricher_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddServiceLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddServiceLogEnricher_002(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddServiceLogEnricher(services, configure);
+
 }

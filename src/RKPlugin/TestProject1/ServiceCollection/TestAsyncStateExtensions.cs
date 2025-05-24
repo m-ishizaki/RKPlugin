@@ -22,6 +22,10 @@ public sealed class TestAsyncStateExtensions
 
     static List<string> Invoked = AsyncStateExtensions.Invoked;
 
-    public static object? AddAsyncState(this object? services)
-        => Add("public static object? AddAsyncState(this object? services)");
+    [TestMethod]
+    public void Test_AddAsyncState_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddAsyncState_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddAsyncState_001(object? services) =>
+        PluginServiceCollection.AddAsyncState(services);
 }

@@ -22,9 +22,17 @@ public sealed class TestStackExchangeRedisCacheServiceCollectionExtensions
 
     static List<string> Invoked = StackExchangeRedisCacheServiceCollectionExtensions.Invoked;
 
-    public static object? AddStackExchangeRedisCache(this object? services, object? section)
-        => Add("public static object? AddStackExchangeRedisCache(this object? services, object? section)");
+    [TestMethod]
+    public void Test_AddStackExchangeRedisCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddStackExchangeRedisCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddStackExchangeRedisCache_001(object? services, object? section) =>
+        StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(services, section);
 
-    public static object? AddStackExchangeRedisCache(this object? services, Action<object?> configure)
-        => Add("public static object? AddStackExchangeRedisCache(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddStackExchangeRedisCache_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddStackExchangeRedisCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddStackExchangeRedisCache_002(object? services, Action<object?> configure) =>
+        StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(services, configure);
 }

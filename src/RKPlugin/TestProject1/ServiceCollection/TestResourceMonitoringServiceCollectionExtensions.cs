@@ -22,12 +22,24 @@ public sealed class TestResourceMonitoringServiceCollectionExtensions
 
     static List<string> Invoked = ResourceMonitoringServiceCollectionExtensions.Invoked;
 
-    public static object? AddResourceMonitoring(this object? services)
-        => Add("public static object? AddResourceMonitoring(this object? services)");
+    [TestMethod]
+    public void Test_AddResourceMonitoring_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddResourceMonitoring_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddResourceMonitoring_001(object? services) =>
+        PluginServiceCollection.AddResourceMonitoring(services);
 
-    public static object? AddResourceMonitoring(this object? services, Action<object?> configure)
-        => Add("public static object? AddResourceMonitoring(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddResourceMonitoring_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddResourceMonitoring_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddResourceMonitoring_002(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddResourceMonitoring(services, configure);
 
-    private static object? AddResourceMonitoringInternal(this object? services, Action<object?> configure)
-        => Add("private static object? AddResourceMonitoringInternal(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddResourceMonitoringInternal_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddResourceMonitoringInternal_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddResourceMonitoringInternal_001(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddResourceMonitoringInternal(services, configure);
 }

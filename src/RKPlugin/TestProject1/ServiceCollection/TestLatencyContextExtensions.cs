@@ -22,12 +22,15 @@ public sealed class TestLatencyContextExtensions
 
     static List<string> Invoked = LatencyContextExtensions.Invoked;
 
+    [TestMethod]
     public static object? AddLatencyContext(this object? services)
         => Add("public static object? AddLatencyContext(this object? services)");
 
+    [TestMethod]
     public static object? AddLatencyContext(this object? services, Action<object?> configure)
         => Add("public static object? AddLatencyContext(this object? services, Action<object?> configure)");
 
+    [TestMethod]
     public static object? AddLatencyContext(this object? services, object? section)
         => Add("public static object? AddLatencyContext(this object? services, object? section)");
 }

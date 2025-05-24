@@ -22,6 +22,10 @@ public sealed class TestResilienceServiceCollectionExtensions
 
     static List<string> Invoked = ResilienceServiceCollectionExtensions.Invoked;
 
-    public static object? AddResilienceEnricher(this object? services)
-        => Add("public static object? AddResilienceEnricher(this object? services)");
+    [TestMethod]
+    public void Test_AddResilienceEnricher_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddResilienceEnricher_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddResilienceEnricher_001(object? services) =>
+        ResilienceServiceCollectionExtensions.AddResilienceEnricher(services);
 }

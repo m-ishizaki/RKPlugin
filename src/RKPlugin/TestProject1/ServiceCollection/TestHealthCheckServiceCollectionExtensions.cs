@@ -22,6 +22,10 @@ public sealed class TestHealthCheckServiceCollectionExtensions
 
     static List<string> Invoked = HealthCheckServiceCollectionExtensions.Invoked;
 
-    public static object? AddHealthChecks(this object? services)
-        => Add("public static object? AddHealthChecks(this object? services)");
+    [TestMethod]
+    public void Test_AddHealthChecks_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddHealthChecks_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddHealthChecks_001(object? services) =>
+        HealthCheckServiceCollectionExtensions.AddHealthChecks(services);
 }

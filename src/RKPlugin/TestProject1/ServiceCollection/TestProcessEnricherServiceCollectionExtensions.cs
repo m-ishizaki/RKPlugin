@@ -22,12 +22,24 @@ public sealed class TestProcessEnricherServiceCollectionExtensions
 
     static List<string> Invoked = ProcessEnricherServiceCollectionExtensions.Invoked;
 
-    public static object? AddProcessLogEnricher(this object? services)
-        => Add("public static object? AddProcessLogEnricher(this object? services)");
+    [TestMethod]
+    public void Test_AddProcessLogEnricher_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddProcessLogEnricher_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddProcessLogEnricher_001(object? services) =>
+        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services);
 
-    public static object? AddProcessLogEnricher(this object? services, Action<object?> configure)
-        => Add("public static object? AddProcessLogEnricher(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddProcessLogEnricher_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddProcessLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddProcessLogEnricher_002(object? services, Action<object?> configure) =>
+        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services, configure);
 
-    public static object? AddProcessLogEnricher(this object? services, object? section)
-        => Add("public static object? AddProcessLogEnricher(this object? services, object? section)");
+    [TestMethod]
+    public void Test_AddProcessLogEnricher_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddProcessLogEnricher_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddProcessLogEnricher_003(object? services, object? section) =>
+        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services, section);
 }

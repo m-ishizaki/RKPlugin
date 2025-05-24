@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
 using System.Reflection;
@@ -22,6 +23,10 @@ public sealed class TestSystemdHostBuilderExtensions
 
     static List<string> Invoked = SystemdHostBuilderExtensions.Invoked;
 
-    public static object? AddSystemd(this object? services)
-        => Add("public static object? AddSystemd(this object? services)");
+    [TestMethod]
+    public void Test_AddSystemd_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddSystemd_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddSystemd_001(object? services) =>
+        SystemdHostBuilderExtensions.AddSystemd(services);
 }

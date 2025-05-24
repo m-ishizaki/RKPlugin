@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
 using System.Reflection;
@@ -22,9 +23,17 @@ public sealed class TestWindowsServiceLifetimeHostBuilderExtensions
 
     static List<string> Invoked = WindowsServiceLifetimeHostBuilderExtensions.Invoked;
 
-    public static object? AddWindowsService(this object? services)
-        => Add("public static object? AddWindowsService(this object? services)");
+    [TestMethod]
+    public void Test_AddWindowsService_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddWindowsService_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
+    static void _Test_AddWindowsService_001(object? services) =>
+        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services);
 
-    public static object? AddWindowsService(this object? services, Action<object?> configure)
-        => Add("public static object? AddWindowsService(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddWindowsService_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddWindowsService_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddWindowsService_002(object? services, Action<object?> configure) =>
+        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services, configure);
 }

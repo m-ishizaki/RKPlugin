@@ -22,9 +22,11 @@ public sealed class TestHttpDiagnosticsServiceCollectionExtensions
 
     static List<string> Invoked = ApplicationEnricherServiceCollectionExtensions.Invoked;
 
+    [TestMethod]
     public static object? AddDownstreamDependencyMetadata(this object? services, object? downstreamDependencyMetadata)
         => Add("public static object? AddDownstreamDependencyMetadata(this object? services, object? downstreamDependencyMetadata)");
 
+    [TestMethod]
     public static object? AddDownstreamDependencyMetadata<T>(this object? services) where T : class
         => Add("public static object? AddDownstreamDependencyMetadata<T>(this object? services) where T : class");
 }

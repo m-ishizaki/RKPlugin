@@ -22,9 +22,17 @@ public sealed class TestLocalizationServiceCollectionExtensions
 
     static List<string> Invoked = LocalizationServiceCollectionExtensions.Invoked;
 
-    public static object? AddLocalization(this object? services)
-        => Add("public static object? AddLocalization(this object? services)");
+    [TestMethod]
+    public void Test_AddLocalization_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLocalization_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddLocalization_001(object? services) =>
+        PluginServiceCollection.AddLocalization(services);
 
-    public static object? AddLocalization(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddLocalization(this object? services, Action<object?> setupAction)");
+    [TestMethod]
+    public void Test_AddLocalization_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLocalization_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddLocalization_002(object? services, Action<object?> setupAction) =>
+        PluginServiceCollection.AddLocalization(services, setupAction);
 }

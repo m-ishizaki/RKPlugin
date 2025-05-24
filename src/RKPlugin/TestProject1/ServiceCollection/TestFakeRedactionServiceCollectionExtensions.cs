@@ -22,9 +22,17 @@ public sealed class TestFakeRedactionServiceCollectionExtensions
 
     static List<string> Invoked = FakeRedactionServiceCollectionExtensions.Invoked;
 
-    public static object? AddFakeRedaction(this object? services)
-        => Add("public static object? AddFakeRedaction(this object? services)");
+    [TestMethod]
+    public void Test_AddFakeRedaction_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddFakeRedaction_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddFakeRedaction_001(object? services) =>
+        FakeRedactionServiceCollectionExtensions.AddFakeRedaction(services);
 
-    public static object? AddFakeRedaction(this object? services, Action<object?> configure)
-        => Add("public static object? AddFakeRedaction(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddFakeRedaction_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddFakeRedaction_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddFakeRedaction_002(object? services, Action<object?> configure) =>
+        FakeRedactionServiceCollectionExtensions.AddFakeRedaction(services, configure);
 }

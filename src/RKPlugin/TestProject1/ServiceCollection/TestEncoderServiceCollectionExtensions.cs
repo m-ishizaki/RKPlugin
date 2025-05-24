@@ -22,9 +22,17 @@ public sealed class TestEncoderServiceCollectionExtensions
 
     static List<string> Invoked = EncoderServiceCollectionExtensions.Invoked;
 
-    public static object? AddWebEncoders(this object? services)
-        => Add("public static object? AddWebEncoders(this object? services)");
+    [TestMethod]
+    public void Test_AddWebEncoders_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddWebEncoders_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddWebEncoders_001(object? services) =>
+        EncoderServiceCollectionExtensions.AddWebEncoders(services);
 
-    public static object? AddWebEncoders(this object? services, Action<object?> setupAction)
-        => Add("public static object? AddWebEncoders(this object? services, Action<object?> setupAction)");
+    [TestMethod]
+    public void Test_AddWebEncoders_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddWebEncoders_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddWebEncoders_002(object? services, Action<object?> setupAction) =>
+        EncoderServiceCollectionExtensions.AddWebEncoders(services, setupAction);
 }

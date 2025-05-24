@@ -22,21 +22,45 @@ public sealed class TestTcpEndpointProbesExtensions
 
     static List<string> Invoked = TcpEndpointProbesExtensions.Invoked;
 
-    public static object? AddTcpEndpointProbe(this object? services)
-        => Add("public static object? AddTcpEndpointProbe(this object? services)");
+    [TestMethod]
+    public void Test_AddTcpEndpointProbe_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTcpEndpointProbe_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddTcpEndpointProbe_001(object? services) =>
+        PluginServiceCollection.AddTcpEndpointProbe(services);
 
-    public static object? AddTcpEndpointProbe(this object? services, string name)
-        => Add("public static object? AddTcpEndpointProbe(this object? services, string name)");
+    [TestMethod]
+    public void Test_AddTcpEndpointProbe_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTcpEndpointProbe_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTcpEndpointProbe_002(object? services, string name) =>
+        PluginServiceCollection.AddTcpEndpointProbe(services, name);
 
-    public static object? AddTcpEndpointProbe(this object? services, Action<object?> configure)
-        => Add("public static object? AddTcpEndpointProbe(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddTcpEndpointProbe_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTcpEndpointProbe_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTcpEndpointProbe_003(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddTcpEndpointProbe(services, configure);
 
-    public static object? AddTcpEndpointProbe(this object? services, string name, Action<object?> configure)
-        => Add("public static object? AddTcpEndpointProbe(this object? services, string name, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddTcpEndpointProbe_004() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTcpEndpointProbe_004), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null, null]));
+    static void _Test_AddTcpEndpointProbe_004(object? services, string name, Action<object?> configure) =>
+        PluginServiceCollection.AddTcpEndpointProbe(services, name, configure);
 
-    public static object? AddTcpEndpointProbe(this object? services, object? configurationSection)
-        => Add("public static object? AddTcpEndpointProbe(this object? services, object? configurationSection)");
+    [TestMethod]
+    public void Test_AddTcpEndpointProbe_005() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTcpEndpointProbe_005), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTcpEndpointProbe_005(object? services, object? configurationSection) =>
+        PluginServiceCollection.AddTcpEndpointProbe(services, configurationSection);
 
-    public static object? AddTcpEndpointProbe(this object? services, string name, object? configurationSection)
-        => Add("public static object? AddTcpEndpointProbe(this object? services, string name, object? configurationSection)");
+    [TestMethod]
+    public void Test_AddTcpEndpointProbe_006() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTcpEndpointProbe_006), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null, null]));
+    static void _Test_AddTcpEndpointProbe_006(object? services, string name, object? configurationSection) =>
+        PluginServiceCollection.AddTcpEndpointProbe(services, name, configurationSection);
 }

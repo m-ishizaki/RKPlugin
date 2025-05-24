@@ -22,9 +22,11 @@ public sealed class TestHybridCacheServiceExtensions
 
     static List<string> Invoked = HybridCacheServiceExtensions.Invoked;
 
+    [TestMethod]
     public static object? AddHybridCache(this object? services)
         => Add("public static object? AddHybridCache(this object? services)");
 
+    [TestMethod]
     public static object? AddHybridCache(this object? services, Action<object?> setupAction)
         => Add("public static object? AddHybridCache(this object? services, Action<object?> setupAction)");
 }

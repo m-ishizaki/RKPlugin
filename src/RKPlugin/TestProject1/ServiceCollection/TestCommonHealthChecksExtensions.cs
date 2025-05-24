@@ -22,12 +22,24 @@ public sealed class TestCommonHealthChecksExtensions
 
     static List<string> Invoked = CommonHealthChecksExtensions.Invoked;
 
-    public static object? AddTelemetryHealthCheckPublisher(this object? services)
-        => Add("public static object? AddTelemetryHealthCheckPublisher(this object? services)");
+    [TestMethod]
+    public void Test_AddTelemetryHealthCheckPublisher_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTelemetryHealthCheckPublisher_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddTelemetryHealthCheckPublisher_001(object? services) =>
+        PluginServiceCollection.AddTelemetryHealthCheckPublisher(services);
 
-    public static object? AddTelemetryHealthCheckPublisher(this object? services, object? section)
-        => Add("public static object? AddTelemetryHealthCheckPublisher(this object? services, object? section)");
+    [TestMethod]
+    public void Test_AddTelemetryHealthCheckPublisher_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTelemetryHealthCheckPublisher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTelemetryHealthCheckPublisher_002(object? services, object? section) =>
+        PluginServiceCollection.AddTelemetryHealthCheckPublisher(services, section);
 
-    public static object? AddTelemetryHealthCheckPublisher(this object? services, Action<object?> configure)
-        => Add("public static object? AddTelemetryHealthCheckPublisher(this object? services, Action<object?> configure)");
+    [TestMethod]
+    public void Test_AddTelemetryHealthCheckPublisher_003() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddTelemetryHealthCheckPublisher_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTelemetryHealthCheckPublisher_003(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddTelemetryHealthCheckPublisher(services, configure);
 }
