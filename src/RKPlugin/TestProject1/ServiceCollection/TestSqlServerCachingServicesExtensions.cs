@@ -20,7 +20,7 @@ public sealed class TestSqlServerCachingServicesExtensions
         }
     }
 
-    static List<string> Invoked = ApplicationEnricherServiceCollectionExtensions.Invoked;
+    static List<string> Invoked = SqlServerCachingServicesExtensions.Invoked;
 
     [TestMethod]
     public void Test_AddDistributedSqlServerCache_001() =>
