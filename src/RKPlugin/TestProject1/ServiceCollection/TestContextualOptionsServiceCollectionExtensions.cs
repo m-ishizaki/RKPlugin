@@ -13,6 +13,10 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestContextualOptionsServiceCollectionExtensions
 {
     static Object _lock = new Object();
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+
+    static List<string> Invoked = ContextualOptionsServiceCollectionExtensions.Invoked;
+
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -24,12 +28,8 @@ public sealed class TestContextualOptionsServiceCollectionExtensions
         }
     }
 
-    static List<string> Invoked = ContextualOptionsServiceCollectionExtensions.Invoked;
-
     [TestMethod]
-    public void Test_AddContextualOptions_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddContextualOptions_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
+    public void Test_AddContextualOptions_001() => Test(nameof(_Test_AddContextualOptions_001));
     static void _Test_AddContextualOptions_001(object? services) =>
         PluginServiceCollection.AddContextualOptions(services);
 

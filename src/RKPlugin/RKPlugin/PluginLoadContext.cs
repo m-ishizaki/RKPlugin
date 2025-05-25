@@ -60,4 +60,7 @@ public class PluginLoadContext : AssemblyLoadContext
 
     public static object? Invoke(object? services, MethodInfo method, object? obj, object?[]? parameters) =>
         method.Invoke(obj, [new PluginServiceCollection(services), .. parameters ?? Array.Empty<object?>()]);
+
+    public static object? Invoke(object? services, MethodInfo? method, object?[]? parameters = null) =>
+        method == null ? throw new ArgumentNullException("method is null.") : Invoke(services, method, null, parameters);
 }
