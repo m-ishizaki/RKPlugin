@@ -26,6 +26,22 @@ public sealed class Test1
         }
     }
 
+    public static void Test(string methodName, Object caller, Object @lock, List<string> invoked)
+    {
+        var method = caller.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Static);
+        var act = () => PluginLoadContext.Invoke(new object(), method);
+
+        lock (_lock)
+        {
+            int count = invoked.Count;
+            act();
+            Assert.AreEqual(count + 1, invoked.Count);
+            Assert.IsTrue(!invoked.Reverse<string>().Skip(1).Any(x => x == invoked.LastOrDefault()));
+        }
+    }
+
+    public static void DummyAction(object? onj) { }
+
     [TestMethod]
     public void TestMethod001() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
         _TestMethod001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
