@@ -56,7 +56,7 @@ public sealed class TestOptionsServiceCollectionExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_AddOptionsWithValidateOnStart_005), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddOptionsWithValidateOnStart_005<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(object? services, string? name = null) where TOptions : class where TValidateOptions : class
-    => OptionsServiceCollectionExtensions.AddOptionsWithValidateOnStart<object>(services, name);
+    => OptionsServiceCollectionExtensions.AddOptionsWithValidateOnStart<object, object>(services, name);
 
     [TestMethod]
     public void Test_Configure_006() =>
