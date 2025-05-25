@@ -8,7 +8,7 @@ namespace TestProject1.ServiceCollection;
 [TestClass]
 public sealed class TestOptionsConfigurationServiceCollectionExtensions
 {
-    static Object _lock = new Lock();
+    static Object _lock = new Object();
     void Test(List<string> args, Action act)
     {
         lock (_lock)
