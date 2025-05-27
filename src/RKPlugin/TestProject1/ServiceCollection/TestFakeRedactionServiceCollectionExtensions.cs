@@ -20,6 +20,6 @@ public sealed class TestFakeRedactionServiceCollectionExtensions
 
     [TestMethod]
     public void Test_AddFakeRedaction_002() => Test(nameof(_Test_AddFakeRedaction_002));
-    static void _Test_AddFakeRedaction_002(object? services, Action<object?> configure) =>
-        FakeRedactionServiceCollectionExtensions.AddFakeRedaction(services, configure);
+    static void _Test_AddFakeRedaction_002(object? services) =>
+        FakeRedactionServiceCollectionExtensions.AddFakeRedaction(services, configure: Test1.DummyAction);
 }

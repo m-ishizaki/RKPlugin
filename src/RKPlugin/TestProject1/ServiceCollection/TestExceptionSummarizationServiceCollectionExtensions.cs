@@ -20,6 +20,6 @@ public sealed class TestExceptionSummarizationServiceCollectionExtensions
 
     [TestMethod]
     public void Test_AddExceptionSummarizer_002() => Test(nameof(_Test_AddExceptionSummarizer_002));
-    static void _Test_AddExceptionSummarizer_002(object? services, Action<object?> configure) =>
-        ExceptionSummarizationServiceCollectionExtensions.AddExceptionSummarizer(services, configure);
+    static void _Test_AddExceptionSummarizer_002(object? services) =>
+        ExceptionSummarizationServiceCollectionExtensions.AddExceptionSummarizer(services, configure: Test1.DummyAction);
 }
