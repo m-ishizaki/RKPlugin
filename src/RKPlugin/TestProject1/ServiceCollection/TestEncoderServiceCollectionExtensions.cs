@@ -10,6 +10,8 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestEncoderServiceCollectionExtensions
 {
     static Object _lock = new Object();
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -24,16 +26,12 @@ public sealed class TestEncoderServiceCollectionExtensions
     static List<string> Invoked = EncoderServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddWebEncoders_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddWebEncoders_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    public void Test_AddWebEncoders_001() => Test(nameof(_Test_AddWebEncoders_001));
     static void _Test_AddWebEncoders_001(object? services) =>
         EncoderServiceCollectionExtensions.AddWebEncoders(services);
 
     [TestMethod]
-    public void Test_AddWebEncoders_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddWebEncoders_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_AddWebEncoders_002() => Test(nameof(_Test_AddWebEncoders_002));
     static void _Test_AddWebEncoders_002(object? services, Action<object?> setupAction) =>
         EncoderServiceCollectionExtensions.AddWebEncoders(services, setupAction);
 }
