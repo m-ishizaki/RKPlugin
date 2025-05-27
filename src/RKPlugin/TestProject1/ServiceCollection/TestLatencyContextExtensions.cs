@@ -9,7 +9,8 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestLatencyContextExtensions
 {
     static Object _lock = new Object();
-    
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -24,23 +25,17 @@ public sealed class TestLatencyContextExtensions
     static List<string> Invoked = LatencyContextExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddLatencyContext_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddLatencyContext_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    public void Test_AddLatencyContext_001() => Test(nameof(_Test_AddLatencyContext_001));
     static void _Test_AddLatencyContext_001(object? services) =>
         LatencyContextExtensions.AddLatencyContext(services);
 
     [TestMethod]
-    public void Test_AddLatencyContext_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddLatencyContext_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_AddLatencyContext_002() => Test(nameof(_Test_AddLatencyContext_002));
     static void _Test_AddLatencyContext_002(object? services, Action<object?> configure) =>
         LatencyContextExtensions.AddLatencyContext(services, configure);
 
     [TestMethod]
-    public void Test_AddLatencyContext_003() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddLatencyContext_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_AddLatencyContext_003() => Test(nameof(_Test_AddLatencyContext_003));
     static void _Test_AddLatencyContext_003(object? services, object? section) =>
         LatencyContextExtensions.AddLatencyContext(services, section);
 }

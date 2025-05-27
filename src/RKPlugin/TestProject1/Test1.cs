@@ -29,7 +29,36 @@ public sealed class Test1
     public static void Test(string methodName, Object caller, Object @lock, List<string> invoked)
     {
         var method = caller.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Static);
-        var act = () => PluginLoadContext.Invoke(new object(), method);
+        if (method == null)
+            throw new ArgumentException($"Method {methodName} not found");
+        
+        Action act;
+        
+        // Set up parameters based on the method's parameter count
+        var parameters = method.GetParameters();
+        if (parameters.Length == 0)
+        {
+            act = () => PluginLoadContext.Invoke(new object(), method);
+        }
+        else if (parameters.Length == 1) 
+        {
+            act = () => PluginLoadContext.Invoke(new object(), method, null, new object?[] { null });
+        }
+        else if (parameters.Length == 2)
+        {
+            if (parameters[1].ParameterType == typeof(Action<object?>))
+            {
+                act = () => PluginLoadContext.Invoke(new object(), method, null, new object?[] { null, DummyAction });
+            }
+            else
+            {
+                act = () => PluginLoadContext.Invoke(new object(), method, null, new object?[] { null, null });
+            }
+        }
+        else
+        {
+            act = () => PluginLoadContext.Invoke(new object(), method, null, new object?[] { null, null, null });
+        }
 
         lock (_lock)
         {
