@@ -9,8 +9,7 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestMemoryCacheServiceCollectionExtensions
 {
     static Object _lock = new Object();
-    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
+    
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -25,22 +24,30 @@ public sealed class TestMemoryCacheServiceCollectionExtensions
     static List<string> Invoked = MemoryCacheServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddDistributedMemoryCache_001() => Test(nameof(_Test_AddDistributedMemoryCache_001));
+    public void Test_AddDistributedMemoryCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddDistributedMemoryCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddDistributedMemoryCache_001(object? services) =>
         PluginServiceCollection.AddDistributedMemoryCache(services);
 
     [TestMethod]
-    public void Test_AddDistributedMemoryCache_002() => Test(nameof(_Test_AddDistributedMemoryCache_002));
+    public void Test_AddDistributedMemoryCache_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddDistributedMemoryCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddDistributedMemoryCache_002(object? services, Action<object?> setupAction) =>
         PluginServiceCollection.AddDistributedMemoryCache(services, setupAction);
 
     [TestMethod]
-    public void Test_AddMemoryCache_001() => Test(nameof(_Test_AddMemoryCache_001));
+    public void Test_AddMemoryCache_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddMemoryCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddMemoryCache_001(object? services) =>
         PluginServiceCollection.AddMemoryCache(services);
 
     [TestMethod]
-    public void Test_AddMemoryCache_002() => Test(nameof(_Test_AddMemoryCache_002));
+    public void Test_AddMemoryCache_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddMemoryCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddMemoryCache_002(object? services, Action<object?> setupAction) =>
         PluginServiceCollection.AddMemoryCache(services, setupAction);
 }

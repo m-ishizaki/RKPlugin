@@ -9,8 +9,7 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestLocalizationServiceCollectionExtensions
 {
     static Object _lock = new Object();
-    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
+    
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -25,12 +24,16 @@ public sealed class TestLocalizationServiceCollectionExtensions
     static List<string> Invoked = LocalizationServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddLocalization_001() => Test(nameof(_Test_AddLocalization_001));
+    public void Test_AddLocalization_001() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLocalization_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, new object?[] { null }));
     static void _Test_AddLocalization_001(object? services) =>
         PluginServiceCollection.AddLocalization(services);
 
     [TestMethod]
-    public void Test_AddLocalization_002() => Test(nameof(_Test_AddLocalization_002));
+    public void Test_AddLocalization_002() =>
+        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
+            _Test_AddLocalization_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, new object?[] { null, Test1.DummyAction }));
     static void _Test_AddLocalization_002(object? services, Action<object?> setupAction) =>
         PluginServiceCollection.AddLocalization(services, setupAction);
 }
