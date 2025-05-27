@@ -9,6 +9,8 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestLatencyRegistryServiceCollectionExtensions
 {
     static Object _lock = new Object();
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -23,23 +25,17 @@ public sealed class TestLatencyRegistryServiceCollectionExtensions
     static List<string> Invoked = LatencyRegistryServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_RegisterCheckpointNames_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_RegisterCheckpointNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_RegisterCheckpointNames_001() => Test(nameof(_Test_RegisterCheckpointNames_001));
     static void _Test_RegisterCheckpointNames_001(object? services, params string[] names) =>
         LatencyRegistryServiceCollectionExtensions.RegisterCheckpointNames(services, names);
 
     [TestMethod]
-    public void Test_RegisterMeasureNames_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_RegisterMeasureNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_RegisterMeasureNames_001() => Test(nameof(_Test_RegisterMeasureNames_001));
     static void _Test_RegisterMeasureNames_001(object? services, params string[] names) =>
         LatencyRegistryServiceCollectionExtensions.RegisterMeasureNames(services, names);
 
     [TestMethod]
-    public void Test_RegisterTagNames_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_RegisterTagNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_RegisterTagNames_001() => Test(nameof(_Test_RegisterTagNames_001));
     static void _Test_RegisterTagNames_001(object? services, params string[] names) =>
         LatencyRegistryServiceCollectionExtensions.RegisterTagNames(services, names);
 }
