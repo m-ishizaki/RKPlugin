@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var services = builder.Services;
 
-var pluginPath = Path.Combine(Assembly.GetEntryAssembly()?.Location!, "../../../../../TestPlugin/bin/Debug/net10.0");
+var pluginPath = Path.Combine(Assembly.GetEntryAssembly()?.Location!, "../../../../../TestPlugin/bin/Debug/net8.0");
 var plugins = PluginLoadContext.LoadExtensions(pluginPath);
 foreach (var plugin in plugins)
     foreach (var assembly in plugin.Assemblies)
