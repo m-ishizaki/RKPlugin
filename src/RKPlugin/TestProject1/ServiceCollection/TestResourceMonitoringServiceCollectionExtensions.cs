@@ -9,6 +9,8 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestResourceMonitoringServiceCollectionExtensions
 {
     static Object _lock = new Object();
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -23,16 +25,12 @@ public sealed class TestResourceMonitoringServiceCollectionExtensions
     static List<string> Invoked = ResourceMonitoringServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddResourceMonitoring_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddResourceMonitoring_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    public void Test_AddResourceMonitoring_001() => Test(nameof(_Test_AddResourceMonitoring_001));
     static void _Test_AddResourceMonitoring_001(object? services) =>
         PluginServiceCollection.AddResourceMonitoring(services);
 
     [TestMethod]
-    public void Test_AddResourceMonitoring_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddResourceMonitoring_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddResourceMonitoring_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddResourceMonitoring(services, configure);
+    public void Test_AddResourceMonitoring_002() => Test(nameof(_Test_AddResourceMonitoring_002));
+    static void _Test_AddResourceMonitoring_002(object? services) =>
+        PluginServiceCollection.AddResourceMonitoring(services, (obj) => { });
 }
