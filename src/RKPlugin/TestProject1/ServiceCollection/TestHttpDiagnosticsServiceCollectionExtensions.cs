@@ -20,7 +20,7 @@ public sealed class TestHttpDiagnosticsServiceCollectionExtensions
         }
     }
 
-    static List<string> Invoked = ApplicationEnricherServiceCollectionExtensions.Invoked;
+    static List<string> Invoked = HttpDiagnosticsServiceCollectionExtensions.Invoked;
 
     [TestMethod]
     public void Test_AddDownstreamDependencyMetadata_001() =>

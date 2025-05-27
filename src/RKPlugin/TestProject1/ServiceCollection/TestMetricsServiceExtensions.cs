@@ -30,10 +30,10 @@ public sealed class TestMetricsServiceExtensions
         MetricsServiceExtensions.AddMetrics(services);
 
     [TestMethod]
-    public void Test_AddServiceLogEnricher_002() =>
+    public void Test_AddMetrics_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddServiceLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_AddServiceLogEnricher_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddServiceLogEnricher(services, configure);
+            _Test_AddMetrics_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddMetrics_002(object? services, Action<object?> configure) =>
+        MetricsServiceExtensions.AddMetrics(services, configure);
 
 }

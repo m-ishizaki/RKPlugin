@@ -50,21 +50,21 @@ public sealed class TestServiceCollectionServiceExtensions
 
     [TestMethod]
     public void Test_AddTransient_004() => Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-        _Test_AddTransient_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddTransient_003<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class
+        _Test_AddTransient_004), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    static void _Test_AddTransient_004<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class
     => ServiceCollectionServiceExtensions.AddTransient<object>(services);
 
     [TestMethod]
     public void Test_AddTransient_005() => Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-        _Test_AddTransient_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddTransient_003<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class
+        _Test_AddTransient_005), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTransient_005<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class
     => ServiceCollectionServiceExtensions.AddTransient(services, implementationFactory);
 
     [TestMethod]
     public void Test_AddTransient_006() => Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-       _Test_AddTransient_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddTransient_003<TService, TImplementation>(object? services, Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService
-    => ServiceCollectionServiceExtensions.AddTransient(services, implementationFactory);
+       _Test_AddTransient_006), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddTransient_006<TService, TImplementation>(object? services, Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService
+    => ServiceCollectionServiceExtensions.AddTransient<TService, TImplementation>(services, implementationFactory);
 
 
     [TestMethod]
@@ -147,8 +147,8 @@ public sealed class TestServiceCollectionServiceExtensions
 
     [TestMethod]
     public void Test_AddSingleton_020() => Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-        Test_AddSingleton_020), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    public void Test_AddSingleton_020<TService, TImplementation>(object? services, Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService
+        _Test_AddSingleton_020), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddSingleton_020<TService, TImplementation>(object? services, Func<IServiceProvider, TImplementation> implementationFactory) where TService : class where TImplementation : class, TService
     => ServiceCollectionServiceExtensions.AddSingleton<TService, TImplementation>(services, implementationFactory);
 
     [TestMethod]
@@ -160,8 +160,8 @@ public sealed class TestServiceCollectionServiceExtensions
     [TestMethod]
     public void Test_AddSingleton_022() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            Test_AddSingleton_022), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void Test_AddSingleton_022<TService>(object? services, TService implementationInstance) =>
-        ServiceCollectionServiceExtensions.AddSingleton<object>(services, implementationInstance);
+            _Test_AddSingleton_022), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddSingleton_022<TService>(object? services, TService implementationInstance) where TService : class =>
+        ServiceCollectionServiceExtensions.AddSingleton<TService>(services, implementationInstance);
 
 }

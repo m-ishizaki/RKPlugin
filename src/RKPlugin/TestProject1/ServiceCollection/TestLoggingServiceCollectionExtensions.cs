@@ -30,10 +30,10 @@ public sealed class TestLoggingServiceCollectionExtensions
         PluginServiceCollection.AddLogging(services);
 
     [TestMethod]
-    public void Test_AddServiceLogEnricher_002() =>
+    public void Test_AddLogging_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddServiceLogEnricher_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_AddServiceLogEnricher_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddServiceLogEnricher(services, configure);
+            _Test_AddLogging_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    static void _Test_AddLogging_002(object? services, Action<object?> configure) =>
+        PluginServiceCollection.AddLogging(services, configure);
 
 }
