@@ -9,6 +9,8 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestFakeLoggerServiceCollectionExtensions
 {
     static Object _lock = new Object();
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+
     void Test(List<string> args, Action act)
     {
         lock (_lock)
@@ -23,23 +25,17 @@ public sealed class TestFakeLoggerServiceCollectionExtensions
     static List<string> Invoked = FakeLoggerServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddFakeLogging_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddFakeLogging_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
+    public void Test_AddFakeLogging_001() => Test(nameof(_Test_AddFakeLogging_001));
     static void _Test_AddFakeLogging_001(object? services, object? section) =>
         FakeLoggerServiceCollectionExtensions.AddFakeLogging(services, section);
 
     [TestMethod]
-    public void Test_AddFakeLogging_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddFakeLogging_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, (Action<object?>)(_ => { })]));
+    public void Test_AddFakeLogging_002() => Test(nameof(_Test_AddFakeLogging_002));
     static void _Test_AddFakeLogging_002(object? services, Action<object?> configure) =>
         FakeLoggerServiceCollectionExtensions.AddFakeLogging(services, configure);
 
     [TestMethod]
-    public void Test_AddFakeLogging_003() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddFakeLogging_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
+    public void Test_AddFakeLogging_003() => Test(nameof(_Test_AddFakeLogging_003));
     static void _Test_AddFakeLogging_003(object? services) =>
         FakeLoggerServiceCollectionExtensions.AddFakeLogging(services);
 }
