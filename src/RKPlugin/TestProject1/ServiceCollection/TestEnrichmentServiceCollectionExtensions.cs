@@ -10,18 +10,6 @@ public sealed class TestEnrichmentServiceCollectionExtensions
 {
     static Object _lock = new Object();
     void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
-    void Test(List<string> args, Action act)
-    {
-        lock (_lock)
-        {
-            int count = args.Count;
-            act();
-            Assert.AreEqual(count + 1, args.Count);
-            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
-        }
-    }
-
     static List<string> Invoked = EnrichmentServiceCollectionExtensions.Invoked;
 
     [TestMethod]

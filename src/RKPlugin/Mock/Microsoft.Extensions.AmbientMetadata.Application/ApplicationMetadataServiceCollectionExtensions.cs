@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Extensions.AmbientMetadata.Application;
+﻿namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ApplicationMetadataServiceCollectionExtensions
 {

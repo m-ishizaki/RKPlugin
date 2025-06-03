@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.AmbientMetadata.Application;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
 using System;
