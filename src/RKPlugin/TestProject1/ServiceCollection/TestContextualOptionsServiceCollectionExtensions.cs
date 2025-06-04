@@ -14,7 +14,6 @@ public sealed class TestContextualOptionsServiceCollectionExtensions
 {
     static Object _lock = new Object();
     void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
     static List<string> Invoked = ContextualOptionsServiceCollectionExtensions.Invoked;
 
     void Test(List<string> args, Action act)

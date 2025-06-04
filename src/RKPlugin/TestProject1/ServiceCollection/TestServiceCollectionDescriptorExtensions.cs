@@ -11,6 +11,7 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestServiceCollectionDescriptorExtensions
 {
     static Object _lock = new Object();
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
     void Test(List<string> args, Action act)
     {
         lock (_lock)
