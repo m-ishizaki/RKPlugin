@@ -27,13 +27,13 @@ public sealed class TestMetricsServiceExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddMetrics_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddMetrics_001(object? services) =>
-        MetricsServiceExtensions.AddMetrics(services);
+        PluginServiceCollection.AddMetrics(services);
 
     [TestMethod]
     public void Test_AddMetrics_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddMetrics_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddMetrics_002(object? services, Action<object?> configure) =>
-        MetricsServiceExtensions.AddMetrics(services, configure);
+        PluginServiceCollection.AddMetrics(services, configure);
 
 }

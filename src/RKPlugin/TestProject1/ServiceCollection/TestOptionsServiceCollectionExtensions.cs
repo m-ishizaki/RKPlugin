@@ -28,96 +28,96 @@ public sealed class TestOptionsServiceCollectionExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddOptions_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddOptions_001(object? services)
-=> OptionsServiceCollectionExtensions.AddOptions(services);
+=> PluginServiceCollection.AddOptions(services);
 
     [TestMethod]
     public void Test_AddOptions_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddOptions_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddOptions_002<TOptions>(object? services) where TOptions : class
-=> OptionsServiceCollectionExtensions.AddOptions<TOptions>(services);
+=> PluginServiceCollection.AddOptions<TOptions>(services);
 
     [TestMethod]
     public void Test_AddOptions_003() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddOptions_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddOptions_003<TOptions>(object? services, string? name) where TOptions : class
-    => OptionsServiceCollectionExtensions.AddOptions<TOptions>(services, name);
+    => PluginServiceCollection.AddOptions<TOptions>(services, name);
 
     [TestMethod]
     public void Test_AddOptionsWithValidateOnStart_004() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_AddOptionsWithValidateOnStart_004), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddOptionsWithValidateOnStart_004<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions>(object? services, string? name = null) where TOptions : class
-    => OptionsServiceCollectionExtensions.AddOptionsWithValidateOnStart<object>(services, name);
+    => PluginServiceCollection.AddOptionsWithValidateOnStart<object>(services, name);
 
     [TestMethod]
     public void Test_AddOptionsWithValidateOnStart_005() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_AddOptionsWithValidateOnStart_005), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddOptionsWithValidateOnStart_005<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] TOptions, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TValidateOptions>(object? services, string? name = null) where TOptions : class where TValidateOptions : class
-    => OptionsServiceCollectionExtensions.AddOptionsWithValidateOnStart<object, object>(services, name);
+    => PluginServiceCollection.AddOptionsWithValidateOnStart<object, object>(services, name);
 
     [TestMethod]
     public void Test_Configure_006() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_Configure_006), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_Configure_006<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class
-    => OptionsServiceCollectionExtensions.Configure<TOptions>(services, configureOptions);
+    => PluginServiceCollection.Configure<TOptions>(services, configureOptions);
 
     [TestMethod]
     public void Test_Configure_007() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_Configure_007), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_Configure_007<TOptions>(object? services, string? name, Action<TOptions> configureOptions) where TOptions : class
-    => OptionsServiceCollectionExtensions.Configure<TOptions>(services, name, configureOptions);
+    => PluginServiceCollection.Configure<TOptions>(services, name, configureOptions);
 
     [TestMethod]
     public void Test_ConfigureAll_008() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_ConfigureAll_008), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_ConfigureAll_008<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class
-    => OptionsServiceCollectionExtensions.ConfigureAll<TOptions>(services, configureOptions);
+    => PluginServiceCollection.ConfigureAll<TOptions>(services, configureOptions);
 
     [TestMethod]
     public void Test_ConfigureOptions_009() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_ConfigureOptions_009), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_ConfigureOptions_009<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TConfigureOptions>(object? services) where TConfigureOptions : class
-    => OptionsServiceCollectionExtensions.ConfigureOptions<object>(services);
+    => PluginServiceCollection.ConfigureOptions<object>(services);
 
     [TestMethod]
     public void Test_ConfigureOptions_010() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_ConfigureOptions_010), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_ConfigureOptions_010(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type configureType)
-    => OptionsServiceCollectionExtensions.ConfigureOptions(services, configureType);
+    => PluginServiceCollection.ConfigureOptions(services, configureType);
 
     [TestMethod]
     public void Test_ConfigureOptions_011() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_ConfigureOptions_011), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_ConfigureOptions_011(object? services, object configureInstance)
-    => OptionsServiceCollectionExtensions.ConfigureOptions(services, configureInstance);
+    => PluginServiceCollection.ConfigureOptions(services, configureInstance);
 
     [TestMethod]
     public void Test_PostConfigure_012() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_PostConfigure_012), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_PostConfigure_012<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class
-    => OptionsServiceCollectionExtensions.PostConfigure<TOptions>(services, configureOptions);
+    => PluginServiceCollection.PostConfigure<TOptions>(services, configureOptions);
 
     [TestMethod]
     public void Test_PostConfigure_013() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_PostConfigure_013), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_PostConfigure_013<TOptions>(object? services, string? name, Action<TOptions> configureOptions) where TOptions : class
-    => OptionsServiceCollectionExtensions.PostConfigure<TOptions>(services, name, configureOptions);
+    => PluginServiceCollection.PostConfigure<TOptions>(services, name, configureOptions);
 
     [TestMethod]
     public void Test_PostConfigureAll_014() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
              _Test_PostConfigureAll_014), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_PostConfigureAll_014<TOptions>(object? services, Action<TOptions> configureOptions) where TOptions : class
-    => OptionsServiceCollectionExtensions.PostConfigureAll<TOptions>(services, configureOptions);
+    => PluginServiceCollection.PostConfigureAll<TOptions>(services, configureOptions);
 }

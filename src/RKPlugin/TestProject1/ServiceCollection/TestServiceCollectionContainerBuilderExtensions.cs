@@ -26,15 +26,15 @@ public sealed class TestServiceCollectionContainerBuilderExtensions
     [TestMethod]
     public void Test_BuildServiceProvider_001() => Test(nameof(_Test_BuildServiceProvider_001));
     static void _Test_BuildServiceProvider_001(object? services) =>
-        ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(services);
+        PluginServiceCollection.BuildServiceProvider_(services);
 
     [TestMethod]
     public void Test_BuildServiceProvider_002() => Test(nameof(_Test_BuildServiceProvider_002));
     static void _Test_BuildServiceProvider_002(object? services) =>
-        ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(services, null);
+        PluginServiceCollection.BuildServiceProvider(services, null);
 
     [TestMethod]
     public void Test_BuildServiceProvider_003() => Test(nameof(_Test_BuildServiceProvider_003));
     static void _Test_BuildServiceProvider_003(object? services) =>
-        ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(services, false);
+        PluginServiceCollection.BuildServiceProvider(services, false);
 }

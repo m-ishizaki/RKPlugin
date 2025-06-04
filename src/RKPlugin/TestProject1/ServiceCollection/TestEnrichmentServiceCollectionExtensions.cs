@@ -15,20 +15,20 @@ public sealed class TestEnrichmentServiceCollectionExtensions
     [TestMethod]
     public void Test_AddLogEnricher_001() => Test(nameof(_Test_AddLogEnricher_001));
     static void _Test_AddLogEnricher_001(object? services) =>
-        EnrichmentServiceCollectionExtensions.AddLogEnricher<object>(services);
+        PluginServiceCollection.AddLogEnricher<object>(services);
 
     [TestMethod]
     public void Test_AddLogEnricher_002() => Test(nameof(_Test_AddLogEnricher_002));
     static void _Test_AddLogEnricher_002(object? services, object? enricher) =>
-        EnrichmentServiceCollectionExtensions.AddLogEnricher(services, enricher);
+        PluginServiceCollection.AddLogEnricher(services, enricher);
 
     [TestMethod]
     public void Test_AddStaticLogEnricher_001() => Test(nameof(_Test_AddStaticLogEnricher_001));
     static void _Test_AddStaticLogEnricher_001(object? services) =>
-        EnrichmentServiceCollectionExtensions.AddStaticLogEnricher<object>(services);
+        PluginServiceCollection.AddStaticLogEnricher<object>(services);
 
     [TestMethod]
     public void Test_AddStaticLogEnricher_002() => Test(nameof(_Test_AddStaticLogEnricher_002));
     static void _Test_AddStaticLogEnricher_002(object? services, object? enricher) =>
-        EnrichmentServiceCollectionExtensions.AddStaticLogEnricher(services, enricher);
+        PluginServiceCollection.AddStaticLogEnricher(services, enricher);
 }

@@ -27,19 +27,19 @@ public sealed class TestLatencyRegistryServiceCollectionExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_RegisterCheckpointNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_RegisterCheckpointNames_001(object? services, params string[] names) =>
-        LatencyRegistryServiceCollectionExtensions.RegisterCheckpointNames(services, names);
+        PluginServiceCollection.RegisterCheckpointNames(services, names);
 
     [TestMethod]
     public void Test_RegisterMeasureNames_001() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_RegisterMeasureNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_RegisterMeasureNames_001(object? services, params string[] names) =>
-        LatencyRegistryServiceCollectionExtensions.RegisterMeasureNames(services, names);
+        PluginServiceCollection.RegisterMeasureNames(services, names);
 
     [TestMethod]
     public void Test_RegisterTagNames_001() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_RegisterTagNames_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_RegisterTagNames_001(object? services, params string[] names) =>
-        LatencyRegistryServiceCollectionExtensions.RegisterTagNames(services, names);
+        PluginServiceCollection.RegisterTagNames(services, names);
 }

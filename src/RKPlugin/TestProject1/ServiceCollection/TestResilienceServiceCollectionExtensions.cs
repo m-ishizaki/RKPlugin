@@ -27,5 +27,5 @@ public sealed class TestResilienceServiceCollectionExtensions
     [TestMethod]
     public void Test_AddResilienceEnricher_001() => Test(nameof(_Test_AddResilienceEnricher_001));
     static void _Test_AddResilienceEnricher_001(object? services) =>
-        ResilienceServiceCollectionExtensions.AddResilienceEnricher(services);
+        PluginServiceCollection.AddResilienceEnricher(services);
 }

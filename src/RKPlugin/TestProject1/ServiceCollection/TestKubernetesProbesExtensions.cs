@@ -27,19 +27,19 @@ public sealed class TestKubernetesProbesExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddKubernetesProbes_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddKubernetesProbes_001(object? services) =>
-        KubernetesProbesExtensions.AddKubernetesProbes(services);
+        PluginServiceCollection.AddKubernetesProbes_(services);
 
     [TestMethod]
     public void Test_AddKubernetesProbes_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddKubernetesProbes_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddKubernetesProbes_002(object? services, object? section) =>
-        KubernetesProbesExtensions.AddKubernetesProbes(services, section);
+        PluginServiceCollection.AddKubernetesProbes(services, section);
 
     [TestMethod]
     public void Test_AddKubernetesProbes_003() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddKubernetesProbes_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddKubernetesProbes_003(object? services, Action<object?> configure) =>
-        KubernetesProbesExtensions.AddKubernetesProbes(services, configure);
+        PluginServiceCollection.AddKubernetesProbes(services, configure);
 }

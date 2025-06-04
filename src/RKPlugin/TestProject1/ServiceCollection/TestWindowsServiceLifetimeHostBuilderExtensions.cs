@@ -28,12 +28,12 @@ public sealed class TestWindowsServiceLifetimeHostBuilderExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddWindowsService_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
     static void _Test_AddWindowsService_001(object? services) =>
-        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services);
+        PluginServiceCollection.AddWindowsService(services);
 
     [TestMethod]
     public void Test_AddWindowsService_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddWindowsService_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddWindowsService_002(object? services, Action<object?> configure) =>
-        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services, configure);
+        PluginServiceCollection.AddWindowsService(services, configure);
 }

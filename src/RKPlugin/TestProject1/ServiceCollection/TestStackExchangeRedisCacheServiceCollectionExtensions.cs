@@ -27,12 +27,12 @@ public sealed class TestStackExchangeRedisCacheServiceCollectionExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddStackExchangeRedisCache_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddStackExchangeRedisCache_001(object? services, object? section) =>
-        StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(services, section);
+        PluginServiceCollection.AddStackExchangeRedisCache(services, section);
 
     [TestMethod]
     public void Test_AddStackExchangeRedisCache_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddStackExchangeRedisCache_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddStackExchangeRedisCache_002(object? services, Action<object?> configure) =>
-        StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache(services, configure);
+        PluginServiceCollection.AddStackExchangeRedisCache(services, configure);
 }

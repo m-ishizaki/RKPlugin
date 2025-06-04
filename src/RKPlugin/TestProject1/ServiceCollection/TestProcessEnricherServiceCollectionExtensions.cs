@@ -27,15 +27,15 @@ public sealed class TestProcessEnricherServiceCollectionExtensions
     [TestMethod]
     public void Test_AddProcessLogEnricher_001() => Test(nameof(_Test_AddProcessLogEnricher_001));
     static void _Test_AddProcessLogEnricher_001(object? services) =>
-        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services);
+        PluginServiceCollection.AddProcessLogEnricher_(services);
 
     [TestMethod]
     public void Test_AddProcessLogEnricher_002() => Test(nameof(_Test_AddProcessLogEnricher_002));
     static void _Test_AddProcessLogEnricher_002(object? services) =>
-        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services, (obj) => { });
+        PluginServiceCollection.AddProcessLogEnricher(services, (obj) => { });
 
     [TestMethod]
     public void Test_AddProcessLogEnricher_003() => Test(nameof(_Test_AddProcessLogEnricher_003));
     static void _Test_AddProcessLogEnricher_003(object? services) =>
-        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services, null);
+        PluginServiceCollection.AddProcessLogEnricher(services, null);
 }

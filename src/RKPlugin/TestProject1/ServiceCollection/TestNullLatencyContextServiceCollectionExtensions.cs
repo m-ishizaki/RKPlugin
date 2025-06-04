@@ -27,5 +27,5 @@ public sealed class TestNullLatencyContextServiceCollectionExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddNullLatencyContext_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddNullLatencyContext_001(object? services) =>
-        NullLatencyContextServiceCollectionExtensions.AddNullLatencyContext(services);
+        PluginServiceCollection.AddNullLatencyContext(services);
 }

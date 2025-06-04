@@ -27,10 +27,10 @@ public sealed class TestFakeRedactionServiceCollectionExtensions
     [TestMethod]
     public void Test_AddFakeRedaction_001() => Test(nameof(_Test_AddFakeRedaction_001));
     static void _Test_AddFakeRedaction_001(object? services) =>
-        FakeRedactionServiceCollectionExtensions.AddFakeRedaction(services);
+        PluginServiceCollection.AddFakeRedaction(services);
 
     [TestMethod]
     public void Test_AddFakeRedaction_002() => Test(nameof(_Test_AddFakeRedaction_002));
     static void _Test_AddFakeRedaction_002(object? services, Action<object?> configure) =>
-        FakeRedactionServiceCollectionExtensions.AddFakeRedaction(services, configure);
+        PluginServiceCollection.AddFakeRedaction(services, configure);
 }

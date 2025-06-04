@@ -27,19 +27,19 @@ public sealed class TestLatencyConsoleExtensions
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddConsoleLatencyDataExporter_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
     static void _Test_AddConsoleLatencyDataExporter_001(object? services) =>
-        LatencyConsoleExtensions.AddConsoleLatencyDataExporter(services);
+        PluginServiceCollection.AddConsoleLatencyDataExporter_(services);
 
     [TestMethod]
     public void Test_AddConsoleLatencyDataExporter_002() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddConsoleLatencyDataExporter_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddConsoleLatencyDataExporter_002(object? services, Action<object?> configure) =>
-        LatencyConsoleExtensions.AddConsoleLatencyDataExporter(services, configure);
+        PluginServiceCollection.AddConsoleLatencyDataExporter(services, configure);
 
     [TestMethod]
     public void Test_AddConsoleLatencyDataExporter_003() =>
         Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
             _Test_AddConsoleLatencyDataExporter_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
     static void _Test_AddConsoleLatencyDataExporter_003(object? services, object? section) =>
-        LatencyConsoleExtensions.AddConsoleLatencyDataExporter(services, section);
+        PluginServiceCollection.AddConsoleLatencyDataExporter(services, section);
 }
