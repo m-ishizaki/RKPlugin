@@ -11,30 +11,15 @@ public sealed class TestServiceCollectionHostedServiceExtensions
 {
     static Object _lock = new Object();
     void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-    void Test(List<string> args, Action act)
-    {
-        lock (_lock)
-        {
-            int count = args.Count;
-            act();
-            Assert.AreEqual(count + 1, args.Count);
-            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
-        }
-    }
-
     static List<string> Invoked = ServiceCollectionHostedServiceExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddHostedService_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddHostedService_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_AddHostedService_001<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(object? services) where THostedService : class =>
-        PluginServiceCollection.AddHostedService<THostedService>(services);
+    public void Test_AddHostedService_001() => Test(nameof(_Test_AddHostedService_001));
+    static void _Test_AddHostedService_001(object? services) =>
+        PluginServiceCollection.AddHostedService<object>(services);
 
     [TestMethod]
-    public void Test_AddHostedService_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddHostedService_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddHostedService_002<THostedService>(object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
-        PluginServiceCollection.AddHostedService<THostedService>(services, implementationFactory);
+    public void Test_AddHostedService_002() => Test(nameof(_Test_AddHostedService_002));
+    static void _Test_AddHostedService_002<THostedService>(object? services) =>
+        PluginServiceCollection.AddHostedService<object>(services, implementationFactory: _ => null);
 }

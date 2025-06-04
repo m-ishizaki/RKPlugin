@@ -20,6 +20,6 @@ public sealed class TestEncoderServiceCollectionExtensions
 
     [TestMethod]
     public void Test_AddWebEncoders_002() => Test(nameof(_Test_AddWebEncoders_002));
-    static void _Test_AddWebEncoders_002(object? services, Action<object?> setupAction) =>
-        PluginServiceCollection.AddWebEncoders(services, setupAction);
+    static void _Test_AddWebEncoders_002(object? services) =>
+        PluginServiceCollection.AddWebEncoders(services, setupAction: Test1.DummyAction);
 }
