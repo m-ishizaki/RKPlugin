@@ -1235,7 +1235,7 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     object? AddTcpEndpointProbe_(object? configurationSection) =>
         PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, configurationSection);
     public static object? AddTcpEndpointProbe(object? services, object? configurationSection) =>
-        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, configurationSection);
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe_(services, configurationSection);
 
     object? AddTcpEndpointProbe(string name, object? configurationSection) =>
         PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name, configurationSection);
