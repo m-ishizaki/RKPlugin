@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -18,16 +16,12 @@ public sealed class TestApplicationEnricherServiceCollectionExtensions
         PluginServiceCollection.AddServiceLogEnricher(services);
 
     [TestMethod]
-    public void Test_AddServiceLogEnricher_002() =>
-        Test(nameof(
-            _Test_AddServiceLogEnricher_002));
-    static void _Test_AddServiceLogEnricher_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddServiceLogEnricher(services, configure);
+    public void Test_AddServiceLogEnricher_002() => Test(nameof(_Test_AddServiceLogEnricher_002));
+    static void _Test_AddServiceLogEnricher_002(object? services) =>
+        PluginServiceCollection.AddServiceLogEnricher(services, configure: Test1.DummyAction);
 
     [TestMethod]
-    public void Test_AddServiceLogEnricher_003() =>
-        Test(nameof(
-            _Test_AddServiceLogEnricher_003));
-    static void _Test_AddServiceLogEnricher_003(object? services, object? section) =>
-        PluginServiceCollection.AddServiceLogEnricher_(services, section);
+    public void Test_AddServiceLogEnricher_003() => Test(nameof(_Test_AddServiceLogEnricher_003));
+    static void _Test_AddServiceLogEnricher_003(object? services) =>
+        PluginServiceCollection.AddServiceLogEnricher_(services, section: null);
 }

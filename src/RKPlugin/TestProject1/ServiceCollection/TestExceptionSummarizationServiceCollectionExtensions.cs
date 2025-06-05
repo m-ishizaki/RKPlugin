@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -20,5 +18,5 @@ public sealed class TestExceptionSummarizationServiceCollectionExtensions
     [TestMethod]
     public void Test_AddExceptionSummarizer_002() => Test(nameof(_Test_AddExceptionSummarizer_002));
     static void _Test_AddExceptionSummarizer_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddExceptionSummarizer(services, configure);
+        PluginServiceCollection.AddExceptionSummarizer(services, configure: Test1.DummyAction);
 }

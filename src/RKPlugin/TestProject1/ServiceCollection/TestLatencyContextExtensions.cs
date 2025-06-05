@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -23,13 +21,13 @@ public sealed class TestLatencyContextExtensions
     public void Test_AddLatencyContext_002() =>
         Test(nameof(
             _Test_AddLatencyContext_002));
-    static void _Test_AddLatencyContext_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddLatencyContext(services, configure);
+    static void _Test_AddLatencyContext_002(object? services) =>
+        PluginServiceCollection.AddLatencyContext(services, configure: Test1.DummyAction);
 
     [TestMethod]
     public void Test_AddLatencyContext_003() =>
         Test(nameof(
             _Test_AddLatencyContext_003));
-    static void _Test_AddLatencyContext_003(object? services, object? section) =>
-        PluginServiceCollection.AddLatencyContext(services, section);
+    static void _Test_AddLatencyContext_003(object? services) =>
+        PluginServiceCollection.AddLatencyContext(services, section: null);
 }

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -16,8 +14,8 @@ public sealed class TestHttpDiagnosticsServiceCollectionExtensions
     public void Test_AddDownstreamDependencyMetadata_001() =>
         Test(nameof(
             _Test_AddDownstreamDependencyMetadata_001));
-    static void _Test_AddDownstreamDependencyMetadata_001(object? services, object? downstreamDependencyMetadata) =>
-        PluginServiceCollection.AddDownstreamDependencyMetadata(services, downstreamDependencyMetadata);
+    static void _Test_AddDownstreamDependencyMetadata_001(object? services) =>
+        PluginServiceCollection.AddDownstreamDependencyMetadata(services, downstreamDependencyMetadata: null);
 
     [TestMethod]
     public void Test_AddDownstreamDependencyMetadata_002() =>

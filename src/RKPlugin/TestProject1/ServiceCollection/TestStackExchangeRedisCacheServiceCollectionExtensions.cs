@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -13,16 +11,12 @@ public sealed class TestStackExchangeRedisCacheServiceCollectionExtensions
     static List<string> Invoked = StackExchangeRedisCacheServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddStackExchangeRedisCache_001() =>
-        Test(nameof(
-            _Test_AddStackExchangeRedisCache_001));
-    static void _Test_AddStackExchangeRedisCache_001(object? services, object? section) =>
-        PluginServiceCollection.AddStackExchangeRedisCache(services, section);
+    public void Test_AddStackExchangeRedisCache_001() => Test(nameof(_Test_AddStackExchangeRedisCache_001));
+    static void _Test_AddStackExchangeRedisCache_001(object? services) =>
+        PluginServiceCollection.AddStackExchangeRedisCache(services, section: null);
 
     [TestMethod]
-    public void Test_AddStackExchangeRedisCache_002() =>
-        Test(nameof(
-            _Test_AddStackExchangeRedisCache_002));
-    static void _Test_AddStackExchangeRedisCache_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddStackExchangeRedisCache(services, configure);
+    public void Test_AddStackExchangeRedisCache_002() => Test(nameof(_Test_AddStackExchangeRedisCache_002));
+    static void _Test_AddStackExchangeRedisCache_002(object? services) =>
+        PluginServiceCollection.AddStackExchangeRedisCache(services, configure: Test1.DummyAction);
 }

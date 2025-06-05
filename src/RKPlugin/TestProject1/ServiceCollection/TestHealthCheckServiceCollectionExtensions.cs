@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -13,9 +11,7 @@ public sealed class TestHealthCheckServiceCollectionExtensions
     static List<string> Invoked = HealthCheckServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddHealthChecks_001() =>
-        Test(nameof(
-            _Test_AddHealthChecks_001));
+    public void Test_AddHealthChecks_001() => Test(nameof(_Test_AddHealthChecks_001));
     static void _Test_AddHealthChecks_001(object? services) =>
         PluginServiceCollection.AddHealthChecks(services);
 }

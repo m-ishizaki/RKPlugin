@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -20,5 +18,5 @@ public sealed class TestResourceMonitoringServiceCollectionExtensions
     [TestMethod]
     public void Test_AddResourceMonitoring_002() => Test(nameof(_Test_AddResourceMonitoring_002));
     static void _Test_AddResourceMonitoring_002(object? services) =>
-        PluginServiceCollection.AddResourceMonitoring(services, (obj) => { });
+        PluginServiceCollection.AddResourceMonitoring(services, Test1.DummyAction);
 }

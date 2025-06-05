@@ -21,5 +21,5 @@ public sealed class TestServiceCollectionHostedServiceExtensions
     [TestMethod]
     public void Test_AddHostedService_002() => Test(nameof(_Test_AddHostedService_002));
     static void _Test_AddHostedService_002<THostedService>(object? services) =>
-        PluginServiceCollection.AddHostedService<object>(services, implementationFactory: _ => null);
+        PluginServiceCollection.AddHostedService<object>(services, implementationFactory: Test1.DummyFunc);
 }

@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -23,13 +21,13 @@ public sealed class TestKubernetesProbesExtensions
     public void Test_AddKubernetesProbes_002() =>
         Test(nameof(
             _Test_AddKubernetesProbes_002));
-    static void _Test_AddKubernetesProbes_002(object? services, object? section) =>
-        PluginServiceCollection.AddKubernetesProbes(services, section);
+    static void _Test_AddKubernetesProbes_002(object? services) =>
+        PluginServiceCollection.AddKubernetesProbes(services, section: null);
 
     [TestMethod]
     public void Test_AddKubernetesProbes_003() =>
         Test(nameof(
             _Test_AddKubernetesProbes_003));
-    static void _Test_AddKubernetesProbes_003(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddKubernetesProbes(services, configure);
+    static void _Test_AddKubernetesProbes_003(object? services) =>
+        PluginServiceCollection.AddKubernetesProbes(services, configure: Test1.DummyAction);
 }

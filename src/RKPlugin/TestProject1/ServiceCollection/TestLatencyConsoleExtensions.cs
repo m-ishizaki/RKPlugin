@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -23,13 +21,13 @@ public sealed class TestLatencyConsoleExtensions
     public void Test_AddConsoleLatencyDataExporter_002() =>
         Test(nameof(
             _Test_AddConsoleLatencyDataExporter_002));
-    static void _Test_AddConsoleLatencyDataExporter_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddConsoleLatencyDataExporter(services, configure);
+    static void _Test_AddConsoleLatencyDataExporter_002(object? services) =>
+        PluginServiceCollection.AddConsoleLatencyDataExporter(services, configure: Test1.DummyAction);
 
     [TestMethod]
     public void Test_AddConsoleLatencyDataExporter_003() =>
         Test(nameof(
             _Test_AddConsoleLatencyDataExporter_003));
-    static void _Test_AddConsoleLatencyDataExporter_003(object? services, object? section) =>
-        PluginServiceCollection.AddConsoleLatencyDataExporter(services, section);
+    static void _Test_AddConsoleLatencyDataExporter_003(object? services) =>
+        PluginServiceCollection.AddConsoleLatencyDataExporter(services, section: null);
 }

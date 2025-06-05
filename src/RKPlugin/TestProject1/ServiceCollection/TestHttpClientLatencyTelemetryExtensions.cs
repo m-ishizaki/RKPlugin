@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -23,13 +21,13 @@ public sealed class TestHttpClientLatencyTelemetryExtensions
     public void Test_AddHttpClientLatencyTelemetry_002() =>
         Test(nameof(
             _Test_AddHttpClientLatencyTelemetry_002));
-    static void _Test_AddHttpClientLatencyTelemetry_002(object? services, object? section) =>
-        PluginServiceCollection.AddHttpClientLatencyTelemetry(services, section);
+    static void _Test_AddHttpClientLatencyTelemetry_002(object? services) =>
+        PluginServiceCollection.AddHttpClientLatencyTelemetry(services, section: null);
 
     [TestMethod]
     public void Test_AddHttpClientLatencyTelemetry_003() =>
         Test(nameof(
             _Test_AddHttpClientLatencyTelemetry_003));
-    static void _Test_AddHttpClientLatencyTelemetry_003(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddHttpClientLatencyTelemetry(services, configure);
+    static void _Test_AddHttpClientLatencyTelemetry_003(object? services) =>
+        PluginServiceCollection.AddHttpClientLatencyTelemetry(services, configure: Test1.DummyAction);
 }

@@ -20,7 +20,7 @@ public sealed class TestProcessEnricherServiceCollectionExtensions
     [TestMethod]
     public void Test_AddProcessLogEnricher_002() => Test(nameof(_Test_AddProcessLogEnricher_002));
     static void _Test_AddProcessLogEnricher_002(object? services) =>
-        PluginServiceCollection.AddProcessLogEnricher(services, (obj) => { });
+        PluginServiceCollection.AddProcessLogEnricher(services, Test1.DummyAction);
 
     [TestMethod]
     public void Test_AddProcessLogEnricher_003() => Test(nameof(_Test_AddProcessLogEnricher_003));

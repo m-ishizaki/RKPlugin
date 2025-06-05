@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -13,30 +11,22 @@ public sealed class TestObjectPoolServiceCollectionExtensions
     static List<string> Invoked = ObjectPoolServiceCollectionExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddPooled_001() =>
-        Test(nameof(
-            _Test_AddPooled_001));
-    static void _Test_AddPooled_001(object? services, Action<object?>? configure = null) =>
-        PluginServiceCollection.AddPooled<object>(services, configure);
+    public void Test_AddPooled_001() => Test(nameof(_Test_AddPooled_001));
+    static void _Test_AddPooled_001(object? services) =>
+        PluginServiceCollection.AddPooled<object>(services, configure: null);
 
     [TestMethod]
-    public void Test_AddPooled_002() =>
-        Test(nameof(
-            _Test_AddPooled_002));
-    static void _Test_AddPooled_002(object? services, Action<object?>? configure = null) =>
-        PluginServiceCollection.AddPooled<object, object>(services, configure);
+    public void Test_AddPooled_002() => Test(nameof(_Test_AddPooled_002));
+    static void _Test_AddPooled_002(object? services) =>
+        PluginServiceCollection.AddPooled<object, object>(services, configure: null);
 
     [TestMethod]
-    public void Test_ConfigurePool_001() =>
-        Test(nameof(
-            _Test_ConfigurePool_001));
-    static void _Test_ConfigurePool_001(object? services, Action<object?> configure) =>
-        PluginServiceCollection.ConfigurePool<object>(services, configure);
+    public void Test_ConfigurePool_001() => Test(nameof(_Test_ConfigurePool_001));
+    static void _Test_ConfigurePool_001(object? services) =>
+        PluginServiceCollection.ConfigurePool<object>(services, configure: null);
 
     [TestMethod]
-    public void Test_ConfigurePools_001() =>
-        Test(nameof(
-            _Test_ConfigurePools_001));
-    static void _Test_ConfigurePools_001(object? services, object? section) =>
-        PluginServiceCollection.ConfigurePools(services, section);
+    public void Test_ConfigurePools_001() => Test(nameof(_Test_ConfigurePools_001));
+    static void _Test_ConfigurePools_001(object? services) =>
+        PluginServiceCollection.ConfigurePools(services, section: null);
 }

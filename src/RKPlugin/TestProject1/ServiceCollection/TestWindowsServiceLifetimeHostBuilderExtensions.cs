@@ -20,6 +20,6 @@ public sealed class TestWindowsServiceLifetimeHostBuilderExtensions
 
     [TestMethod]
     public void Test_AddWindowsService_002() => Test(nameof(_Test_AddWindowsService_002));
-    static void _Test_AddWindowsService_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddWindowsService(services, configure);
+    static void _Test_AddWindowsService_002(object? services) =>
+        PluginServiceCollection.AddWindowsService(services, configure: Test1.DummyAction);
 }

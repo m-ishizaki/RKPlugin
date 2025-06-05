@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -23,7 +21,7 @@ public sealed class TestLoggingServiceCollectionExtensions
     public void Test_AddLogging_002() =>
         Test(nameof(
             _Test_AddLogging_002));
-    static void _Test_AddLogging_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddLogging(services, configure);
+    static void _Test_AddLogging_002(object? services) =>
+        PluginServiceCollection.AddLogging(services, configure: Test1.DummyAction);
 
 }

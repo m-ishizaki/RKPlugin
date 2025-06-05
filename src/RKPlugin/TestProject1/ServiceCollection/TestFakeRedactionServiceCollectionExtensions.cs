@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -19,6 +17,6 @@ public sealed class TestFakeRedactionServiceCollectionExtensions
 
     [TestMethod]
     public void Test_AddFakeRedaction_002() => Test(nameof(_Test_AddFakeRedaction_002));
-    static void _Test_AddFakeRedaction_002(object? services, Action<object?> configure) =>
-        PluginServiceCollection.AddFakeRedaction(services, configure);
+    static void _Test_AddFakeRedaction_002(object? services) =>
+        PluginServiceCollection.AddFakeRedaction(services, configure:Test1.DummyAction);
 }

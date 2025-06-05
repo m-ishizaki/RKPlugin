@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -16,20 +14,20 @@ public sealed class TestLatencyRegistryServiceCollectionExtensions
     public void Test_RegisterCheckpointNames_001() =>
         Test(nameof(
             _Test_RegisterCheckpointNames_001));
-    static void _Test_RegisterCheckpointNames_001(object? services, params string[] names) =>
-        PluginServiceCollection.RegisterCheckpointNames(services, names);
+    static void _Test_RegisterCheckpointNames_001(object? services) =>
+        PluginServiceCollection.RegisterCheckpointNames(services, names: null);
 
     [TestMethod]
     public void Test_RegisterMeasureNames_001() =>
         Test(nameof(
             _Test_RegisterMeasureNames_001));
-    static void _Test_RegisterMeasureNames_001(object? services, params string[] names) =>
-        PluginServiceCollection.RegisterMeasureNames(services, names);
+    static void _Test_RegisterMeasureNames_001(object? services) =>
+        PluginServiceCollection.RegisterMeasureNames(services, names: null);
 
     [TestMethod]
     public void Test_RegisterTagNames_001() =>
         Test(nameof(
             _Test_RegisterTagNames_001));
-    static void _Test_RegisterTagNames_001(object? services, params string[] names) =>
-        PluginServiceCollection.RegisterTagNames(services, names);
+    static void _Test_RegisterTagNames_001(object? services) =>
+        PluginServiceCollection.RegisterTagNames(services, names: null);
 }

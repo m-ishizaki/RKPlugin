@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -23,6 +21,6 @@ public sealed class TestLocalizationServiceCollectionExtensions
     public void Test_AddLocalization_002() =>
         Test(nameof(
             _Test_AddLocalization_002));
-    static void _Test_AddLocalization_002(object? services, Action<object?> setupAction) =>
-        PluginServiceCollection.AddLocalization(services, setupAction);
+    static void _Test_AddLocalization_002(object? services) =>
+        PluginServiceCollection.AddLocalization(services, setupAction: Test1.DummyAction);
 }
