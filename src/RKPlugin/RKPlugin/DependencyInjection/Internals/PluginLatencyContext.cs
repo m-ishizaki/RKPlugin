@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
+﻿namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginLatencyContext
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.LatencyContextExtensions,Microsoft.Extensions.Latency";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.LatencyContextExtensions,Microsoft.Extensions.Telemetry";
 
     public static object? AddLatencyContext(this object? services)
     {

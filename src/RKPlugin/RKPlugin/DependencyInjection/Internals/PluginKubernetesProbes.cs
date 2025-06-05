@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginKubernetesProbes
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.KubernetesProbesExtensions,Microsoft.Extensions.Diagnostics.HealthChecks.Kubernetes";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.KubernetesProbesExtensions,Microsoft.Extensions.Diagnostics.Probes";
 
     public static object? AddKubernetesProbes(this object? services)
     {

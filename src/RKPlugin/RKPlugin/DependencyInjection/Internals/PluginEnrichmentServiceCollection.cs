@@ -6,7 +6,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginEnrichmentServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.EnrichmentServiceCollectionExtensions,Microsoft.Extensions.Telemetry.Enrichment";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.EnrichmentServiceCollectionExtensions,Microsoft.Extensions.Telemetry.Abstractions";
 
     public static object? AddLogEnricher<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T>(this object? services) 
         where T : class
