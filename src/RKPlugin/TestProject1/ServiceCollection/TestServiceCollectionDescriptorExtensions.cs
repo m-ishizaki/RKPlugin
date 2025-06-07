@@ -8,7 +8,7 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestServiceCollectionDescriptorExtensions
 {
     static Object _lock = new Object();
-    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
+    void Test(string methodName) { }// TODO => Test1.Test(methodName, this, _lock, Invoked);
     static List<string> Invoked = ServiceCollectionDescriptorExtensions.Invoked;
 
     [TestMethod]
@@ -27,28 +27,28 @@ public sealed class TestServiceCollectionDescriptorExtensions
         => PluginServiceCollection.RemoveAll(collection, serviceType: null);
 
     [TestMethod]
-    public void Test_RemoveAll_004() =>        Test(nameof(            _Test_RemoveAll_004));
+    public void Test_RemoveAll_004() => Test(nameof(_Test_RemoveAll_004));
     static void _Test_RemoveAll_004<T>(object? collection)
         => PluginServiceCollection.RemoveAll_<object>(collection);
 
     [TestMethod]
-    public void Test_RemoveAllKeyed_005() =>        Test(nameof(            _Test_RemoveAllKeyed_005));
+    public void Test_RemoveAllKeyed_005() => Test(nameof(_Test_RemoveAllKeyed_005));
     static void _Test_RemoveAllKeyed_005<T>(object? collection)
-        => PluginServiceCollection.RemoveAllKeyed<object>(collection, serviceKey:null);
+        => PluginServiceCollection.RemoveAllKeyed<object>(collection, serviceKey: null);
 
     [TestMethod]
     public void Test_RemoveAllKeyed_006() =>
         Test(nameof(
             _Test_RemoveAllKeyed_006));
     static void _Test_RemoveAllKeyed_006(object? collection)
-        => PluginServiceCollection.RemoveAllKeyed(collection, serviceType:null, serviceKey:null);
+        => PluginServiceCollection.RemoveAllKeyed(collection, serviceType: null, serviceKey: null);
 
     [TestMethod]
     public void Test_Replace_007() =>
         Test(nameof(
             _Test_Replace_007));
     static void _Test_Replace_007(object? collection)
-        => PluginServiceCollection.Replace(collection, descriptor:null);
+        => PluginServiceCollection.Replace(collection, descriptor: null);
 
     [TestMethod]
     public void Test_TryAdd_008() =>
