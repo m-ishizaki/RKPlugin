@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginEncoderServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.WebEncoders.EncoderServiceCollectionExtensions,Microsoft.Extensions.WebEncoders";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.EncoderServiceCollectionExtensions,Microsoft.Extensions.WebEncoders";
 
     public static object? AddWebEncoders(this object? services)
     {

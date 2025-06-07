@@ -60,15 +60,15 @@ internal static class PluginTcpEndpointProbesCaller
         return method?.Invoke(services, [name, configure]);
     }
 
-    public static object? AddTcpEndpointProbe(this object? services, object? configurationSection)
+    public static object? AddTcpEndpointProbe_(this object? services, object? configurationSection)
     {
         var type = services!.GetType();
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Where(x =>
-            x.Name == nameof(AddTcpEndpointProbe)
+            x.Name == nameof(AddTcpEndpointProbe_)
             && x.GetGenericArguments().Length == 0
             && x.GetParameters().Length == 1
-            && x.GetParameters()[0].ParameterType != typeof(string)
-            && !x.GetParameters()[0].ParameterType.IsGenericType
+        && x.GetParameters()[0].ParameterType != typeof(string)
+        && !x.GetParameters()[0].ParameterType.IsGenericType
         ).FirstOrDefault();
         var method = methodInfo;
         return method?.Invoke(services, [configurationSection]);

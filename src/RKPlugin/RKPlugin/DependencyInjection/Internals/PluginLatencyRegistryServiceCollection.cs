@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginLatencyRegistryServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.LatencyRegistryServiceCollectionExtensions,Microsoft.Extensions.Latency";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.LatencyRegistryServiceCollectionExtensions,Microsoft.Extensions.Telemetry.Abstractions";
 
     public static object? RegisterCheckpointNames(this object? services, params string[] names)
     {

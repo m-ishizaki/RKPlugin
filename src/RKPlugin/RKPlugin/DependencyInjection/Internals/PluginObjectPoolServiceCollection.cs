@@ -6,7 +6,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginObjectPoolServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ObjectPoolServiceCollectionExtensions,Microsoft.Extensions.ObjectPool";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ObjectPoolServiceCollectionExtensions,Microsoft.Extensions.ObjectPool.DependencyInjection";
 
     public static object? AddPooled<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(this object? services, Action<object?>? configure = null) where TService : class
     {

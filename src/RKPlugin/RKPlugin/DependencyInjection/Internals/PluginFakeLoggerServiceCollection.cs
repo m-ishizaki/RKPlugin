@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginFakeLoggerServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.FakeLoggerServiceCollectionExtensions,Microsoft.Extensions.Logging.Fake";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.FakeLoggerServiceCollectionExtensions,Microsoft.Extensions.Diagnostics.Testing";
 
     public static object? AddFakeLogging(this object? services, object? section)
     {

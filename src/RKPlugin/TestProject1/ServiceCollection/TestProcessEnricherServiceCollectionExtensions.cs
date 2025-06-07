@@ -10,32 +10,20 @@ public sealed class TestProcessEnricherServiceCollectionExtensions
 {
     static Object _lock = new Object();
     void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
-    void Test(List<string> args, Action act)
-    {
-        lock (_lock)
-        {
-            int count = args.Count;
-            act();
-            Assert.AreEqual(count + 1, args.Count);
-            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
-        }
-    }
-
     static List<string> Invoked = ProcessEnricherServiceCollectionExtensions.Invoked;
 
     [TestMethod]
     public void Test_AddProcessLogEnricher_001() => Test(nameof(_Test_AddProcessLogEnricher_001));
     static void _Test_AddProcessLogEnricher_001(object? services) =>
-        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services);
+        PluginServiceCollection.AddProcessLogEnricher_(services);
 
     [TestMethod]
     public void Test_AddProcessLogEnricher_002() => Test(nameof(_Test_AddProcessLogEnricher_002));
     static void _Test_AddProcessLogEnricher_002(object? services) =>
-        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services, (obj) => { });
+        PluginServiceCollection.AddProcessLogEnricher(services, Test1.DummyAction);
 
     [TestMethod]
     public void Test_AddProcessLogEnricher_003() => Test(nameof(_Test_AddProcessLogEnricher_003));
     static void _Test_AddProcessLogEnricher_003(object? services) =>
-        ProcessEnricherServiceCollectionExtensions.AddProcessLogEnricher(services, null);
+        PluginServiceCollection.AddProcessLogEnricher(services, section: null);
 }

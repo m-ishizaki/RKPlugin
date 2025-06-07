@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginExceptionSummarizationServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ExceptionSummarizationServiceCollectionExtensions,Microsoft.Extensions.ExceptionSummarization";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ExceptionSummarizationServiceCollectionExtensions,Microsoft.Extensions.Diagnostics.ExceptionSummarization";
 
     public static object? AddExceptionSummarizer(this object? services)
     {

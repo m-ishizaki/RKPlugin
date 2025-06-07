@@ -10,30 +10,16 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestWindowsServiceLifetimeHostBuilderExtensions
 {
     static Object _lock = new Object();
-    void Test(List<string> args, Action act)
-    {
-        lock (_lock)
-        {
-            int count = args.Count;
-            act();
-            Assert.AreEqual(count + 1, args.Count);
-            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
-        }
-    }
-
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
     static List<string> Invoked = WindowsServiceLifetimeHostBuilderExtensions.Invoked;
 
     [TestMethod]
-    public void Test_AddWindowsService_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddWindowsService_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, []));
+    public void Test_AddWindowsService_001() => Test(nameof(_Test_AddWindowsService_001));
     static void _Test_AddWindowsService_001(object? services) =>
-        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services);
+        PluginServiceCollection.AddWindowsService(services);
 
     [TestMethod]
-    public void Test_AddWindowsService_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_AddWindowsService_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_AddWindowsService_002(object? services, Action<object?> configure) =>
-        WindowsServiceLifetimeHostBuilderExtensions.AddWindowsService(services, configure);
+    public void Test_AddWindowsService_002() => Test(nameof(_Test_AddWindowsService_002));
+    static void _Test_AddWindowsService_002(object? services) =>
+        PluginServiceCollection.AddWindowsService(services, configure: Test1.DummyAction);
 }

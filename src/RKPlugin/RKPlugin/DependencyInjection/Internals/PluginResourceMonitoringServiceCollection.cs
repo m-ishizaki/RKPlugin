@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginResourceMonitoringServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ResourceMonitoringServiceCollectionExtensions,Microsoft.Extensions.ResourceMonitoring";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ResourceMonitoringServiceCollectionExtensions,Microsoft.Extensions.Diagnostics.ResourceMonitoring";
 
     public static object? AddResourceMonitoring(this object? services)
     {

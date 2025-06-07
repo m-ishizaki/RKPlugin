@@ -1,9 +1,4 @@
-﻿#nullable enable
-
-using System;
-using System.Collections.Generic;
-
-namespace Microsoft.Extensions.DependencyInjection;
+﻿namespace Microsoft.Extensions.DependencyInjection;
 
     public static class ServiceCollectionContainerBuilderExtensions
     {

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.AmbientMetadata.Application;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
 using System;
@@ -41,6 +40,8 @@ public sealed class Test1
     }
 
     public static void DummyAction(object? onj) { }
+    public static object? DummyFunc(object? onj) => null;
+    public static IEnumerable<object> Enumerable = null;
 
     [TestMethod]
     public void TestMethod001() => Test(HttpClientFactoryServiceCollectionExtensions.Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(

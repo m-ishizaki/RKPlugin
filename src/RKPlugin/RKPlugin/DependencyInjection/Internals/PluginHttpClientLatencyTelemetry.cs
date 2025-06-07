@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginHttpClientLatencyTelemetry
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientLatencyTelemetryExtensions,Microsoft.Extensions.Http.Latency";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientLatencyTelemetryExtensions,Microsoft.Extensions.Http.Diagnostics";
 
     public static object? AddHttpClientLatencyTelemetry(this object? services)
     {

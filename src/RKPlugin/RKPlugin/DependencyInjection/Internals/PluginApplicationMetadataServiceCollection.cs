@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginApplicationMetadataServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.AmbientMetadata.Application.ApplicationMetadataServiceCollectionExtensions,Microsoft.Extensions.ApplicationMetadata";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ApplicationMetadataServiceCollectionExtensions,Microsoft.Extensions.AmbientMetadata.Application";
 
     public static object? AddApplicationMetadata(this object? services, object? section)
     {

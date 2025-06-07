@@ -86,7 +86,7 @@ public class PluginServiceCollection
     public static object? AddActivatedSingleton<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginAutoActivationCaller.AddActivatedSingleton<TService>(services, implementationFactory);
 
-    object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class =>
+    object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
         PluginAutoActivation.AddActivatedSingleton<TService>(Services);
     public static object? AddActivatedSingleton_<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class =>
         PluginAutoActivationCaller.AddActivatedSingleton<TService>(services);
@@ -121,7 +121,7 @@ public class PluginServiceCollection
     public static void TryAddActivatedSingleton(object? services, Type serviceType, Func<IServiceProvider, object> implementationFactory) =>
         PluginAutoActivationCaller.TryAddActivatedSingleton(services, serviceType, implementationFactory);
 
-    void TryAddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class =>
+    void TryAddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
             PluginAutoActivation.TryAddActivatedSingleton<TService>(Services);
     public static void TryAddActivatedSingleton_<TService>(object? services) where TService : class =>
         PluginAutoActivationCaller.TryAddActivatedSingleton<TService>(services);
@@ -929,24 +929,24 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
 
     #region OptionsConfigurationServiceCollectionExtensions
 
-    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config) where TOptions : class =>
+    object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config) where TOptions : class =>
         PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, config);
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config) where TOptions : class =>
+    public static object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config) where TOptions : class =>
         PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, config);
 
-    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config) where TOptions : class =>
+    object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config) where TOptions : class =>
         PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, name, config);
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config) where TOptions : class =>
+    public static object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config) where TOptions : class =>
         PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, name, config);
 
-    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config, Action<object?>? configureBinder) where TOptions : class =>
+    object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? config, Action<object?>? configureBinder) where TOptions : class =>
         PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, config, configureBinder);
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config, Action<object?>? configureBinder) where TOptions : class =>
+    public static object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, object? config, Action<object?>? configureBinder) where TOptions : class =>
         PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, config, configureBinder);
 
-    object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
+    object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
         PluginOptionsConfigurationServiceCollection.Configure<TOptions>(Services, name, config, configureBinder);
-    public static object? Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
+    public static object? OptionsConfigurationServiceCollection_Configure<[DynamicallyAccessedMembers((DynamicallyAccessedMemberTypes)(-1))] TOptions>(object? services, string? name, object? config, Action<object?>? configureBinder) where TOptions : class =>
         PluginOptionsConfigurationServiceCollectionCaller.Configure<TOptions>(services, name, config, configureBinder);
 
     #endregion OptionsConfigurationServiceCollectionExtensions
@@ -1105,12 +1105,12 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>() where THostedService : class =>
         PluginServiceCollectionHostedService.AddHostedService<THostedService>(Services);
     public static object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(object? services) where THostedService : class =>
-        PluginServiceCollectionHostedServiceCaller.AddHostedService(services);
+        PluginServiceCollectionHostedServiceCaller.AddHostedService<THostedService>(services);
 
     object? AddHostedService<THostedService>(Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
         PluginServiceCollectionHostedService.AddHostedService<THostedService>(Services, implementationFactory);
     public static object? AddHostedService<THostedService>(object? services, Func<IServiceProvider, THostedService> implementationFactory) where THostedService : class =>
-        PluginServiceCollectionHostedServiceCaller.AddHostedService(services, implementationFactory);
+        PluginServiceCollectionHostedServiceCaller.AddHostedService<THostedService>(services, implementationFactory);
 
     #endregion ServiceCollectionHostedServiceExtensions
 
@@ -1235,7 +1235,7 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     object? AddTcpEndpointProbe_(object? configurationSection) =>
         PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, configurationSection);
     public static object? AddTcpEndpointProbe(object? services, object? configurationSection) =>
-        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe(services, configurationSection);
+        PluginTcpEndpointProbesCaller.AddTcpEndpointProbe_(services, configurationSection);
 
     object? AddTcpEndpointProbe(string name, object? configurationSection) =>
         PluginTcpEndpointProbes.AddTcpEndpointProbe(Services, name, configurationSection);

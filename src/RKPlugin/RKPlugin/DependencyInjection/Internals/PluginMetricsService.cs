@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginMetricsService
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.MetricsServiceExtensions,Microsoft.Extensions.Metrics";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.MetricsServiceExtensions,Microsoft.Extensions.Diagnostics";
 
     public static object? AddMetrics(this object? services)
     {

@@ -1,11 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using System.Xml.Linq;
 
 namespace TestProject1.ServiceCollection;
 
@@ -14,19 +8,7 @@ public sealed class TestContextualOptionsServiceCollectionExtensions
 {
     static Object _lock = new Object();
     void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
     static List<string> Invoked = ContextualOptionsServiceCollectionExtensions.Invoked;
-
-    void Test(List<string> args, Action act)
-    {
-        lock (_lock)
-        {
-            int count = args.Count;
-            act();
-            Assert.AreEqual(count + 1, args.Count);
-            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
-        }
-    }
 
     [TestMethod]
     public void Test_AddContextualOptions_001() => Test(nameof(_Test_AddContextualOptions_001));
@@ -34,44 +16,32 @@ public sealed class TestContextualOptionsServiceCollectionExtensions
         PluginServiceCollection.AddContextualOptions(services);
 
     [TestMethod]
-    public void Test_Configure_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_Configure_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_Configure_001(object? services, Func<object?, object?, object?> loadOptions) =>
-        PluginServiceCollection.Configure<Object>(services, loadOptions);
+    public void Test_Configure_001() => Test(nameof(_Test_Configure_001));
+    static void _Test_Configure_001(object? services) =>
+        PluginServiceCollection.Configure<Object>(services, loadOptions: null);
 
     [TestMethod]
-    public void Test_Configure_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_Configure_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_Configure_002(object? services, string? name, Func<object?, object?, object?> loadOptions) =>
-        PluginServiceCollection.Configure<Object>(services, name, loadOptions);
+    public void Test_Configure_002() => Test(nameof(_Test_Configure_002));
+    static void _Test_Configure_002(object? services) =>
+        PluginServiceCollection.Configure<Object>(services, name: null, loadOptions: null);
 
     [TestMethod]
-    public void Test_Configure_003() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_Configure_003), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_Configure_003(object? services, Action<object?, Object> configure) =>
-        PluginServiceCollection.Configure<Object>(services, configure);
+    public void Test_Configure_003() => Test(nameof(_Test_Configure_003));
+    static void _Test_Configure_003(object? services) =>
+        PluginServiceCollection.Configure<Object>(services, configure: null);
 
     [TestMethod]
-    public void Test_Configure_004() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_Configure_004), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null, null]));
-    static void _Test_Configure_004(object? services, string? name, Action<object?, Object> configure) =>
-        PluginServiceCollection.Configure<Object>(services, name, configure);
+    public void Test_Configure_004() => Test(nameof(_Test_Configure_004));
+    static void _Test_Configure_004(object? services) =>
+        PluginServiceCollection.Configure<Object>(services, name: null, configure: null);
 
     [TestMethod]
-    public void Test_ConfigureAll_001() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_ConfigureAll_001), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_ConfigureAll_001(object? services, Func<object?, object?, object?> loadOptions) =>
-        PluginServiceCollection.ConfigureAll<Object>(services, loadOptions);
+    public void Test_ConfigureAll_001() => Test(nameof(_Test_ConfigureAll_001));
+    static void _Test_ConfigureAll_001(object? services) =>
+        PluginServiceCollection.ConfigureAll<Object>(services, loadOptions: null);
 
     [TestMethod]
-    public void Test_ConfigureAll_002() =>
-        Test(Invoked, () => PluginLoadContext.Invoke(new object(), this.GetType().GetMethod(nameof(
-            _Test_ConfigureAll_002), BindingFlags.NonPublic | BindingFlags.Static)!, null, [null]));
-    static void _Test_ConfigureAll_002(object? services, Action<object?, Object> configure) =>
-        PluginServiceCollection.ConfigureAll<Object>(services, configure);
+    public void Test_ConfigureAll_002() => Test(nameof(_Test_ConfigureAll_002));
+    static void _Test_ConfigureAll_002(object? services) =>
+        PluginServiceCollection.ConfigureAll<Object>(services, configure: null);
 }

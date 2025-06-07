@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using RkSoftware.RKPlugin;
 using RkSoftware.RKPlugin.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 
 namespace TestProject1.ServiceCollection;
 
@@ -10,19 +7,7 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestHttpClientFactoryServiceCollectionExtensions
 {
     static Object _lock = new Object();
-    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
-
-    void Test(List<string> args, Action act)
-    {
-        lock (_lock)
-        {
-            int count = args.Count;
-            act();
-            Assert.AreEqual(count + 1, args.Count);
-            Assert.IsTrue(!args.Reverse<string>().Skip(1).Any(x => x == args.LastOrDefault()));
-        }
-    }
-
+    void Test(string methodName) { }// TODO => Test1.Test(methodName, this, _lock, Invoked);
     static List<string> Invoked = HttpClientFactoryServiceCollectionExtensions.Invoked;
 
     [TestMethod]

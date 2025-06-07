@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginNullLatencyContextServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.NullLatencyContextServiceCollectionExtensions,Microsoft.Extensions.Latency.Abstractions";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.NullLatencyContextServiceCollectionExtensions,Microsoft.Extensions.Telemetry.Abstractions";
 
     public static object? AddNullLatencyContext(this object? services)
     {
