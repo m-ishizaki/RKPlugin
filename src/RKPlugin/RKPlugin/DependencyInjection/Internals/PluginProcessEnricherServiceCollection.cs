@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginProcessEnricherServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ProcessEnricherServiceCollectionExtensions,Microsoft.Extensions.ProcessEnricher";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.ProcessEnricherServiceCollectionExtensions,Microsoft.Extensions.Telemetry";
 
     public static object? AddProcessLogEnricher(this object? services)
     {

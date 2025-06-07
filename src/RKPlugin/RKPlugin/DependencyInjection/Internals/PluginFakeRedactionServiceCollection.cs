@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginFakeRedactionServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.FakeRedactionServiceCollectionExtensions,Microsoft.Extensions.Redaction.Fake";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.FakeRedactionServiceCollectionExtensions,Microsoft.Extensions.Compliance.Testing";
 
     public static object? AddFakeRedaction(this object? services)
     {

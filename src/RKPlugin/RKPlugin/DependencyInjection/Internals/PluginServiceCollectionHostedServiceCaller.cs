@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -6,7 +7,8 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginServiceCollectionHostedServiceCaller
 {
-    public static object? AddHostedService(this object? services)
+    public static object? AddHostedService<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] THostedService>(this object? services)
+        where THostedService : class
     {
         if (services == null) throw new ArgumentNullException(nameof(services));
 
@@ -18,14 +20,12 @@ internal static class PluginServiceCollectionHostedServiceCaller
                 && m.GetGenericArguments().Length == 1
                 && m.GetParameters().Length == 0
             );
-
-        if (methodInfo == null)
-            throw new InvalidOperationException("AddHostedService method not found.");
-
-        return methodInfo.Invoke(services, null);
+        var method = methodInfo?.MakeGenericMethod([typeof(THostedService)]);
+        return method.Invoke(services, null);
     }
 
-    public static object? AddHostedService(this object? services, Func<IServiceProvider, object> implementationFactory)
+    public static object? AddHostedService<THostedService>(this object? services, Func<IServiceProvider, THostedService> implementationFactory)
+        where THostedService : class
     {
         if (services == null) throw new ArgumentNullException(nameof(services));
         if (implementationFactory == null) throw new ArgumentNullException(nameof(implementationFactory));
@@ -39,10 +39,7 @@ internal static class PluginServiceCollectionHostedServiceCaller
                 && m.GetParameters().Length == 1
                 && m.GetParameters()[0].ParameterType.IsGenericType
             );
-
-        if (methodInfo == null)
-            throw new InvalidOperationException("AddHostedService method with factory not found.");
-
-        return methodInfo.Invoke(services, new object[] { implementationFactory });
+        var method = methodInfo?.MakeGenericMethod([typeof(THostedService)]);
+        return method.Invoke(services, new object[] { implementationFactory });
     }
 }

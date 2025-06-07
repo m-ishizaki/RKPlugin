@@ -5,7 +5,7 @@ namespace RkSoftware.RKPlugin.DependencyInjection.Internals;
 
 internal static class PluginHttpClientLoggingServiceCollection
 {
-    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientLoggingServiceCollectionExtensions,Microsoft.Extensions.Http.Logging";
+    static readonly string BaseType = "Microsoft.Extensions.DependencyInjection.HttpClientLoggingServiceCollectionExtensions,Microsoft.Extensions.Http.Diagnostics";
 
     public static object? AddExtendedHttpClientLogging(this object? services)
     {

@@ -28,7 +28,7 @@ internal static class PluginEnrichmentServiceCollectionCaller
                 x.Name == nameof(AddLogEnricher)
                 && x.GetGenericArguments().Length == 0
                 && x.GetParameters().Length == 1
-                && x.GetParameters()[0].ParameterType == enricher?.GetType()
+                && x.GetParameters()[0].Name == nameof(enricher)
             );
         return methodInfo?.Invoke(services, new object[] { enricher! });
     }
@@ -54,7 +54,7 @@ internal static class PluginEnrichmentServiceCollectionCaller
                 x.Name == nameof(AddStaticLogEnricher)
                 && x.GetGenericArguments().Length == 0
                 && x.GetParameters().Length == 1
-                && x.GetParameters()[0].ParameterType == enricher?.GetType()
+                && x.GetParameters()[0].Name == nameof(enricher)
             );
         return methodInfo?.Invoke(services, new object[] { enricher! });
     }

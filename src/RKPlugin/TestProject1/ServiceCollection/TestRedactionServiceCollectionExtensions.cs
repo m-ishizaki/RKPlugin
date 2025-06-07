@@ -13,7 +13,7 @@ public sealed class TestRedactionServiceCollectionExtensions
     [TestMethod]
     public void Test_AddRedaction_001() => Test(nameof(_Test_AddRedaction_001));
     static void _Test_AddRedaction_001(object? services) =>
-        PluginServiceCollection.AddRedaction(services, null);
+        PluginServiceCollection.AddRedaction(services, section: null);
 
     [TestMethod]
     public void Test_AddRedaction_002() => Test(nameof(_Test_AddRedaction_002));
