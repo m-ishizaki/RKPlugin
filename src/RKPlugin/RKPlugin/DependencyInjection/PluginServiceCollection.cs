@@ -86,7 +86,7 @@ public class PluginServiceCollection
     public static object? AddActivatedSingleton<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginAutoActivationCaller.AddActivatedSingleton<TService>(services, implementationFactory);
 
-    object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class =>
+    object? AddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
         PluginAutoActivation.AddActivatedSingleton<TService>(Services);
     public static object? AddActivatedSingleton_<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class =>
         PluginAutoActivationCaller.AddActivatedSingleton<TService>(services);
@@ -121,7 +121,7 @@ public class PluginServiceCollection
     public static void TryAddActivatedSingleton(object? services, Type serviceType, Func<IServiceProvider, object> implementationFactory) =>
         PluginAutoActivationCaller.TryAddActivatedSingleton(services, serviceType, implementationFactory);
 
-    void TryAddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? services) where TService : class =>
+    void TryAddActivatedSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
             PluginAutoActivation.TryAddActivatedSingleton<TService>(Services);
     public static void TryAddActivatedSingleton_<TService>(object? services) where TService : class =>
         PluginAutoActivationCaller.TryAddActivatedSingleton<TService>(services);

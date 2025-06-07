@@ -28,6 +28,7 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetGenericArguments().Length == 1
                 && x.GetParameters().Length == 0
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services,[]);
     }
 
@@ -37,10 +38,11 @@ internal static class PluginOptionsServiceCollectionCaller
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
             .Where(x =>
                 x.Name == nameof(AddOptions)
-                && x.GetGenericArguments().Length == 0
+                && x.GetGenericArguments().Length == 1
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(name)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services,[name]);
     }
 
@@ -54,6 +56,7 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(name)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services, [name]);
     }
 
@@ -63,10 +66,11 @@ internal static class PluginOptionsServiceCollectionCaller
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
             .Where(x =>
                 x.Name == nameof(AddOptionsWithValidateOnStart)
-                && x.GetGenericArguments().Length == 1
+                && x.GetGenericArguments().Length == 2
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(name)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions), typeof(TValidateOptions));
         return methodInfo?.Invoke(services, [name]);
     }
 
@@ -80,6 +84,7 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(configureOptions)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services, [configureOptions]);
     }
 
@@ -94,6 +99,7 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters()[0].Name == nameof(name)
                 && x.GetParameters()[1].Name == nameof(configureOptions)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services, [name, configureOptions]);
     }
 
@@ -107,6 +113,7 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(configureOptions)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services, [configureOptions]);
     }
 
@@ -116,9 +123,10 @@ internal static class PluginOptionsServiceCollectionCaller
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
             .Where(x =>
                 x.Name == nameof(ConfigureOptions)
-                && x.GetGenericArguments().Length == 0
+                && x.GetGenericArguments().Length == 1
                 && x.GetParameters().Length == 0
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TConfigureOptions));
         return methodInfo?.Invoke(services, []);
     }
 
@@ -158,6 +166,7 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(configureOptions)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services, [configureOptions]);
     }
 
@@ -172,7 +181,8 @@ internal static class PluginOptionsServiceCollectionCaller
                 && x.GetParameters()[0].Name == nameof(name)
                 && x.GetParameters()[1].Name == nameof(configureOptions)
             ).FirstOrDefault();
-        return methodInfo?.Invoke(services, [configureOptions]);
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
+        return methodInfo?.Invoke(services, [name, configureOptions]);
     }
 
     public static object? PostConfigureAll<TOptions>(this object? services, Action<TOptions> configureOptions) where TOptions : class
@@ -181,10 +191,11 @@ internal static class PluginOptionsServiceCollectionCaller
         var methodInfo = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
             .Where(x =>
                 x.Name == nameof(PostConfigureAll)
-                && x.GetGenericArguments().Length == 0
+                && x.GetGenericArguments().Length == 1
                 && x.GetParameters().Length == 1
                 && x.GetParameters()[0].Name == nameof(configureOptions)
             ).FirstOrDefault();
+        methodInfo = methodInfo.MakeGenericMethod(typeof(TOptions));
         return methodInfo?.Invoke(services, [configureOptions]);
     }
 }

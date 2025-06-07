@@ -34,11 +34,8 @@ public sealed class TestAutoActivationExtensions
         PluginServiceCollection.AddActivatedSingleton<object, object>(services);
 
     [TestMethod]
-    public void Test_AddActivatedSingleton_003() =>
-        Test(nameof(
-            _Test_AddActivatedSingleton_003));
-    static void _Test_AddActivatedSingleton_003<TService>(object? services)
-        where TService : class =>
+    public void Test_AddActivatedSingleton_003() => Test(nameof(_Test_AddActivatedSingleton_003));
+    static void _Test_AddActivatedSingleton_003(object? services) =>
         PluginServiceCollection.AddActivatedSingleton<object>(services, implementationFactory: null);
 
     [TestMethod]
@@ -70,17 +67,8 @@ public sealed class TestAutoActivationExtensions
         PluginServiceCollection.AddActivatedSingleton(services, serviceType: null, implementationType: null);
 
     [TestMethod]
-    public void Test_AddActivatedSingleton_008() =>
-        Test(nameof(
-            _Test_AddActivatedSingleton_008));
-    static void _Test_AddActivatedSingleton_008(object? services) =>
-        PluginServiceCollection.AddActivatedSingleton(services, serviceType: null);
-
-    [TestMethod]
-    public void Test_TryAddActivatedSingleton_001() =>
-        Test(nameof(
-            _Test_TryAddActivatedSingleton_001));
-    static void _Test_TryAddActivatedSingleton_001<TService>(object? services) =>
+    public void Test_TryAddActivatedSingleton_001() => Test(nameof(_Test_TryAddActivatedSingleton_001));
+    static void _Test_TryAddActivatedSingleton_001(object? services) =>
         PluginServiceCollection.TryAddActivatedSingleton(services, serviceType: null, implementationType: null);
 
     [TestMethod]
@@ -91,17 +79,8 @@ public sealed class TestAutoActivationExtensions
            PluginServiceCollection.TryAddActivatedSingleton(services, serviceType: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddActivatedSingleton_011() =>
-        Test(nameof(
-            _Test_TryAddActivatedSingleton_011));
+    public void Test_TryAddActivatedSingleton_011() => Test(nameof(_Test_TryAddActivatedSingleton_011));
     static void _Test_TryAddActivatedSingleton_011(object? services) =>
-           PluginServiceCollection.TryAddActivatedSingleton_<object>(services);
-
-    [TestMethod]
-    public void Test_TryAddActivatedSingleton_012() =>
-        Test(nameof(
-            _Test_TryAddActivatedSingleton_012));
-    static void _Test_TryAddActivatedSingleton_012(object? services) =>
            PluginServiceCollection.TryAddActivatedSingleton_<object>(services);
 
     [TestMethod]
@@ -147,11 +126,9 @@ public sealed class TestAutoActivationExtensions
            PluginServiceCollection.AddActivatedKeyedSingleton<object>(services, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_AddActivatedKeyedSingleton_019() =>
-        Test(nameof(
-            _Test_AddActivatedKeyedSingleton_019));
+    public void Test_AddActivatedKeyedSingleton_019() => Test(nameof(_Test_AddActivatedKeyedSingleton_019));
     static void _Test_AddActivatedKeyedSingleton_019(object? services) =>
-           PluginServiceCollection.AddActivatedKeyedSingleton<object>(services, serviceKey: null);
+           PluginServiceCollection.AddActivatedKeyedSingleton<object, object>(services, serviceKey: null);
 
     [TestMethod]
     public void Test_AddActivatedKeyedSingleton_020() =>
@@ -207,7 +184,7 @@ public sealed class TestAutoActivationExtensions
         Test(nameof(
            _Test_TryAddActivatedKeyedSingleton_027));
     static void _Test_TryAddActivatedKeyedSingleton_027(object? services) =>
-           PluginServiceCollection.TryAddActivatedKeyedSingleton<object>(services, serviceKey: null);
+           PluginServiceCollection.TryAddActivatedKeyedSingleton<object, object>(services, serviceKey: null);
 
     [TestMethod]
     public void Test_TryAddActivatedKeyedSingleton_028() =>
