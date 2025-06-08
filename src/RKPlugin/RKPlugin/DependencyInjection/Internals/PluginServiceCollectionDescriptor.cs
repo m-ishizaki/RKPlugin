@@ -323,13 +323,14 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddKeyedSingleton)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 3
+            && x.GetParameters().Length == 4
             && x.GetParameters()[0].Name == nameof(collection)
-            && x.GetParameters()[1].Name == nameof(serviceKey)
-            && x.GetParameters()[2].Name == nameof(implementationFactory)
+            && x.GetParameters()[1].Name == nameof(service)
+            && x.GetParameters()[2].Name == nameof(serviceKey)
+            && x.GetParameters()[3].Name == nameof(implementationFactory)
         ).FirstOrDefault();
         methodInfo = methodInfo;
-        methodInfo?.Invoke(null, [collection, serviceKey, implementationFactory]);
+        methodInfo?.Invoke(null, [collection, service, serviceKey, implementationFactory]);
     }
 
     public static void TryAddKeyedSingleton(this object? collection, Type service, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
@@ -338,13 +339,14 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddKeyedSingleton)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 3
+            && x.GetParameters().Length == 4
             && x.GetParameters()[0].Name == nameof(collection)
-            && x.GetParameters()[1].Name == nameof(serviceKey)
-            && x.GetParameters()[1].Name == nameof(implementationType)
+            && x.GetParameters()[1].Name == nameof(service)
+            && x.GetParameters()[2].Name == nameof(serviceKey)
+            && x.GetParameters()[3].Name == nameof(implementationType)
         ).FirstOrDefault();
         methodInfo = methodInfo;
-        methodInfo?.Invoke(null, [collection, serviceKey, implementationType]);
+        methodInfo?.Invoke(null, [collection, service, serviceKey, implementationType]);
     }
 
     public static void TryAddKeyedSingleton(this object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey)
