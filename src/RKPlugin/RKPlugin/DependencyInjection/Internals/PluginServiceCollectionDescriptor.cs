@@ -215,13 +215,14 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddKeyedScoped)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 3
+            && x.GetParameters().Length == 4
             && x.GetParameters()[0].Name == nameof(collection)
             && x.GetParameters()[1].Name == nameof(service)
-            && x.GetParameters()[2].Name == nameof(implementationFactory)
+            && x.GetParameters()[2].Name == nameof(serviceKey)
+            && x.GetParameters()[3].Name == nameof(implementationFactory)
         ).FirstOrDefault();
         methodInfo = methodInfo;
-         methodInfo?.Invoke(null, [collection, service, implementationFactory]);
+         methodInfo?.Invoke(null, [collection, service, serviceKey, implementationFactory]);
     }
 
     public static void TryAddKeyedScoped(this object? collection, Type service, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
@@ -230,13 +231,14 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddKeyedScoped)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 3
+            && x.GetParameters().Length == 4
             && x.GetParameters()[0].Name == nameof(collection)
-            && x.GetParameters()[1].Name == nameof(serviceKey)
-            && x.GetParameters()[1].Name == nameof(implementationType)
+            && x.GetParameters()[1].Name == nameof(service)
+            && x.GetParameters()[2].Name == nameof(serviceKey)
+            && x.GetParameters()[3].Name == nameof(implementationType)
         ).FirstOrDefault();
         methodInfo = methodInfo;
-         methodInfo?.Invoke(null, [collection, serviceKey, implementationType]);
+         methodInfo?.Invoke(null, [collection, service, serviceKey, implementationType]);
     }
 
     public static void TryAddKeyedScoped(this object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey)
@@ -448,13 +450,14 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddKeyedTransient)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 3
+            && x.GetParameters().Length == 4
             && x.GetParameters()[0].Name == nameof(collection)
-            && x.GetParameters()[1].Name == nameof(serviceKey)
-            && x.GetParameters()[2].Name == nameof(implementationFactory)
+            && x.GetParameters()[1].Name == nameof(service)
+            && x.GetParameters()[2].Name == nameof(serviceKey)
+            && x.GetParameters()[3].Name == nameof(implementationFactory)
         ).FirstOrDefault();
         methodInfo = methodInfo;
-        methodInfo?.Invoke(null, [collection, serviceKey,implementationFactory]);
+        methodInfo?.Invoke(null, [collection, service, serviceKey, implementationFactory]);
     }
 
     public static void TryAddScoped(this object? collection, Type service, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
@@ -463,7 +466,7 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddScoped)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 2
+            && x.GetParameters().Length == 3
             && x.GetParameters()[0].Name == nameof(collection)
             && x.GetParameters()[1].Name == nameof(service)
             && x.GetParameters()[2].Name == nameof(implementationType)
@@ -610,7 +613,7 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddSingleton)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 23
+            && x.GetParameters().Length == 3
             && x.GetParameters()[0].Name == nameof(collection)
             && x.GetParameters()[1].Name == nameof(service)
             && x.GetParameters()[2].Name == nameof(implementationFactory)
@@ -628,7 +631,7 @@ public static class PluginServiceCollectionDescriptor
             && x.GetParameters().Length == 3
             && x.GetParameters()[0].Name == nameof(collection)
             && x.GetParameters()[1].Name == nameof(service)
-            && x.GetParameters()[1].Name == nameof(implementationType)
+            && x.GetParameters()[2].Name == nameof(implementationType)
         ).FirstOrDefault();
         methodInfo = methodInfo;
         methodInfo?.Invoke(null, [collection, service, implementationType]);
@@ -727,11 +730,12 @@ public static class PluginServiceCollectionDescriptor
         var methodInfo = type?.GetMethods().Where(x =>
             x.Name == nameof(TryAddTransient)
             && x.GetGenericArguments().Length == 0
-            && x.GetParameters().Length == 2
+            && x.GetParameters().Length == 3
             && x.GetParameters()[0].Name == nameof(collection)
-            && x.GetParameters()[1].Name == nameof(implementationFactory)
+            && x.GetParameters()[1].Name == nameof(service)
+            && x.GetParameters()[2].Name == nameof(implementationFactory)
         ).FirstOrDefault();
         methodInfo = methodInfo;
-        methodInfo?.Invoke(null, [collection, implementationFactory]);
+        methodInfo?.Invoke(null, [collection, service, implementationFactory]);
     }
 }
