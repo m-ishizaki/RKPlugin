@@ -8,7 +8,8 @@ namespace TestProject1.ServiceCollection;
 public sealed class TestServiceCollectionDescriptorExtensions
 {
     static Object _lock = new Object();
-    void Test(string methodName) { }// TODO => Test1.Test(methodName, this, _lock, Invoked);
+    //void Test(string methodName) { }// TODO => Test1.Test(methodName, this, _lock, Invoked);
+    void Test(string methodName) => Test1.Test(methodName, this, _lock, Invoked);
     static List<string> Invoked = ServiceCollectionDescriptorExtensions.Invoked;
 
     [TestMethod]
@@ -28,12 +29,12 @@ public sealed class TestServiceCollectionDescriptorExtensions
 
     [TestMethod]
     public void Test_RemoveAll_004() => Test(nameof(_Test_RemoveAll_004));
-    static void _Test_RemoveAll_004<T>(object? collection)
+    static void _Test_RemoveAll_004(object? collection)
         => PluginServiceCollection.RemoveAll_<object>(collection);
 
     [TestMethod]
     public void Test_RemoveAllKeyed_005() => Test(nameof(_Test_RemoveAllKeyed_005));
-    static void _Test_RemoveAllKeyed_005<T>(object? collection)
+    static void _Test_RemoveAllKeyed_005(object? collection)
         => PluginServiceCollection.RemoveAllKeyed<object>(collection, serviceKey: null);
 
     [TestMethod]
@@ -72,268 +73,228 @@ public sealed class TestServiceCollectionDescriptorExtensions
         => PluginServiceCollection.TryAddEnumerable_(services, descriptors: Test1.Enumerable);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_012() =>
-        Test(nameof(
-            _Test_TryAddKeyedScoped_012));
-    static void _Test_TryAddKeyedScoped_012<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection, object? serviceKey) where TService : class where TImplementation : class, TService
-        => PluginServiceCollection.TryAddKeyedScoped<object>(collection, serviceKey);
+    public void Test_TryAddKeyedScoped_012() => Test(nameof(_Test_TryAddKeyedScoped_012));
+    static void _Test_TryAddKeyedScoped_012(object? collection)
+        => PluginServiceCollection.TryAddKeyedScoped<object>(collection, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_013() =>
-        Test(nameof(
-            _Test_TryAddKeyedScoped_013));
-    static void _Test_TryAddKeyedScoped_013<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class
-        => PluginServiceCollection.TryAddKeyedScoped_<TService>(services, serviceKey, implementationFactory);
+    public void Test_TryAddKeyedScoped_013() => Test(nameof(_Test_TryAddKeyedScoped_013));
+    static void _Test_TryAddKeyedScoped_013(object? services)
+        => PluginServiceCollection.TryAddKeyedScoped_<object>(services, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_014() =>
-        Test(nameof(
-            _Test_TryAddKeyedScoped_014));
-    static void _Test_TryAddKeyedScoped_014<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection, object? serviceKey) where TService : class
-        => PluginServiceCollection.TryAddKeyedScoped<object>(collection, serviceKey);
+    public void Test_TryAddKeyedScoped_014() => Test(nameof(_Test_TryAddKeyedScoped_014));
+    static void _Test_TryAddKeyedScoped_014(object? collection)
+        => PluginServiceCollection.TryAddKeyedScoped<object>(collection, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_015() =>
-        Test(nameof(
-            _Test_TryAddKeyedScoped_015));
-    static void _Test_TryAddKeyedScoped_015(object? collection, Type service, object? serviceKey, Func<IServiceProvider, object?, object> implementationFactory)
-        => PluginServiceCollection.TryAddKeyedScoped(collection, service, serviceKey, implementationFactory);
+    public void Test_TryAddKeyedScoped_015() => Test(nameof(_Test_TryAddKeyedScoped_015));
+    static void _Test_TryAddKeyedScoped_015(object? collection)
+        => PluginServiceCollection.TryAddKeyedScoped(collection, service: null, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_016() =>
-        Test(nameof(
-            _Test_TryAddKeyedScoped_016));
-    static void _Test_TryAddKeyedScoped_016(object? collection, Type service, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
-        => PluginServiceCollection.TryAddKeyedScoped(collection, service, serviceKey, implementationType);
+    public void Test_TryAddKeyedScoped_016() => Test(nameof(_Test_TryAddKeyedScoped_016));
+    static void _Test_TryAddKeyedScoped_016(object? collection)
+        => PluginServiceCollection.TryAddKeyedScoped(collection, service: null, serviceKey: null, implementationType: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_017() =>
-        Test(nameof(
-            _Test_TryAddKeyedScoped_017));
-    static void _Test_TryAddKeyedScoped_017(object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey)
-        => PluginServiceCollection.TryAddKeyedScoped(collection, service, serviceKey);
+    public void Test_TryAddKeyedScoped_017() => Test(nameof(_Test_TryAddKeyedScoped_017));
+    static void _Test_TryAddKeyedScoped_017(object? collection)
+        => PluginServiceCollection.TryAddKeyedScoped(collection, service: null, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_018() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_018));
-    static void _Test_TryAddKeyedSingleton_018<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class
-        => PluginServiceCollection.TryAddKeyedSingleton<object>(services, serviceKey, implementationFactory);
+    public void Test_TryAddKeyedSingleton_018() => Test(nameof(_Test_TryAddKeyedSingleton_018));
+    static void _Test_TryAddKeyedSingleton_018(object? services)
+        => PluginServiceCollection.TryAddKeyedSingleton_<object>(services, serviceKey: "", implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_019() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_019));
-    static void _Test_TryAddKeyedSingleton_019<TService>(object? collection, object? serviceKey, TService instance) where TService : class
-        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey, instance);
+    public void Test_TryAddKeyedSingleton_019() => Test(nameof(_Test_TryAddKeyedSingleton_019));
+    static void _Test_TryAddKeyedSingleton_019(object? collection)
+        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey: null, instance: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_020() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_020));
-    static void _Test_TryAddKeyedSingleton_020<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection, object? serviceKey) where TService : class where TImplementation : class, TService
-        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey);
+    public void Test_TryAddKeyedSingleton_020() => Test(nameof(_Test_TryAddKeyedSingleton_020));
+    static void _Test_TryAddKeyedSingleton_020(object? collection)
+        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_021() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_021));
-    static void _Test_TryAddKeyedSingleton_021<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection, object? serviceKey) where TService : class
-        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey);
+    public void Test_TryAddKeyedSingleton_021() => Test(nameof(_Test_TryAddKeyedSingleton_021));
+    static void _Test_TryAddKeyedSingleton_021(object? collection)
+        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_022() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_022));
-    static void _Test_TryAddKeyedSingleton_022(object? collection, Type service, object? serviceKey, Func<IServiceProvider, object?, object> implementationFactory)
-        => PluginServiceCollection.TryAddKeyedSingleton(collection, service, serviceKey, implementationFactory);
+    public void Test_TryAddKeyedSingleton_022() => Test(nameof(_Test_TryAddKeyedSingleton_022));
+    static void _Test_TryAddKeyedSingleton_022(object? collection)
+        => PluginServiceCollection.TryAddKeyedSingleton(collection, service: null, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_023() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_023));
-    static void _Test_TryAddKeyedSingleton_023(object? collection, Type service, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
-        => PluginServiceCollection.TryAddKeyedSingleton(collection, service, serviceKey, implementationType);
+    public void Test_TryAddKeyedSingleton_023() => Test(nameof(_Test_TryAddKeyedSingleton_023));
+    static void _Test_TryAddKeyedSingleton_023(object? collection)
+        => PluginServiceCollection.TryAddKeyedSingleton(collection, service: null, serviceKey: null, implementationType: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedSingleton_024() =>
-        Test(nameof(
-            _Test_TryAddKeyedSingleton_024));
-    static void _Test_TryAddKeyedSingleton_024(object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey)
-        => PluginServiceCollection.TryAddKeyedSingleton(collection, service, serviceKey);
+    public void Test_TryAddKeyedSingleton_024() => Test(nameof(_Test_TryAddKeyedSingleton_024));
+    static void _Test_TryAddKeyedSingleton_024(object? collection)
+        => PluginServiceCollection.TryAddKeyedSingleton(collection, service: null, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedTransient_025() =>
-        Test(nameof(
-            _Test_TryAddKeyedTransient_025));
-    static void _Test_TryAddKeyedTransient_025<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection, object? serviceKey) where TService : class
-        => PluginServiceCollection.TryAddKeyedTransient<object>(collection, serviceKey);
+    public void Test_TryAddKeyedTransient_025() => Test(nameof(_Test_TryAddKeyedTransient_025));
+    static void _Test_TryAddKeyedTransient_025(object? collection)
+        => PluginServiceCollection.TryAddKeyedTransient<object>(collection, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedTransient_026() =>
-        Test(nameof(
-            _Test_TryAddKeyedTransient_026));
-    static void _Test_TryAddKeyedTransient_026<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection, object? serviceKey) where TService : class where TImplementation : class, TService
-        => PluginServiceCollection.TryAddKeyedTransient<object>(collection, serviceKey);
+    public void Test_TryAddKeyedTransient_026() => Test(nameof(_Test_TryAddKeyedTransient_026));
+    static void _Test_TryAddKeyedTransient_026(object? collection)
+        => PluginServiceCollection.TryAddKeyedTransient<object, object>(collection, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedTransient_027() =>
-        Test(nameof(
-            _Test_TryAddKeyedTransient_027));
-    static void _Test_TryAddKeyedTransient_027(object? collection, Type service, object? serviceKey, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
-        => PluginServiceCollection.TryAddKeyedTransient(collection, service, serviceKey, implementationType);
+    public void Test_TryAddKeyedTransient_027() => Test(nameof(_Test_TryAddKeyedTransient_027));
+    static void _Test_TryAddKeyedTransient_027(object? collection)
+        => PluginServiceCollection.TryAddKeyedTransient(collection, service: null, serviceKey: null, implementationType: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedTransient_028() =>
-        Test(nameof(
-            _Test_TryAddKeyedTransient_028));
-    static void _Test_TryAddKeyedTransient_028(object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey)
-        => PluginServiceCollection.TryAddKeyedTransient(collection, service, serviceKey);
+    public void Test_TryAddKeyedTransient_028() => Test(nameof(_Test_TryAddKeyedTransient_028));
+    static void _Test_TryAddKeyedTransient_028(object? collection)
+        => PluginServiceCollection.TryAddKeyedTransient(collection, service: null, serviceKey: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedTransient_029() =>
-        Test(nameof(
-            _Test_TryAddKeyedTransient_029));
-    static void _Test_TryAddKeyedTransient_029<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class
-        => PluginServiceCollection.TryAddKeyedTransient_<TService>(services, serviceKey, implementationFactory);
+    public void Test_TryAddKeyedTransient_029() => Test(nameof(_Test_TryAddKeyedTransient_029));
+    static void _Test_TryAddKeyedTransient_029(object? services)
+        => PluginServiceCollection.TryAddKeyedTransient_<object>(services, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedTransient_030() =>
-        Test(nameof(
-            _Test_TryAddKeyedTransient_030));
-    static void _Test_TryAddKeyedTransient_030(object? collection, Type service, object? serviceKey, Func<IServiceProvider, object?, object> implementationFactory)
-        => PluginServiceCollection.TryAddKeyedTransient(collection, service, serviceKey, implementationFactory);
+    public void Test_TryAddKeyedTransient_030() => Test(nameof(_Test_TryAddKeyedTransient_030));
+    static void _Test_TryAddKeyedTransient_030(object? collection)
+        => PluginServiceCollection.TryAddKeyedTransient(collection, service: null, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
     public void Test_TryAddScoped_031() =>
         Test(nameof(
             _Test_TryAddScoped_031));
-    static void _Test_TryAddScoped_031(object? collection, Type service, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
-        => PluginServiceCollection.TryAddScoped(collection, service, implementationType);
+    static void _Test_TryAddScoped_031(object? collection)
+        => PluginServiceCollection.TryAddScoped(collection, service: null, implementationType: null);
 
     [TestMethod]
     public void Test_TryAddScoped_032() =>
         Test(nameof(
             _Test_TryAddScoped_032));
-    static void _Test_TryAddScoped_032(object? collection, Type service, Func<IServiceProvider, object> implementationFactory)
-        => PluginServiceCollection.TryAddScoped(collection, service, implementationFactory);
+    static void _Test_TryAddScoped_032(object? collection)
+        => PluginServiceCollection.TryAddScoped(collection, service: null, implementationFactory: null);
 
     [TestMethod]
     public void Test_TryAddScoped_033() =>
         Test(nameof(
             _Test_TryAddScoped_033));
-    static void _Test_TryAddScoped_033<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class
+    static void _Test_TryAddScoped_033(object? collection)
         => PluginServiceCollection.TryAddScoped_<object>(collection);
 
     [TestMethod]
     public void Test_TryAddScoped_034() =>
         Test(nameof(
             _Test_TryAddScoped_034));
-    static void _Test_TryAddScoped_034<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService
-        => PluginServiceCollection.TryAddScoped_<TService>(collection);
+    static void _Test_TryAddScoped_034(object? collection)
+        => PluginServiceCollection.TryAddScoped_<object, object>(collection);
 
     [TestMethod]
     public void Test_TryAddScoped_035() =>
         Test(nameof(
             _Test_TryAddScoped_035));
-    static void _Test_TryAddScoped_035<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class
-        => PluginServiceCollection.TryAddScoped_<TService>(services, implementationFactory);
+    static void _Test_TryAddScoped_035(object? services)
+        => PluginServiceCollection.TryAddScoped_<object>(services, implementationFactory: null);
 
     [TestMethod]
     public void Test_TryAddScoped_036() =>
         Test(nameof(
             _Test_TryAddScoped_036));
-    static void _Test_TryAddScoped_036(object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service)
-        => PluginServiceCollection.TryAddScoped(collection, service);
+    static void _Test_TryAddScoped_036(object? collection)
+        => PluginServiceCollection.TryAddScoped(collection, service: null);
 
     [TestMethod]
     public void Test_TryAddSingleton_037() =>
         Test(nameof(
             _Test_TryAddSingleton_037));
-    static void _Test_TryAddSingleton_037<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class
+    static void _Test_TryAddSingleton_037(object? collection)
         => PluginServiceCollection.TryAddSingleton_<object>(collection);
 
     [TestMethod]
     public void Test_TryAddSingleton_038() =>
         Test(nameof(
             _Test_TryAddSingleton_038));
-    static void _Test_TryAddSingleton_038<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class
-        => PluginServiceCollection.TryAddSingleton_<TService>(services, implementationFactory);
+    static void _Test_TryAddSingleton_038(object? services)
+        => PluginServiceCollection.TryAddSingleton_<object>(services, implementationFactory: null);
 
     [TestMethod]
     public void Test_TryAddSingleton_039() =>
         Test(nameof(
             _Test_TryAddSingleton_039));
-    static void _Test_TryAddSingleton_039<TService>(object? collection, TService instance) where TService : class
-        => PluginServiceCollection.TryAddSingleton<TService>(collection, instance);
+    static void _Test_TryAddSingleton_039(object? collection)
+        => PluginServiceCollection.TryAddSingleton<object>(collection, instance: null);
 
     [TestMethod]
     public void Test_TryAddSingleton_040() =>
         Test(nameof(
             _Test_TryAddSingleton_040));
-    static void _Test_TryAddSingleton_040<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService
-        => PluginServiceCollection.TryAddSingleton_<object>(collection);
+    static void _Test_TryAddSingleton_040(object? collection)
+        => PluginServiceCollection.TryAddSingleton_<object, object>(collection);
 
     [TestMethod]
     public void Test_TryAddSingleton_041() =>
         Test(nameof(
             _Test_TryAddSingleton_041));
-    static void _Test_TryAddSingleton_041(object? collection, Type service, Func<IServiceProvider, object> implementationFactory)
-        => PluginServiceCollection.TryAddSingleton(collection, service, implementationFactory);
+    static void _Test_TryAddSingleton_041(object? collection)
+        => PluginServiceCollection.TryAddSingleton(collection, service: null, implementationFactory: null);
 
     [TestMethod]
     public void Test_TryAddSingleton_042() =>
         Test(nameof(
             _Test_TryAddSingleton_042));
-    static void _Test_TryAddSingleton_042(object? collection, Type service, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
-        => PluginServiceCollection.TryAddSingleton(collection, service, implementationType);
+    static void _Test_TryAddSingleton_042(object? collection)
+        => PluginServiceCollection.TryAddSingleton(collection, service: null, implementationType: null);
 
     [TestMethod]
     public void Test_TryAddSingleton_043() =>
         Test(nameof(
             _Test_TryAddSingleton_043));
-    static void _Test_TryAddSingleton_043(object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service)
-        => PluginServiceCollection.TryAddSingleton(collection, service);
+    static void _Test_TryAddSingleton_043(object? collection)
+        => PluginServiceCollection.TryAddSingleton(collection, service: null);
 
     [TestMethod]
     public void Test_TryAddTransient_044() =>
         Test(nameof(
             _Test_TryAddTransient_044));
-    static void _Test_TryAddTransient_044(object? collection, Type service, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType)
-        => PluginServiceCollection.TryAddTransient(collection, service, implementationType);
+    static void _Test_TryAddTransient_044(object? collection)
+        => PluginServiceCollection.TryAddTransient(collection, service: null, implementationType: null);
 
     [TestMethod]
     public void Test_TryAddTransient_045() =>
         Test(nameof(
             _Test_TryAddTransient_045));
-    static void _Test_TryAddTransient_045(object? collection, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service)
-        => PluginServiceCollection.TryAddTransient(collection, service);
+    static void _Test_TryAddTransient_045(object? collection)
+        => PluginServiceCollection.TryAddTransient(collection, service: null);
 
     [TestMethod]
     public void Test_TryAddTransient_046() =>
         Test(nameof(
             _Test_TryAddTransient_046));
-    static void _Test_TryAddTransient_046<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService
-        => PluginServiceCollection.TryAddTransient_<object>(collection);
+    static void _Test_TryAddTransient_046(object? collection)
+        => PluginServiceCollection.TryAddTransient_<object, object>(collection);
 
     [TestMethod]
     public void Test_TryAddTransient_047() =>
         Test(nameof(
             _Test_TryAddTransient_047));
-    static void _Test_TryAddTransient_047<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class
+    static void _Test_TryAddTransient_047(object? collection)
         => PluginServiceCollection.TryAddTransient_<object>(collection);
 
     [TestMethod]
     public void Test_TryAddTransient_048() =>
         Test(nameof(
             _Test_TryAddTransient_048));
-    static void _Test_TryAddTransient_048<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class
-        => PluginServiceCollection.TryAddTransient_<TService>(services, implementationFactory);
+    static void _Test_TryAddTransient_048(object? services)
+        => PluginServiceCollection.TryAddTransient_<object>(services, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddTransient_049() =>
-        Test(nameof(
-            _Test_TryAddTransient_049));
-    static void _Test_TryAddTransient_049(object? collection, Type service, Func<IServiceProvider, object> implementationFactory)
-            => PluginServiceCollection.TryAddTransient(collection, service, implementationFactory);
+    public void Test_TryAddTransient_049() => Test(nameof(_Test_TryAddTransient_049));
+    static void _Test_TryAddTransient_049(object? collection)
+            => PluginServiceCollection.TryAddTransient(collection, service: null, implementationFactory: null);
 }
