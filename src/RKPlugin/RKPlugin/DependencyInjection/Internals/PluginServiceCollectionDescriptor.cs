@@ -73,7 +73,7 @@ public static class PluginServiceCollectionDescriptor
             && x.GetParameters()[0].Name == nameof(collection)
             && x.GetParameters()[1].Name == nameof(serviceKey)
         ).FirstOrDefault();
-        methodInfo = methodInfo;
+        methodInfo = methodInfo?.MakeGenericMethod(typeof(T));
         return methodInfo?.Invoke(null, [collection, serviceKey]);
     }
 
@@ -86,7 +86,7 @@ public static class PluginServiceCollectionDescriptor
             && x.GetParameters().Length == 3
             && x.GetParameters()[0].Name == nameof(collection)
             && x.GetParameters()[1].Name == nameof(serviceType)
-            && x.GetParameters()[1].Name == nameof(serviceKey)
+            && x.GetParameters()[2].Name == nameof(serviceKey)
         ).FirstOrDefault();
         methodInfo = methodInfo;
         return methodInfo?.Invoke(null, [collection, serviceType, serviceKey]);
