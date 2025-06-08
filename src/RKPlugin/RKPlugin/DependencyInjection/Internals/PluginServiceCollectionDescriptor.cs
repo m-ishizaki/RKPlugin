@@ -58,7 +58,7 @@ public static class PluginServiceCollectionDescriptor
             && x.GetParameters().Length == 1
             && x.GetParameters()[0].Name == nameof(collection)
         ).FirstOrDefault();
-        methodInfo = methodInfo;
+        methodInfo = methodInfo?.MakeGenericMethod(typeof(T));
         return methodInfo?.Invoke(null, [collection]);
     }
 
