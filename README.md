@@ -50,13 +50,4 @@ var plugins = PluginLoadContext.LoadExtensions(pluginPath);
 # What is implemented
 Extension Methods on ServiceCollection
 
-- AddTransient
-- AddScoped
-- AddSingleton
-- AddHttpClient
-- ConfigureHttpClientDefaults
-
-"Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions,Microsoft.Extensions.Http"  
-"Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions,Microsoft.Extensions.DependencyInjection.Abstractions"  
-
-
+- All Methods.
