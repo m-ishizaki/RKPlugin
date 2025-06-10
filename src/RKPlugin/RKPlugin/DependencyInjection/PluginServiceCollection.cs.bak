@@ -340,7 +340,7 @@ public class PluginServiceCollection
     public static object? RemoveAll(object? collection, Type serviceType) =>
             PluginServiceCollectionDescriptorCaller.RemoveAll(collection, serviceType);
 
-    object? RemoveAll<T>() =>
+    object? RemoveAll<T>(object? collection) =>
             PluginServiceCollectionDescriptor.RemoveAll<T>(Services);
     public static object? RemoveAll_<T>(object? collection) =>
             PluginServiceCollectionDescriptorCaller.RemoveAll<T>(collection);
@@ -370,12 +370,12 @@ public class PluginServiceCollection
     public static void TryAdd(object? collection, IEnumerable<object?> descriptors) =>
         PluginServiceCollectionDescriptorCaller.TryAdd(collection, descriptors);
 
-    void TryAddEnumerable(object? descriptor) =>
+    void TryAddEnumerable(object? services, object? descriptor) =>
         PluginServiceCollectionDescriptor.TryAddEnumerable(Services, descriptor);
     public static void TryAddEnumerable_(object? services, object? descriptor) =>
             PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptor);
 
-    void TryAddEnumerable(IEnumerable<object?> descriptors) =>
+    void TryAddEnumerable(object? services, IEnumerable<object?> descriptors) =>
         PluginServiceCollectionDescriptor.TryAddEnumerable(Services, descriptors);
     public static void TryAddEnumerable_(object? services, IEnumerable<object?> descriptors) =>
 PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
@@ -385,7 +385,7 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddKeyedScoped<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? services, object? serviceKey) where TService : class where TImplementation : class, TService =>
             PluginServiceCollectionDescriptorCaller.TryAddKeyedScoped<TService, TImplementation>(services, serviceKey);
 
-    void TryAddKeyedScoped<TService>(object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
+    void TryAddKeyedScoped<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddKeyedScoped<TService>(Services, serviceKey, implementationFactory);
     public static void TryAddKeyedScoped_<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddKeyedScoped<TService>(services, serviceKey, implementationFactory);
@@ -410,7 +410,7 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddKeyedScoped(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey) =>
         PluginServiceCollectionDescriptorCaller.TryAddKeyedScoped(services, service, serviceKey);
 
-    void TryAddKeyedSingleton<TService>(object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
+    void TryAddKeyedSingleton<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddKeyedSingleton<TService>(Services, serviceKey, implementationFactory);
     public static void TryAddKeyedSingleton_<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddKeyedSingleton<TService>(services, serviceKey, implementationFactory);
@@ -465,7 +465,7 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddKeyedTransient(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service, object? serviceKey) =>
         PluginServiceCollectionDescriptorCaller.TryAddKeyedTransient(services, service, serviceKey);
 
-    void TryAddKeyedTransient<TService>(object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
+    void TryAddKeyedTransient<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddKeyedTransient<TService>(Services, serviceKey, implementationFactory);
     public static void TryAddKeyedTransient_<TService>(object? services, object? serviceKey, Func<IServiceProvider, object?, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddKeyedTransient<TService>(services, serviceKey, implementationFactory);
@@ -485,17 +485,17 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddScoped(object? services, Type service, Func<IServiceProvider, object> implementationFactory) =>
         PluginServiceCollectionDescriptorCaller.TryAddScoped(services, service, implementationFactory);
 
-    void TryAddScoped<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
+    void TryAddScoped<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddScoped<TService>(Services);
     public static void TryAddScoped_<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddScoped<TService>(collection);
 
-    void TryAddScoped<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>() where TService : class where TImplementation : class, TService =>
+    void TryAddScoped<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService =>
         PluginServiceCollectionDescriptor.TryAddScoped<TService, TImplementation>(Services);
     public static void TryAddScoped_<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService =>
         PluginServiceCollectionDescriptorCaller.TryAddScoped<TService, TImplementation>(collection);
 
-    void TryAddScoped<TService>(Func<IServiceProvider, TService> implementationFactory) where TService : class =>
+    void TryAddScoped<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddScoped<TService>(Services, implementationFactory);
     public static void TryAddScoped_<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddScoped<TService>(services, implementationFactory);
@@ -505,12 +505,12 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddScoped(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service) =>
         PluginServiceCollectionDescriptorCaller.TryAddScoped(services, service);
 
-    void TryAddSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
+    void TryAddSingleton<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddSingleton<TService>(Services);
     public static void TryAddSingleton_<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddSingleton<TService>(collection);
 
-    void TryAddSingleton<TService>(Func<IServiceProvider, TService> implementationFactory) where TService : class =>
+    void TryAddSingleton<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddSingleton<TService>(Services, implementationFactory);
     public static void TryAddSingleton_<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddSingleton<TService>(services, implementationFactory);
@@ -520,7 +520,7 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddSingleton<TService>(object? services, TService instance) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddSingleton<TService>(services, instance);
 
-    void TryAddSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>() where TService : class where TImplementation : class, TService =>
+    void TryAddSingleton<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService =>
         PluginServiceCollectionDescriptor.TryAddSingleton<TService, TImplementation>(Services);
     public static void TryAddSingleton_<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService =>
         PluginServiceCollectionDescriptorCaller.TryAddSingleton<TService, TImplementation>(collection);
@@ -550,17 +550,17 @@ PluginServiceCollectionDescriptorCaller.TryAddEnumerable(services, descriptors);
     public static void TryAddTransient(object? services, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type service) =>
         PluginServiceCollectionDescriptorCaller.TryAddTransient(services, service);
 
-    void TryAddTransient<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>() where TService : class where TImplementation : class, TService =>
+    void TryAddTransient<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService =>
         PluginServiceCollectionDescriptor.TryAddTransient<TService, TImplementation>(Services);
     public static void TryAddTransient_<TService, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TImplementation>(object? collection) where TService : class where TImplementation : class, TService =>
         PluginServiceCollectionDescriptorCaller.TryAddTransient<TService, TImplementation>(collection);
 
-    void TryAddTransient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>() where TService : class =>
+    void TryAddTransient<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddTransient<TService>(Services);
     public static void TryAddTransient_<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TService>(object? collection) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddTransient<TService>(collection);
 
-    void TryAddTransient<TService>(Func<IServiceProvider, TService> implementationFactory) where TService : class =>
+    void TryAddTransient<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptor.TryAddTransient<TService>(Services, implementationFactory);
     public static void TryAddTransient_<TService>(object? services, Func<IServiceProvider, TService> implementationFactory) where TService : class =>
         PluginServiceCollectionDescriptorCaller.TryAddTransient<TService>(services, implementationFactory);
