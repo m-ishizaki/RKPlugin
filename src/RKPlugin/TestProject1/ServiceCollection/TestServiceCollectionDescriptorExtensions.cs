@@ -83,11 +83,6 @@ public sealed class TestServiceCollectionDescriptorExtensions
         => PluginServiceCollection.TryAddKeyedScoped_<object>(services, serviceKey: null, implementationFactory: null);
 
     [TestMethod]
-    public void Test_TryAddKeyedScoped_014() => Test(nameof(_Test_TryAddKeyedScoped_014));
-    static void _Test_TryAddKeyedScoped_014(object? collection)
-        => PluginServiceCollection.TryAddKeyedScoped<object>(collection, serviceKey: null);
-
-    [TestMethod]
     public void Test_TryAddKeyedScoped_015() => Test(nameof(_Test_TryAddKeyedScoped_015));
     static void _Test_TryAddKeyedScoped_015(object? collection)
         => PluginServiceCollection.TryAddKeyedScoped(collection, service: null, serviceKey: null, implementationFactory: null);
@@ -115,11 +110,6 @@ public sealed class TestServiceCollectionDescriptorExtensions
     [TestMethod]
     public void Test_TryAddKeyedSingleton_020() => Test(nameof(_Test_TryAddKeyedSingleton_020));
     static void _Test_TryAddKeyedSingleton_020(object? collection)
-        => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey: null);
-
-    [TestMethod]
-    public void Test_TryAddKeyedSingleton_021() => Test(nameof(_Test_TryAddKeyedSingleton_021));
-    static void _Test_TryAddKeyedSingleton_021(object? collection)
         => PluginServiceCollection.TryAddKeyedSingleton<object>(collection, serviceKey: null);
 
     [TestMethod]
